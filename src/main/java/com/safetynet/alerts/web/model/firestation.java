@@ -1,36 +1,30 @@
 package com.safetynet.alerts.web.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Data
+@Entity
+@Table(name = "firestation")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class firestation {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String address;
     private String station;
-
-    public firestation() {
-
-    }
-
-    public firestation(String address, String station) {
-        this.address = address;
-        this.station = station;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getStation() {
-        return station;
-    }
-
-    public void setStation(String station) {
-        this.station = station;
-    }
-
-    @Override
-    public String toString() {
-        return "firestation [address=" + address + ", station=" + station + "]";
-    }
 }
