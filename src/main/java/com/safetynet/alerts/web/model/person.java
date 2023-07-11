@@ -1,6 +1,6 @@
 package com.safetynet.alerts.web.model;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,28 +9,31 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "person")
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class person {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "firstName")
     private String firstName;
-    private String LastName;
+    @Column(name = "lastName")
+    private String lastName;
+    @Column(name = "address")
     private String address;
+    @Column(name = "city")
     private String city;
+    @Column(name = "zip")
     private String zip;
+    @Column(name = "phone")
     private String phone;
+    @Column(name = "email")
     private String email;
 }
