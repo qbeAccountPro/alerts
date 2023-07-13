@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetynet.alerts.web.dao.FirestationDao;
-import com.safetynet.alerts.web.model.Firestation;
+import com.safetynet.alerts.web.model.Firestations;
 
-import io.swagger.annotations.Api;
+/* import io.swagger.annotations.Api;
 
-@Api("API for CRUD operations on firestations.")
+@Api("API for CRUD operations on firestations.") */
 @RestController
 @RequestMapping("/firestation")
 public class FirestationController {
@@ -23,7 +23,7 @@ public class FirestationController {
     }
 
     @GetMapping("")
-    public List<Firestation> listFirestations() {
+    public List<Firestations> listFirestations() {
         return firestationDao.findAll();
     }
 

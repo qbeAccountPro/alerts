@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safetynet.alerts.web.dao.MedicalrecordDao;
-import com.safetynet.alerts.web.model.Medicalrecord;
+import com.safetynet.alerts.web.model.Medicalrecords;
 
-import io.swagger.annotations.Api;
+/* import io.swagger.annotations.Api;
 
-@Api("API for CRUD operations on medicals records.")
+@Api("API for CRUD operations on medicals records.") */
 @RestController
 @RequestMapping("/medicalRecord")
 public class MedicalRecordController {
@@ -23,7 +23,7 @@ public class MedicalRecordController {
     }
 
         @GetMapping("")
-    public List<Medicalrecord> listMedicalRecord() {
+    public List<Medicalrecords> listMedicalRecord() {
         return medicalrecordDao.findAll();
     }
 
