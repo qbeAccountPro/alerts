@@ -1,5 +1,7 @@
 package com.safetynet.alerts.web.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,15 +17,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Persons {
+public class Medicalrecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String firstName;
     private String lastName;
-    private String address;
-    private String city;
-    private String zip;
-    private String phone;
-    private String email;
+    private String birthdate;
+    private List<String> medications;
+    private List<String> allergies;
 }

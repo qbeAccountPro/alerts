@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ModelWrapper {
-    private List<Persons> persons;
-    private List<Firestations> firestations;
-    private List<Medicalrecords> medicalrecords;
+    private List<Person> persons;
+    private List<Firestation> firestations;
+    private List<Medicalrecord> medicalrecords;
 }

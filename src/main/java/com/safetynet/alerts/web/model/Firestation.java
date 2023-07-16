@@ -15,7 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Firestations {
+public class Firestation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

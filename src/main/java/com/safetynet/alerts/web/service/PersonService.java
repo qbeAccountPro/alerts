@@ -3,7 +3,7 @@ package com.safetynet.alerts.web.service;
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.web.dao.PersonDao;
-import com.safetynet.alerts.web.model.Persons;
+import com.safetynet.alerts.web.model.Person;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ public class PersonService {
         this.personDao = personDao;
     }
 
-    public Iterable<Persons> List(){
+    public Iterable<Person> List(){
         return personDao.findAll();
     }
 
-    public Persons save(Persons person){
+    public Person save(Person person){
         return personDao.save(person);
     }
 
-    public Iterable<Persons> save(List<Persons> persons){
+    public Iterable<Person> save(List<Person> persons){
         return personDao.saveAll(persons);
     }
 
