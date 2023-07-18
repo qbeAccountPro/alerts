@@ -11,5 +11,5 @@ import java.util.List;
 public class ModelWrapper {
     private List<Person> persons;
     private List<Firestation> firestations;
-    private List<Medicalrecord> medicalrecords;
+    private List<MedicalRecord> medicalrecords;
 }

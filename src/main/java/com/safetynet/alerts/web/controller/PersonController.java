@@ -11,58 +11,58 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.safetynet.alerts.web.dao.PersonDao;
 import com.safetynet.alerts.web.model.Person;
 import com.safetynet.alerts.web.service.BeanService;
+import com.safetynet.alerts.web.service.PersonService;
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RestController
 @RequestMapping("/person")
 public class PersonController {
 
     @Autowired
-    private final PersonDao personDao;
+    private final PersonService personService;
 
-    public PersonController(PersonDao personDao) {
-        this.personDao = personDao;
+    public PersonController(PersonService personService) {
+        this.personService = personService;
     }
 
     @GetMapping("")
     public List<Person> list() {
-        return personDao.findAll();
+        return personService.getAllPersons();
     }
 
     @GetMapping(value = "/{id}")
     public Person findById(@PathVariable int id) {
-        return personDao.findById(id);
+        return personService.getPersonById(id);
     }
 
     @PutMapping(value = "")
     public void updateProduit(@RequestBody Person person) {
-        personDao.save(person);
+        personService.savePerson(person);
     }
 
     @PutMapping("/{firstName}/{lastName}")
     public void updateByFirstNameAndLastName(@PathVariable("firstName") String firstName,
             @PathVariable("lastName") String lastName, @RequestBody Person newPerson) {
-        Person oldPerson = personDao.findByFirstNameAndLastName(firstName, lastName);
+        Person oldPerson = personService.findPersonByFirstNameAndLastName(firstName, lastName);
         if (oldPerson != null) {
             try {
                 Person updatePerson = BeanService.updateBeanWithNotNullPropertiesFromNewObject(oldPerson, newPerson);
                 updatePerson.setId(oldPerson.getId());
                 updatePerson.setFirstName(firstName);
                 updatePerson.setFirstName(lastName);
-                personDao.save(updatePerson);
+                personService.savePerson(updatePerson);
             } catch (Exception e) {
                 System.out.println("updateByFirstNameAndLastName produit l'erreur : " + e);
             }
         }
-
+ 
     }
 
     @PostMapping(value = "")
     public ResponseEntity<Person> addPerson(@RequestBody Person person) {
-        Person personsAdded = personDao.save(person);
+        Person personsAdded = personService.savePerson(person);
         if (Objects.isNull(personsAdded)) {
             return ResponseEntity.noContent().build();
         }
@@ -76,12 +76,12 @@ public class PersonController {
 
     @DeleteMapping(value = "/{id}")
     public void deleteById(@PathVariable int id) {
-        personDao.deleteById(id);
+        personService.deletePersonById(id);
     }
 
     @Transactional 
     @DeleteMapping("/{firstName}/{lastName}")
     public void deletePerson(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
-        personDao.deleteByFirstNameAndLastName(firstName, lastName);
+        personService.findPersonByFirstNameAndLastName(firstName, lastName);
     }
 }

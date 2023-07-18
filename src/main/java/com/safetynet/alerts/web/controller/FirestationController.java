@@ -1,7 +1,5 @@
 package com.safetynet.alerts.web.controller;
 
-import java.util.List;
-
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,40 +10,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safetynet.alerts.web.dao.FirestationDao;
 import com.safetynet.alerts.web.model.Firestation;
 import com.safetynet.alerts.web.service.BeanService;
+import com.safetynet.alerts.web.service.FirestationService;
 
 @RestController
 @RequestMapping("/firestation")
 public class FirestationController {
 
-    private final FirestationDao firestationDao;
+    private final FirestationService firestationService;
 
-    public FirestationController(FirestationDao firestationDao) {
-        this.firestationDao = firestationDao;
-    }
-
-    @GetMapping("")
-    public List<Firestation> list() {
-        return firestationDao.findAll();
+    public FirestationController(FirestationService firestationService) {
+        this.firestationService = firestationService;
     }
 
     @PostMapping("")
     public void addFirestation(@RequestBody Firestation firestation) {
-        firestationDao.save(firestation);
+        firestationService.saveFirestation(firestation);
     }
 
     @PutMapping("/{address}")
     public void updateNumberStationFromAddress(@PathVariable("address") String address,
             @RequestBody Firestation newFirestation) {
-        Firestation oldFirestation = firestationDao.findByAddress(address);
+        Firestation oldFirestation = firestationService.findFirestationByAddress(address);
         if (oldFirestation != null) {
             try {
                 Firestation updateFirestation = BeanService.updateBeanWithNotNullPropertiesFromNewObject(oldFirestation,
                         newFirestation);
                 updateFirestation.setId(oldFirestation.getId());
-                firestationDao.save(updateFirestation);
+                firestationService.saveFirestation(updateFirestation);
             } catch (Exception e) {
                 System.out.println("updateByFirstNameAndLastName produit l'erreur : " + e);
             }
@@ -55,7 +48,19 @@ public class FirestationController {
     @Transactional
     @DeleteMapping("/{address}")
     public void deleteFirestationByAddress(@PathVariable("address") String address) {
-        firestationDao.deleteByAddress(address);
+        firestationService.deleteFirestationByAddress(address);
+    }
+
+    @Transactional
+    @DeleteMapping("/{station}")
+    public void deleteFirestationByStation(@PathVariable("station") String station) {
+        firestationService.deleteFirestationByStation(station);
+    }
+
+    @GetMapping("?stationNumber={station_number}")
+    public void getPersonsCoveredByFirestationNumber(@PathVariable("stationNumber") String stationNumber) {
+        firestationService.getPersonsCoveredByFirestationNumber(stationNumber);
+
     }
 
 }

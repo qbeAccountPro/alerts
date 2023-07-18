@@ -2,6 +2,7 @@ package com.safetynet.alerts.web.service;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.text.Normalizer;
 
 public class BeanService {
 
@@ -11,7 +12,8 @@ public class BeanService {
      * 
      * @param oldObject : Old object with old value.
      * @param newObject : New object with new value.
-     * @return updateObject : Object with value from new object unless if the new value is null in which case we take old value. 
+     * @return updateObject : Object with value from new object unless if the new
+     *         value is null in which case we take old value.
      */
     public static <T> T updateBeanWithNotNullPropertiesFromNewObject(T oldObject, T newObject) {
         Class<?> genericClass = oldObject.getClass();
@@ -42,5 +44,13 @@ public class BeanService {
         }
         return null;
     }
+
+    public static String normalizeString(String input) {
+        return Normalizer.normalize(input, Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "")
+                .toLowerCase();
+    }
+
+    
 
 }

@@ -9,10 +9,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.web.dao.FirestationDao;
-import com.safetynet.alerts.web.dao.MedicalrecordDao;
+import com.safetynet.alerts.web.dao.MedicalRecordDao;
 import com.safetynet.alerts.web.dao.PersonDao;
 import com.safetynet.alerts.web.model.Firestation;
-import com.safetynet.alerts.web.model.Medicalrecord;
+import com.safetynet.alerts.web.model.MedicalRecord;
 import com.safetynet.alerts.web.model.ModelWrapper;
 import com.safetynet.alerts.web.model.Person;
 
@@ -32,7 +32,7 @@ public class AlertsApplication {
 		SpringApplication.run(AlertsApplication.class, args);
 	}
 	@Bean
-	CommandLineRunner runner(PersonDao personDao, FirestationDao firestationDao,MedicalrecordDao medicalrecordDao ) {
+	CommandLineRunner runner(PersonDao personDao, FirestationDao firestationDao,MedicalRecordDao medicalrecordDao ) {
 		return args -> {
 			ObjectMapper objectMapper = new ObjectMapper();
 			InputStream jsonPath = TypeReference.class.getResourceAsStream("/data.json");
@@ -40,7 +40,7 @@ public class AlertsApplication {
 			try {
 				List<Person> persons = modelWrapper.getPersons();
 				List<Firestation> firestations = modelWrapper.getFirestations();
-				List<Medicalrecord> medicalrecords = modelWrapper.getMedicalrecords();
+				List<MedicalRecord> medicalrecords = modelWrapper.getMedicalrecords();
 				personDao.saveAll(persons);
 				firestationDao.saveAll(firestations);
 				medicalrecordDao.saveAll(medicalrecords);
