@@ -54,4 +54,14 @@ public class FirestationService {
         System.out.println("weshwesh");
     }
 
+    public String getStationNumberByAdress(String address) {
+        List<Firestation> firestations = getAllFirestations();
+        for (Firestation firestation : firestations) {
+            if (firestation.getAddress().equals(address)) {
+               return firestation.getStation();
+            }
+        }
+        return null;
+    }
+
 }

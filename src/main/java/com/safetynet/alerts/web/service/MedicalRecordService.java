@@ -15,7 +15,7 @@ import com.safetynet.alerts.web.model.Person;
 
 @Service
 public class MedicalRecordService {
-
+    private BeanService beanService = new BeanService();
     private final MedicalRecordDao medicalRecordDao;
 
     @Autowired
@@ -56,7 +56,7 @@ public class MedicalRecordService {
         medicalRecordDao.deleteByFirstNameAndLastName(firstName, lastName);
     }
 
-    public String getMinorsAndAdultsNumbers(List<MedicalRecord> medicalRecords) {
+    public List<Integer> getMinorsAndAdultsNumbers(List<MedicalRecord> medicalRecords) {
         int adults = 0, minors = 0;
         for (MedicalRecord medicalRecord : medicalRecords) {
             if (isMinor(medicalRecord.getBirthdate())) {
@@ -65,7 +65,10 @@ public class MedicalRecordService {
                 adults++;
             }
         }
-        return "There are " + adults + " adults and " + minors + " minors.";
+        List<Integer> minorsThenAdultsNumbers = new ArrayList<>();
+        minorsThenAdultsNumbers.add(minors);
+        minorsThenAdultsNumbers.add(adults);
+        return minorsThenAdultsNumbers;
     }
 
     public List<MedicalRecord> getMedicalRecordsOnlyFromChild(List<MedicalRecord> residentMedicalRecords) {
@@ -79,17 +82,11 @@ public class MedicalRecordService {
     }
 
     private boolean isMinor(String birthdate) {
-        if (convertBirthdateToAge(birthdate) <= 18) {
+        if (beanService.convertBirthdateToAge(birthdate) <= 18) {
             return true;
         } else {
             return false;
         }
     }
 
-    public int convertBirthdateToAge(String birthdate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDate dateOfBirth = LocalDate.parse(birthdate, formatter);
-        LocalDate currentDate = LocalDate.now();
-        return Period.between(dateOfBirth, currentDate).getYears();
-    }
 }

@@ -1,5 +1,7 @@
 package com.safetynet.alerts.web.controller;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,11 @@ public class FirestationController {
     public FirestationController(FirestationService firestationService) {
         this.firestationService = firestationService;
     }
+/* 
+    @GetMapping("")
+    public List<Firestation> getAllFirestations() {
+        return firestationService.getAllFirestations();
+    } */
 
     @PostMapping("")
     public void addFirestation(@RequestBody Firestation firestation) {

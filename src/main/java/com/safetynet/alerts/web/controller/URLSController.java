@@ -17,7 +17,7 @@ public class URLSController {
 
     @GetMapping("firestation")
     public void getFireStationData(@RequestParam("stationNumber") String station) {
-       urlsService.getFireStationData(station);
+        urlsService.getFireStationData(station);
     }
 
     @GetMapping("childAlert")
@@ -27,27 +27,27 @@ public class URLSController {
 
     @GetMapping("phoneAlert")
     public void getPhoneNumbersByFirestationNumber(@RequestParam("firestation") String station) {
-
+        urlsService.getPhoneNumbersByFirestationNumber(station);
     }
 
     @GetMapping("fire")
     public void getStationAndPersonsByAddress(@RequestParam("address") String address) {
-
+        urlsService.getStationAndPersonsByAddress(address);
     }
 
     @GetMapping("flood/stations")
     public void getPersonsWithTheirMedicalRecordsByStationNumber(@RequestParam("stations") String station) {
-
+        urlsService.getPersonsWithTheirMedicalRecordsByStationNumber(station);
     }
 
     @GetMapping("personInfo")
     public void getPersonInfoByFirstNameAndLastName(@RequestParam("firstName") String firstName,
             @RequestParam("lastName") String lastName) {
-
+        urlsService.getPersonInfoByFirstNameAndLastName(firstName, lastName);
     }
 
     @GetMapping("communityEmail")
     public void getAllResidentsEmails(@RequestParam("city") String city) {
-
+        urlsService.getAllResidentsEmails(city);
     }
 }

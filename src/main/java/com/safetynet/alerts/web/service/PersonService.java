@@ -69,4 +69,8 @@ public class PersonService {
     public void deletePersonById(int id) {
         personDao.deleteById(id);
     }
+
+    public List<Person> getPersonsByFirstNameAndLastName(String firstName, String lastName) {
+        return null;
+    }
 }

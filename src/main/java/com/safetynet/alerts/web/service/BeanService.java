@@ -3,6 +3,9 @@ package com.safetynet.alerts.web.service;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.text.Normalizer;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public class BeanService {
 
@@ -51,6 +54,11 @@ public class BeanService {
                 .toLowerCase();
     }
 
-    
+    public int convertBirthdateToAge(String birthdate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate dateOfBirth = LocalDate.parse(birthdate, formatter);
+        LocalDate currentDate = LocalDate.now();
+        return Period.between(dateOfBirth, currentDate).getYears();
+    }
 
 }

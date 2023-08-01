@@ -11,9 +11,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.web.dao.FirestationDao;
 import com.safetynet.alerts.web.dao.MedicalRecordDao;
 import com.safetynet.alerts.web.dao.PersonDao;
+import com.safetynet.alerts.web.deserialization.Deserialization;
 import com.safetynet.alerts.web.model.Firestation;
 import com.safetynet.alerts.web.model.MedicalRecord;
-import com.safetynet.alerts.web.model.ModelWrapper;
 import com.safetynet.alerts.web.model.Person;
 
 import java.io.InputStream;
@@ -36,7 +36,7 @@ public class AlertsApplication {
 		return args -> {
 			ObjectMapper objectMapper = new ObjectMapper();
 			InputStream jsonPath = TypeReference.class.getResourceAsStream("/data.json");
-			ModelWrapper modelWrapper = objectMapper.readValue(jsonPath, ModelWrapper.class);
+			Deserialization modelWrapper = objectMapper.readValue(jsonPath, Deserialization.class);
 			try {
 				List<Person> persons = modelWrapper.getPersons();
 				List<Firestation> firestations = modelWrapper.getFirestations();
