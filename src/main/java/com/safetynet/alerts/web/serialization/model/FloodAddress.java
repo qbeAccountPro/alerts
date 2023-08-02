@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonInfo {
-    private String lastName;
+public class FloodAddress {
     private String address;
-    private String mail;
-    private int age;
-    private List<String> medications;
-    private List<String> allergies;
-}
+    private List<Flood> flood;
+    }

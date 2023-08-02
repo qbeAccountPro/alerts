@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.web.dao.PersonDao;
+import com.safetynet.alerts.web.model.MedicalRecord;
 import com.safetynet.alerts.web.model.Person;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class PersonService {
         return personDao.save(person);
     }
 
-    public List<Person> getPersonsListByAddressesList(List<String> addresses) {
+    public List<Person> getPersonsByAddresses(List<String> addresses) {
         List<Person> persons = getAllPersons();
         List<Person> residents = new ArrayList<>();
         for (Person person : persons) {
@@ -46,16 +47,12 @@ public class PersonService {
         List<Person> persons = getAllPersons();
         List<Person> residents = new ArrayList<>();
         for (Person person : persons) {
-                if (BeanService.normalizeString(person.getAddress()).equalsIgnoreCase(BeanService
-                        .normalizeString(address))) {
-                    residents.add(person);
-                }
+            if (BeanService.normalizeString(person.getAddress()).equalsIgnoreCase(BeanService
+                    .normalizeString(address))) {
+                residents.add(person);
             }
+        }
         return residents;
-    }
-
-    public boolean checkPersonAdults(Person person) {
-        return false;
     }
 
     public Person getPersonById(int id) {
@@ -70,7 +67,63 @@ public class PersonService {
         personDao.deleteById(id);
     }
 
+    public List<Person> getChildren(List<Person> persons,
+            List<MedicalRecord> medicalRecords) {
+        MedicalRecordService medicalRecordService = new MedicalRecordService(null);
+        List<Person> children = new ArrayList<>();
+        for (Person person : persons) {
+            for (MedicalRecord medicalRecord : medicalRecords) {
+                Boolean checkFirstName = person.getFirstName().equals(medicalRecord.getFirstName());
+                Boolean checkLastName = person.getLastName().equals(medicalRecord.getLastName());
+                Boolean checkMinor = medicalRecordService.isMinor(medicalRecord.getBirthdate());
+                if (checkFirstName && checkLastName && checkMinor) {
+                    children.add(person);
+                    break;
+                }
+            }
+        }
+        return children;
+    }
+
+    public List<Person> getAdults(List<Person> persons, List<MedicalRecord> medicalRecords) {
+        MedicalRecordService medicalRecordService = new MedicalRecordService(null);
+        List<Person> adults = new ArrayList<>();
+        for (Person person : persons) {
+            for (MedicalRecord medicalRecord : medicalRecords) {
+                Boolean checkFirstName = person.getFirstName().equals(medicalRecord.getFirstName());
+                Boolean checkLastName = person.getLastName().equals(medicalRecord.getLastName());
+                Boolean checkMinor = medicalRecordService.isMinor(medicalRecord.getBirthdate());
+                if (checkFirstName && checkLastName && !checkMinor) {
+                    adults.add(person);
+                    break;
+                }
+            }
+        }
+        return adults;
+    }
+
+    public List<Person> getPersonsByCity(String city) {
+        List<Person> persons = getAllPersons();
+        List<Person> residents = new ArrayList<>();
+        for (Person person : persons) {
+            Boolean checkCity = person.getCity().equals(city);
+            if (checkCity) {
+                residents.add(person);
+            }
+        }
+        return residents;
+    }
+
     public List<Person> getPersonsByFirstNameAndLastName(String firstName, String lastName) {
-        return null;
+        List<Person> persons = getAllPersons();
+        List<Person> matchingPersons = new ArrayList<>();
+        for (Person person : persons) {
+            Boolean checkFirstName = person.getFirstName().equals(firstName);
+            Boolean checkLastName = person.getLastName().equals(lastName);
+            if (checkFirstName && checkLastName) {
+                matchingPersons.add(person);
+            }
+        }
+        return matchingPersons;
     }
 }

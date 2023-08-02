@@ -12,7 +12,6 @@ public class PersoneInfoDao extends StdSerializer<PersonInfo> {
 
     public PersoneInfoDao(Class<PersonInfo> t) {
         super(t);
-
     }
 
     @Override
@@ -23,16 +22,23 @@ public class PersoneInfoDao extends StdSerializer<PersonInfo> {
             gen.writeStringField("address", personInfo.getAddress());
             gen.writeNumberField("age", personInfo.getAge());
             gen.writeStringField("phone", personInfo.getMail());
-            gen.writeStartArray("medications");
-            for (String medication : personInfo.getMedications()) {
-                gen.writeString(medication);
+            gen.writeFieldName("medications");
+            gen.writeStartArray();
+            if (personInfo.getMedications() != null) {
+                for (String medication : personInfo.getMedications()) {
+                    gen.writeString(medication);
+                }
             }
             gen.writeEndArray();
-            gen.writeStartArray("allergies");
-            for (String allergie : personInfo.getAllergies()) {
-                gen.writeString(allergie);
+            gen.writeFieldName("allergies");
+            gen.writeStartArray();
+            if (personInfo.getAllergies() != null) {
+                for (String allergie : personInfo.getAllergies()) {
+                    gen.writeString(allergie);
+                }
             }
             gen.writeEndArray();
+
             gen.writeEndObject();
         } catch (IOException e) {
             e.printStackTrace();

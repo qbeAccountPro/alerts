@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Fire { // TODO ADD Numéro caserne pompier
+public class Fire {
     private String lastName;
     private String phone;
     private int age;

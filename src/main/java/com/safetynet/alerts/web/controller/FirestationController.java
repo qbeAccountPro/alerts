@@ -1,6 +1,5 @@
 package com.safetynet.alerts.web.controller;
 
-import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;

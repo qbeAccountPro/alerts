@@ -22,7 +22,7 @@ public class ChildAlertService {
                         && person.getLastName().equals(medicalRecord.getLastName())) {
                     ChildAlert childAlert = new ChildAlert();
                     childAlert.setFirstName(person.getFirstName());
-                    childAlert.setFirstName(person.getLastName());
+                    childAlert.setLastName(person.getLastName());
                     childAlert.setAge(beanService.convertBirthdateToAge(medicalRecord.getBirthdate()));
                     childrenAlert.add(childAlert);
                     break;

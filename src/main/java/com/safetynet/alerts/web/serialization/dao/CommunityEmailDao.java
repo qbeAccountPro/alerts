@@ -18,7 +18,7 @@ public class CommunityEmailDao extends StdSerializer<Person> {
     public void serialize(Person person, JsonGenerator gen, SerializerProvider provider) {
         try {
             gen.writeStartObject();
-            gen.writeStringField("address", person.getAddress());
+            gen.writeStringField("email", person.getEmail());
             gen.writeEndObject();
         } catch (IOException e) {
             e.printStackTrace();

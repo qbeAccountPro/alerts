@@ -15,7 +15,6 @@ import com.safetynet.alerts.web.model.Person;
 import com.safetynet.alerts.web.service.BeanService;
 import com.safetynet.alerts.web.service.PersonService;
 
-//@CrossOrigin("*")
 @RestController
 @RequestMapping("/person")
 public class PersonController {

@@ -11,7 +11,7 @@ import com.safetynet.alerts.web.model.Person;
 import com.safetynet.alerts.web.serialization.model.Fire;
 
 @Service
-public class FireService {
+public class FireService { //Erreur à vérifier
     BeanService beanService = new BeanService();
 
     public List<Fire> getFireList(List<Person> persons, List<MedicalRecord> medicalRecords) {

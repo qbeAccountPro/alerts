@@ -22,16 +22,23 @@ public class FireDao extends StdSerializer<Fire> {
             gen.writeStringField("lastName", fire.getLastName());
             gen.writeStringField("phone", fire.getPhone());
             gen.writeNumberField("age", fire.getAge());
-            gen.writeStartArray("medications");
-            for (String medication : fire.getMedications()) {
-                gen.writeString(medication);
-            }
-            gen.writeEndArray();
-            gen.writeStartArray("allergies");
-            for (String allergie : fire.getAllergies()) {
-                gen.writeString(allergie);
-            }
-            gen.writeEndArray();
+            gen.writeFieldName("medications");
+                gen.writeStartArray();
+                if (fire.getMedications() != null) {
+                    for (String medication : fire.getMedications()) {
+                        gen.writeString(medication);
+                    }
+                }
+                gen.writeEndArray();
+                gen.writeFieldName("allergies");
+                gen.writeStartArray();
+                if (fire.getAllergies() != null) {
+                    for (String allergie : fire.getAllergies()) {
+                        gen.writeString(allergie);
+                    }
+                }
+
+                gen.writeEndArray();
             gen.writeEndObject();
         } catch (IOException e) {
             e.printStackTrace();

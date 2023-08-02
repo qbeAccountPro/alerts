@@ -1,8 +1,5 @@
 package com.safetynet.alerts.web.service;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +68,7 @@ public class MedicalRecordService {
         return minorsThenAdultsNumbers;
     }
 
-    public List<MedicalRecord> getMedicalRecordsOnlyFromChild(List<MedicalRecord> residentMedicalRecords) {
+    public List<MedicalRecord> getChildrenMedicalRecords(List<MedicalRecord> residentMedicalRecords) {
         List<MedicalRecord> residentChildMedicalRecords = new ArrayList<>();
         for (MedicalRecord residentMedicalRecord : residentMedicalRecords) {
             if (isMinor(residentMedicalRecord.getBirthdate())) {
@@ -81,7 +78,7 @@ public class MedicalRecordService {
         return residentChildMedicalRecords;
     }
 
-    private boolean isMinor(String birthdate) {
+    public boolean isMinor(String birthdate) {
         if (beanService.convertBirthdateToAge(birthdate) <= 18) {
             return true;
         } else {

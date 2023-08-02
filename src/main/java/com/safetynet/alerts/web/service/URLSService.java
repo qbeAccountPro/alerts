@@ -1,13 +1,22 @@
 package com.safetynet.alerts.web.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
 import org.springframework.stereotype.Service;
 import com.safetynet.alerts.web.model.MedicalRecord;
 import com.safetynet.alerts.web.model.Person;
-import com.safetynet.alerts.web.serialization.service.SerializationService;
+import com.safetynet.alerts.web.serialization.Serialization;
+import com.safetynet.alerts.web.serialization.model.ChildAlert;
+import com.safetynet.alerts.web.serialization.model.Fire;
+import com.safetynet.alerts.web.serialization.model.Flood;
+import com.safetynet.alerts.web.serialization.model.FloodAddress;
+import com.safetynet.alerts.web.serialization.model.PersonInfo;
+import com.safetynet.alerts.web.serialization.service.ChildAlertService;
+import com.safetynet.alerts.web.serialization.service.FireService;
+import com.safetynet.alerts.web.serialization.service.FloodAddressService;
+import com.safetynet.alerts.web.serialization.service.FloodService;
+import com.safetynet.alerts.web.serialization.service.PersonInfoService;
 
 @Service
 public class URLSService {
@@ -15,147 +24,78 @@ public class URLSService {
     private final FirestationService firestationService;
     private final PersonService personService;
     private final MedicalRecordService medicalRecordService;
-    private final SerializationService serializationService;
-    private BeanService beanService = new BeanService();
+    private final Serialization serialization;
 
     public URLSService(FirestationService firestationService, PersonService personService,
-            MedicalRecordService medicalRecordService, SerializationService serializationService) {
+            MedicalRecordService medicalRecordService, Serialization serialization) {
         this.firestationService = firestationService;
         this.personService = personService;
         this.medicalRecordService = medicalRecordService;
-        this.serializationService = serializationService;
+        this.serialization = serialization;
 
     }
 
     public void getFireStationData(String station) {
         List<String> addresses = firestationService.getAddressesCoveredByStationfireNumber(station);
-        List<Person> residents = personService.getPersonsListByAddressesList(addresses);
+        List<Person> residents = personService.getPersonsByAddresses(addresses);
         List<MedicalRecord> medicalRecords = medicalRecordService.getMedicalRecordsByPersons(residents);
         List<Integer> minorsThenAdultsNumbers = medicalRecordService.getMinorsAndAdultsNumbers(medicalRecords);
         int minorsNumber = minorsThenAdultsNumbers.get(0);
         int adultsNumber = minorsThenAdultsNumbers.get(1);
-
-        serializationService.firestationService(residents, getCurrentMethodName(),
-                getArgumentsAsString(station), minorsNumber, adultsNumber);
+        serialization.firestationSerialization(residents, getCurrentMethodName(),
+                station, minorsNumber, adultsNumber);
     }
 
     public void getChildrenByAddress(String address) {
         List<Person> persons = personService.getPersonsListByAddress(address);
-        List<MedicalRecord> residentsMedicalRecord = medicalRecordService.getMedicalRecordsByPersons(persons);
-        List<MedicalRecord> residentChildrenMedicalRecords = medicalRecordService
-                .getMedicalRecordsOnlyFromChild(residentsMedicalRecord);
-        if (residentChildrenMedicalRecords != null) {
-            List<Person> residentsOtherThanChildren = new ArrayList<>();
-            for (Person person : persons) {
-                for (MedicalRecord residentChildMedicalRecord : residentChildrenMedicalRecords) {
-                    if (person.getFirstName().equals(residentChildMedicalRecord.getFirstName())
-                            && person.getLastName().equals(residentChildMedicalRecord.getLastName())) {
-                        break;
-                    }
-                    residentsOtherThanChildren.add(person);
-                }
-            }
-            serializationService.serializationChildAlertQuery(residentChildrenMedicalRecords, persons,
-                    getCurrentMethodName(), getArgumentsAsString(address));
-            for (MedicalRecord residentChildMedicalRecord : residentChildrenMedicalRecords) {
-                System.out.println("FirstName : " + residentChildMedicalRecord.getFirstName() + ", LastName : "
-                        + residentChildMedicalRecord.getLastName() + ", Age : "
-                        + beanService.convertBirthdateToAge(residentChildMedicalRecord.getBirthdate()));
-            }
-            System.out.println("Other residents : ");
-            for (Person residentOtherThanChildren : residentsOtherThanChildren) {
-                System.out.println("FirstName : " + residentOtherThanChildren.getFirstName() + ", LastName : "
-                        + residentOtherThanChildren.getLastName());
-            }
-        } else {
-            System.out.println("No children at this address");
-        }
-
+        List<MedicalRecord> medicalRecords = medicalRecordService.getMedicalRecordsByPersons(persons);
+        List<Person> childrenPerson = personService.getChildren(persons, medicalRecords);
+        List<Person> adultsPerson = personService.getAdults(persons, medicalRecords);
+        ChildAlertService childAlertService = new ChildAlertService();
+        List<ChildAlert> children = childAlertService.getChildAlertListFromPersonList(childrenPerson,
+                medicalRecords);
+        serialization.childAlertSerialization(children, adultsPerson,
+                getCurrentMethodName(), address);
     }
 
     public void getPhoneNumbersByFirestationNumber(String station) {
         List<String> addresses = firestationService.getAddressesCoveredByStationfireNumber(station);
-        List<Person> personsCoveredByFirestation = personService.getPersonsListByAddressesList(addresses);
-        if (personsCoveredByFirestation != null) {
-            for (Person person : personsCoveredByFirestation) {
-                System.out.println("Tel :" + person.getPhone());
-            }
-        } else {
-            System.out.println("Nobody at this station");
-        }
+        List<Person> persons = personService.getPersonsByAddresses(addresses);
+        serialization.phoneAlertSerialization(persons, getCurrentMethodName(), station);
     }
 
     public void getStationAndPersonsByAddress(String address) {
+        FireService fireService = new FireService();
         List<Person> persons = personService.getPersonsListByAddress(address);
         List<MedicalRecord> medicalRecords = medicalRecordService.getMedicalRecordsByPersons(persons);
         String firestationNumber = firestationService.getStationNumberByAdress(address);
-
-        
-        for (Person person : persons) {
-            for (MedicalRecord medicalRecord : medicalRecords) {
-                if (person.getFirstName().equals(medicalRecord.getFirstName())
-                        && person.getLastName().equals(medicalRecord.getLastName())) {
-                    System.out.println("FirstName : " + person.getFirstName() + ", LastName : " + person.getLastName()
-                            + ", Tel : " + person.getPhone() + ", Age : "
-                            + beanService.convertBirthdateToAge(medicalRecord.getBirthdate())
-                            + ", Medical recods : " + medicalRecord.getAllergies() + medicalRecord.getMedications());
-                    break;
-                }
-            }
-        }
-
+        List<Fire> fires = fireService.getFireList(persons, medicalRecords);
+        serialization.fireSerialization(fires, firestationNumber, getCurrentMethodName(),
+                address);
     }
 
     public void getPersonsWithTheirMedicalRecordsByStationNumber(String station) {
+        FloodService floodService = new FloodService();
+        FloodAddressService floodAddressService = new FloodAddressService();
         List<String> addresses = firestationService.getAddressesCoveredByStationfireNumber(station);
-        List<Person> persons = personService.getPersonsListByAddressesList(addresses);
+        List<Person> persons = personService.getPersonsByAddresses(addresses);
         List<MedicalRecord> medicalRecords = medicalRecordService.getMedicalRecordsByPersons(persons);
-        for (String address : addresses) {
-            System.out.println("From this address '" + address + "' we got this persons :");
-            for (Person person : persons) {
-                if (person.getAddress().equals(address)) {
-                    for (MedicalRecord medicalRecord : medicalRecords) {
-                        if (isMedicalRecordIsAtPerson(medicalRecord, person)) {
-                            System.out.println(
-                                    "FirstName : " + person.getFirstName() + ", LastName : " + person.getLastName()
-                                            + ", Tel : " + person.getPhone() + ", Age : "
-                                            + beanService.convertBirthdateToAge(medicalRecord.getBirthdate())
-                                            + ", Medical recods : " + medicalRecord.getAllergies()
-                                            + medicalRecord.getMedications());
-                            break;
-                        }
-                    }
-                }
-            }
-
-        }
+        List<Flood> floods = floodService.getFloodList(persons, medicalRecords);
+        List<FloodAddress> floodAddresses = floodAddressService.getFloodList(floods, addresses);
+        serialization.floodSerialization(floodAddresses, getCurrentMethodName(), station);
     }
 
     public void getPersonInfoByFirstNameAndLastName(String firstName, String lastName) {
+        PersonInfoService personInfoService = new PersonInfoService();
         List<Person> persons = personService.getPersonsByFirstNameAndLastName(firstName, lastName);
         List<MedicalRecord> medicalRecords = medicalRecordService.getMedicalRecordsByPersons(persons);
-        for (Person person : persons) {
-            for (MedicalRecord medicalRecord : medicalRecords) {
-                if (isMedicalRecordIsAtPerson(medicalRecord, person)) {
-                    System.out.println(
-                            "LastName : " + person.getLastName()
-                                    + ", Addres : " + person.getAddress() + ", Age : "
-                                    + beanService.convertBirthdateToAge(medicalRecord.getBirthdate())
-                                    + ", Mail :" + person.getEmail()
-                                    + ", Medical recods : " + medicalRecord.getAllergies()
-                                    + medicalRecord.getMedications());
-                    break;
-                }
-
-            }
-        }
+        List<PersonInfo> personsInfo = personInfoService.getPersonInfoList(persons, medicalRecords);
+        serialization.personInfoSerialization(personsInfo, getCurrentMethodName(), firstName, lastName);
     }
 
     public void getAllResidentsEmails(String city) {
-        List<Person> persons = personService.getAllPersons();
-        for (Person person : persons) {
-            System.out.println(person.getEmail());
-        }
+        List<Person> persons = personService.getPersonsByCity(city);
+        serialization.communityEmailSerialization(persons, getCurrentMethodName(), city);
     }
 
     public boolean isMedicalRecordIsAtPerson(MedicalRecord medicalRecord, Person person) {

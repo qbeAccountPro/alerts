@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Flood { // TODO regrouper les personnes par adresse.
+public class Flood {
     private String lastName;
     private String phone;
     private String address;

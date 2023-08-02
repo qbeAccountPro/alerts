@@ -8,17 +8,20 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.safetynet.alerts.web.model.Person;
 
-public class PhoneAlertDao extends StdSerializer<Person> {
+public class OtherResidentsDao extends StdSerializer<Person> {
 
-    public PhoneAlertDao(Class<Person> t) {
+
+    public OtherResidentsDao(Class<Person> t) {
         super(t);
+
     }
 
     @Override
     public void serialize(Person person, JsonGenerator gen, SerializerProvider provider) {
         try {
             gen.writeStartObject();
-            gen.writeStringField("phone", person.getPhone());
+            gen.writeStringField("firstName", person.getFirstName());
+            gen.writeStringField("lastName", person.getLastName());
             gen.writeEndObject();
         } catch (IOException e) {
             e.printStackTrace();
