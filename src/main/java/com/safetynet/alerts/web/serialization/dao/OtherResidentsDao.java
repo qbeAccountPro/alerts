@@ -8,14 +8,26 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.safetynet.alerts.web.model.Person;
 
+/**
+ * Some javadoc.
+ * Custom serializer for Person objects when serializing other residents' data.
+ * This serializer converts a Person object to JSON format with specific fields.
+ */
 public class OtherResidentsDao extends StdSerializer<Person> {
-
 
     public OtherResidentsDao(Class<Person> t) {
         super(t);
 
     }
 
+    /**
+     * Some javadoc.
+     * Serialize a single Person object to JSON format with specific fields.
+     *
+     * @param person   The Person object to be serialized.
+     * @param gen      The JsonGenerator to write JSON content.
+     * @param provider The SerializerProvider for the serialization process.
+     */
     @Override
     public void serialize(Person person, JsonGenerator gen, SerializerProvider provider) {
         try {
@@ -28,6 +40,14 @@ public class OtherResidentsDao extends StdSerializer<Person> {
         }
     }
 
+    /**
+     * Some javadoc.
+     * Serialize a list of Person objects to JSON format with specific fields.
+     *
+     * @param persons  The list of Person objects to be serialized.
+     * @param gen      The JsonGenerator to write JSON content.
+     * @param provider The SerializerProvider for the serialization process.
+     */
     public void serializeList(List<Person> persons, JsonGenerator gen, SerializerProvider provider) {
         try {
             gen.writeStartArray();

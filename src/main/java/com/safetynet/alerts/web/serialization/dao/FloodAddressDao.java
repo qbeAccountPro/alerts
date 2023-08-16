@@ -9,17 +9,30 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.safetynet.alerts.web.serialization.model.Flood;
 import com.safetynet.alerts.web.serialization.model.FloodAddress;
 
+/**
+ * Some javadoc.
+ * Custom serializer for FloodAddress objects.
+ * This serializer converts a FloodAddress object to JSON format with specific
+ * fields.
+ */
 public class FloodAddressDao extends StdSerializer<FloodAddress> {
 
     public FloodAddressDao(Class<FloodAddress> t) {
         super(t);
     }
 
+    /**
+     * Some javadoc.
+     * Serialize a single FloodAddress object to JSON format with specific fields.
+     *
+     * @param floodAddress The FloodAddress object to be serialized.
+     * @param gen          The JsonGenerator to write JSON content.
+     * @param provider     The SerializerProvider for the serialization process.
+     */
     @Override
     public void serialize(FloodAddress floodAddress, JsonGenerator gen, SerializerProvider provider) {
         try {
             gen.writeStartArray();
-
             for (Flood flood : floodAddress.getFlood()) {
                 gen.writeStartObject();
                 gen.writeStringField("lastName", flood.getLastName());
@@ -40,9 +53,7 @@ public class FloodAddressDao extends StdSerializer<FloodAddress> {
                         gen.writeString(allergie);
                     }
                 }
-
                 gen.writeEndArray();
-
                 gen.writeEndObject();
             }
             gen.writeEndArray();
@@ -52,6 +63,14 @@ public class FloodAddressDao extends StdSerializer<FloodAddress> {
         }
     }
 
+    /**
+     * Some javadoc.
+     * Serialize a list of FloodAddress objects to JSON format with specific fields.
+     *
+     * @param floodAddresses The list of FloodAddress objects to be serialized.
+     * @param gen            The JsonGenerator to write JSON content.
+     * @param provider       The SerializerProvider for the serialization process.
+     */
     public void serializeList(List<FloodAddress> floodAddresses, JsonGenerator gen,
             SerializerProvider provider) {
         try {
@@ -60,7 +79,6 @@ public class FloodAddressDao extends StdSerializer<FloodAddress> {
                 serialize(floodAddress, gen, provider);
                 gen.writeEndArray();
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

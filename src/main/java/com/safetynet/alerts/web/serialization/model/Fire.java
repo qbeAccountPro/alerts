@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Some javadoc.
+ * Model class representing a person affected by fire for the Fire feature.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

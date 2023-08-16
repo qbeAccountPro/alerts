@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Some javadoc.
+ * Model class representing a child for the Child Alert feature.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

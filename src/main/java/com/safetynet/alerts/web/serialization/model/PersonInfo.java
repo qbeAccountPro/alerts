@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Some javadoc.
+ * Model class representing a person for the personInfo Alert feature.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

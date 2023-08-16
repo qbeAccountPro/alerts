@@ -5,11 +5,18 @@ import org.springframework.stereotype.Repository;
 
 import com.safetynet.alerts.web.model.MedicalRecord;
 
+/**
+ * Some javadoc.
+ * This interface represents the data access object (DAO) for the MedicalRecord
+ * entity.
+ * It extends JpaRepository to provide standard CRUD operations for
+ * MedicalRecord objects.
+ */
 @Repository
-public interface MedicalRecordDao extends JpaRepository<MedicalRecord, Integer>{
+public interface MedicalRecordDao extends JpaRepository<MedicalRecord, Integer> {
 
     MedicalRecord findByFirstNameAndLastName(String firstName, String lastName);
 
     void deleteByFirstNameAndLastName(String firstName, String lastName);
-    
+
 }

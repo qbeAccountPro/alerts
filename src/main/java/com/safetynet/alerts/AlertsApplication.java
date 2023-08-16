@@ -19,20 +19,20 @@ import com.safetynet.alerts.web.model.Person;
 import java.io.InputStream;
 import java.util.List;
 
-/* 
-
-import springfox.documentation.swagger2.annotations.EnableSwagger2; */
-
+/**
+ * Some javadoc.
+ * Main class of the Safetynet Alerts application. 
+ */
 @SpringBootApplication
 @EnableWebMvc
-/* @EnableSwagger2 */
 public class AlertsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AlertsApplication.class, args);
 	}
+
 	@Bean
-	CommandLineRunner runner(PersonDao personDao, FirestationDao firestationDao,MedicalRecordDao medicalrecordDao ) {
+	CommandLineRunner runner(PersonDao personDao, FirestationDao firestationDao, MedicalRecordDao medicalrecordDao) {
 		return args -> {
 			ObjectMapper objectMapper = new ObjectMapper();
 			InputStream jsonPath = TypeReference.class.getResourceAsStream("/data.json");
@@ -45,10 +45,9 @@ public class AlertsApplication {
 				firestationDao.saveAll(firestations);
 				medicalrecordDao.saveAll(medicalrecords);
 			} catch (Exception e) {
-				System.out.println("Unable to save persons : " + e.getMessage());
+				System.out.println("Unable to start application : " + e.getMessage());
 			}
-			System.out.println("Sacve: ");
-
+			System.out.println("Application started: ");
 		};
 	}
 

@@ -10,10 +10,25 @@ import com.safetynet.alerts.web.model.Person;
 import com.safetynet.alerts.web.serialization.model.ChildAlert;
 import com.safetynet.alerts.web.service.BeanService;
 
+/**
+ * Some javadoc.
+ * Service class for generating a list of ChildAlert objects from a list of
+ * Person and MedicalRecord objects.
+ */
 @Service
 public class ChildAlertService {
     BeanService beanService = new BeanService();
 
+    /**
+     * Some javadoc.
+     * Generate a list of ChildAlert objects from a list of Person and MedicalRecord
+     * objects.
+     *
+     * @param persons        The list of Person objects.
+     * @param medicalRecords The list of MedicalRecord objects.
+     * @return A list of ChildAlert objects representing children found in the input
+     *         data.
+     */
     public List<ChildAlert> getChildAlertListFromPersonList(List<Person> persons, List<MedicalRecord> medicalRecords) {
         List<ChildAlert> childrenAlert = new ArrayList<>();
         for (Person person : persons) {

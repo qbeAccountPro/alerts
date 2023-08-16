@@ -8,13 +8,25 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.safetynet.alerts.web.serialization.model.ChildAlert;
 
+/**
+ * Some javadoc.
+ * Custom serializer for ChildAlert objects.
+ * This serializer converts a ChildAlert object to JSON format.
+ */
 public class ChildAlertDao extends StdSerializer<ChildAlert> {
-
 
     public ChildAlertDao(Class<ChildAlert> t) {
         super(t);
     }
 
+    /**
+     * Some javadoc.
+     * Serialize a single ChildAlert object to JSON format.
+     *
+     * @param childAlert The ChildAlert object to be serialized.
+     * @param gen        The JsonGenerator to write JSON content.
+     * @param provider   The SerializerProvider for the serialization process.
+     */
     @Override
     public void serialize(ChildAlert childAlert, JsonGenerator gen, SerializerProvider provider) {
         try {
@@ -28,6 +40,14 @@ public class ChildAlertDao extends StdSerializer<ChildAlert> {
         }
     }
 
+    /**
+     * Some javadoc.
+     * Serialize a list of ChildAlert objects to JSON format.
+     *
+     * @param childrenAlert The list of ChildAlert objects to be serialized.
+     * @param gen           The JsonGenerator to write JSON content.
+     * @param provider      The SerializerProvider for the serialization process.
+     */
     public void serializeList(List<ChildAlert> childrenAlert, JsonGenerator gen, SerializerProvider provider) {
         try {
             gen.writeStartArray();
@@ -39,7 +59,5 @@ public class ChildAlertDao extends StdSerializer<ChildAlert> {
             e.printStackTrace();
         }
     }
-
-
 
 }

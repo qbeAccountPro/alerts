@@ -10,10 +10,25 @@ import com.safetynet.alerts.web.model.Person;
 import com.safetynet.alerts.web.serialization.model.Flood;
 import com.safetynet.alerts.web.service.BeanService;
 
+/**
+ * Some javadoc.
+ * Service class for generating a list of Flood objects from a list of Person
+ * and MedicalRecord objects.
+ */
 @Service
 public class FloodService {
     BeanService beanService = new BeanService();
 
+    /**
+     * Some javadoc.
+     * Generate a list of Flood objects from a list of Person and MedicalRecord
+     * objects.
+     *
+     * @param persons        The list of Person objects.
+     * @param medicalRecords The list of MedicalRecord objects.
+     * @return A list of Flood objects representing persons affected by flood from
+     *         the input data.
+     */
     public List<Flood> getFloodList(List<Person> persons, List<MedicalRecord> medicalRecords) {
         List<Flood> floods = new ArrayList<>();
         for (Person person : persons) {
