@@ -32,7 +32,6 @@ public class PersonControllerTest {
                 "qbe.pro@yahoo.com" + "1");
     }
 
-
     /**
      * SomeJavadoc.
      * Test case for finding a person by ID.
@@ -60,6 +59,7 @@ public class PersonControllerTest {
      */
     @Test
     void testDeleteByFirstNameAndLastName() {
+        when(personService.findPersonByFirstNameAndLastName(oldPerson.getFirstName(), oldPerson.getLastName())).thenReturn(oldPerson);
         personController.deleteByFirstNameAndLastName(oldPerson.getFirstName(), oldPerson.getLastName());
         verify(personService, times(1)).deletePersonByFirstNameAndLastName(oldPerson.getFirstName(),
                 oldPerson.getLastName());

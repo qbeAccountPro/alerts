@@ -76,6 +76,7 @@ public class FirestationControllerTest {
      */
     @Test
     public void testDeleteFirestationByAddress() {
+        when(firestationService.findFirestationByAddress(address)).thenReturn(firestation_1);
         firestationController.deleteFirestationByAddress(address);
         verify(firestationService, times(1)).deleteFirestationByAddress(address);
     }
@@ -86,6 +87,7 @@ public class FirestationControllerTest {
      */
     @Test
     public void testDeleteFirestationByStation() {
+        when(firestationService.findFirestationByStation(station)).thenReturn(firestation_1);
         firestationController.deleteFirestationByStation(station);
         verify(firestationService, times(1)).deleteFirestationByStation(station);
     }

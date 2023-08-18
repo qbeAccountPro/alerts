@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.safetynet.alerts.web.service.BeanService;
 import com.safetynet.alerts.web.service.URLSService;
 
 /**
@@ -14,7 +15,6 @@ import com.safetynet.alerts.web.service.URLSService;
  */
 @RestController
 public class URLSController {
-
 
     private final URLSService urlsService;
 
@@ -30,6 +30,7 @@ public class URLSController {
      */
     @GetMapping("firestation")
     public void getFireStationData(@RequestParam("stationNumber") String station) {
+        Logger.info("Request " + BeanService.getCurrentMethodName() + " : station number = " + station + ".");
         urlsService.personCoveredByFireStation(station);
     }
 
@@ -42,6 +43,7 @@ public class URLSController {
      */
     @GetMapping("childAlert")
     public void getChildrenByAddress(@RequestParam("address") String address) {
+        Logger.info("Request " + BeanService.getCurrentMethodName() + " : address = " + address + ".");
         urlsService.childrenLivingAtThisAddress(address);
     }
 
@@ -53,6 +55,7 @@ public class URLSController {
      */
     @GetMapping("phoneAlert")
     public void getPhoneNumbersByFirestationNumber(@RequestParam("firestation") String station) {
+        Logger.info("Request " + BeanService.getCurrentMethodName() + " : station number = " + station + ".");
         urlsService.phoneNumberOfResidentsCoveredByFireStation(station);
     }
 
@@ -65,7 +68,7 @@ public class URLSController {
      */
     @GetMapping("fire")
     public void getStationAndPersonsByAddress(@RequestParam("address") String address) {
-        Logger.info("Request : " + getCurrentMethodName() + "() with address : " + address + ".");
+        Logger.info("Request " + BeanService.getCurrentMethodName() + " : address = " + address + ".");
         urlsService.residentsAndFireStationAtThisAddress(address);
     }
 
@@ -79,7 +82,7 @@ public class URLSController {
      */
     @GetMapping("flood/stations")
     public void getPersonsWithTheirMedicalRecordsByStationNumber(@RequestParam("stations") String station) {
-        Logger.info("Request : " + getCurrentMethodName() + "() with station : " + station + ".");
+        Logger.info("Request " + BeanService.getCurrentMethodName() + " : station number = " + station + ".");
         urlsService.personsByAddressFromStationNumber(station);
     }
 
@@ -95,8 +98,7 @@ public class URLSController {
     @GetMapping("personInfo")
     public void getPersonInfoByFirstNameAndLastName(@RequestParam("firstName") String firstName,
             @RequestParam("lastName") String lastName) {
-        Logger.info("Request : " + getCurrentMethodName() + "() with firstName and lastName : " + firstName
-                + " " + lastName + ".");
+        Logger.info("Request " + BeanService.getCurrentMethodName() + " : first and last name = " + firstName + " " + lastName + ".");
         urlsService.personInfoFromFirstAndLastName(firstName, lastName);
     }
 
@@ -108,18 +110,7 @@ public class URLSController {
      */
     @GetMapping("communityEmail")
     public void getAllResidentsEmails(@RequestParam("city") String city) {
-        Logger.info("Request : " + getCurrentMethodName() + "() with city : " + city + ".");
+        Logger.info("Request " + BeanService.getCurrentMethodName() + " : city = " + city + ".");
         urlsService.allResidentsEmailsFromCity(city);
-    }
-
-    /**
-     * Some javadoc.
-     * Retrieves the name of the current method being executed.
-     *
-     * @return The name of the current method.
-     */
-    public static String getCurrentMethodName() {
-        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[2];
-        return stackTraceElement.getMethodName();
     }
 }

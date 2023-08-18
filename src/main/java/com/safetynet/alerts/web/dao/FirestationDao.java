@@ -19,4 +19,6 @@ public interface FirestationDao extends JpaRepository<Firestation, Integer> {
     void deleteByAddress(String address);
 
     void deleteByStation(String station);
+
+    Firestation findByStation(String station);
 }

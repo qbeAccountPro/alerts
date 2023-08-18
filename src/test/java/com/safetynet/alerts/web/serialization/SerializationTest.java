@@ -50,7 +50,7 @@ public class SerializationTest {
     private Serialization serialization;
 
     private Person person_1, person_2;
-    private List<Person>  persons;
+    private List<Person> persons;
     private String method, argument;
 
     @BeforeEach
@@ -86,11 +86,10 @@ public class SerializationTest {
 
         try {
             String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-            assertTrue(fileContent.contains("Children living at this address"));
+            assertTrue(fileContent.contains("children"));
             assertTrue(fileContent.contains("Quentin"));
             assertTrue(fileContent.contains("George"));
-            assertTrue(fileContent.contains("Muse"));
-            assertTrue(fileContent.contains("Other Residents living at this address"));
+            assertTrue(fileContent.contains("adults"));
             file.delete();
             assertFalse(file.exists());
         } catch (IOException e) {
@@ -112,7 +111,7 @@ public class SerializationTest {
 
         try {
             String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-            assertTrue(fileContent.contains("List of emails from each persons of city : " + argument));
+            assertTrue(fileContent.contains("emails"));
             assertTrue(fileContent.contains("mickMuse@MuseMick"));
             assertTrue(fileContent.contains("JackJack@Jack"));
             file.delete();
@@ -141,8 +140,9 @@ public class SerializationTest {
 
         try {
             String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-            assertTrue(fileContent.contains("List of persons covered by firestation number :" + firestationNumber
-                    + ", from this address :" + argument));
+            assertTrue(fileContent.contains("persons"));
+            assertTrue(fileContent.contains("station"));
+            assertTrue(fileContent.contains("stationServing"));
             assertTrue(fileContent.contains("Moti"));
             assertTrue(fileContent.contains("Hachu"));
             file.delete();
@@ -167,10 +167,10 @@ public class SerializationTest {
 
         try {
             String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-
-            assertTrue(fileContent
-                    .contains("People covered by fire station number " + argument));
-
+            assertTrue(fileContent.contains("persons"));
+            assertTrue(fileContent.contains("adults"));
+            assertTrue(fileContent.contains("minors"));
+            assertTrue(fileContent.contains("counters"));
             file.delete();
             assertFalse(file.exists());
         } catch (IOException e) {
@@ -205,10 +205,14 @@ public class SerializationTest {
 
         try {
             String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
+            assertTrue(fileContent.contains("persons"));
             for (FloodAddress floodsAddress : floodsAddresses) {
-                assertTrue(fileContent
-                        .contains("Persons covered by firestation number : " + argument + ". From the address : "
-                                + floodsAddress.getAddress()));
+                assertTrue(fileContent.contains(floodsAddress.getAddress()));
+                for (Flood flood : floodsAddress.getFlood()) {
+                    assertTrue(fileContent.contains(flood.getAddress()));
+                    assertTrue(fileContent.contains(flood.getLastName()));
+                    assertTrue(fileContent.contains(flood.getPhone()));
+                }
             }
             file.delete();
             assertFalse(file.exists());
@@ -225,19 +229,20 @@ public class SerializationTest {
     @Test
     void testPersonInfoSerialization() {
         PersonInfo personInfo = new PersonInfo("Quentin", "Beraud", "qbe@BE.fr", 60, null, null);
-        List<PersonInfo> personsInfo = Arrays.asList(personInfo);
+        List<PersonInfo> personsInfos = Arrays.asList(personInfo);
         String firstName = "someFtName";
         String lastName = "someLtName";
-        serialization.personInfoSerialization(personsInfo, method, firstName, lastName);
+        serialization.personInfoSerialization(personsInfos, method, firstName, lastName);
         String fileName = serialization.setFileNameString(method, firstName + "_" + lastName);
         File file = new File(fileName);
         assertTrue(new File(fileName).exists());
         try {
             String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-
-            assertTrue(fileContent
-                    .contains("List of persons with first name:" + firstName + " and last name : " + lastName));
-
+            assertTrue(fileContent.contains("persons"));
+            for (PersonInfo personInfoX : personsInfos) {
+                assertTrue(fileContent.contains(personInfoX.getLastName()));
+                assertTrue(fileContent.contains(personInfoX.getMail()));
+            }
             file.delete();
             assertFalse(file.exists());
         } catch (IOException e) {
@@ -257,9 +262,8 @@ public class SerializationTest {
         assertTrue(new File(fileName).exists());
         try {
             String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-            assertTrue(fileContent.contains("List of phone covered by station number :" + argument));
+            assertTrue(fileContent.contains("phones"));
             assertTrue(fileContent.contains(person_1.getPhone()));
-
             file.delete();
             assertFalse(file.exists());
         } catch (IOException e) {

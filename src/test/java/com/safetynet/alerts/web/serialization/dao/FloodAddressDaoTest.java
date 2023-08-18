@@ -36,7 +36,7 @@ public class FloodAddressDaoTest {
             floodAddressDao.serialize(floodAddress, jsonGenerator, objectMapper.getSerializerProvider());
             jsonGenerator.flush();
 
-            String expectedJson = "[{\"lastName\":\"Beraud\",\"age\":13,\"phone\":\"06 66 66 66 66\",\"medications\":[],\"allergies\":[]}]";
+            String expectedJson = "[{\"address\":\"ici\",\"lastName\":\"Beraud\",\"age\":13,\"phone\":\"06 66 66 66 66\",\"medications\":[],\"allergies\":[]}]";
             String actualJson = writer.toString();
             assertEquals(expectedJson, actualJson);
         } catch (IOException e) {
@@ -74,7 +74,7 @@ public class FloodAddressDaoTest {
             floodAddressDao.serializeList(floodAddresses, jsonGenerator, objectMapper.getSerializerProvider());
             jsonGenerator.flush();
 
-            String expectedJson = "[[{\"lastName\":\"Beraud\",\"age\":13,\"phone\":\"06 66 66 66 66\",\"medications\":[],\"allergies\":[]}]] [[{\"lastName\":\"Dark\",\"age\":26,\"phone\":\"06 88 88 88 88\",\"medications\":[],\"allergies\":[]}]]";
+            String expectedJson = "[[{\"address\":\"ici\",\"lastName\":\"Beraud\",\"age\":13,\"phone\":\"06 66 66 66 66\",\"medications\":[],\"allergies\":[]}],[{\"address\":\"pas ici\",\"lastName\":\"Dark\",\"age\":26,\"phone\":\"06 88 88 88 88\",\"medications\":[],\"allergies\":[]}]]";
             String actualJson = writer.toString();
             assertEquals(expectedJson, actualJson);
         } catch (IOException e) {

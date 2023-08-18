@@ -1,6 +1,9 @@
 package com.safetynet.alerts.web.controller;
 
 import org.tinylog.Logger;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +29,7 @@ import com.safetynet.alerts.web.service.FirestationService;
 public class FirestationController {
 
     private final FirestationService firestationService;
+    private BeanService beanService = new BeanService();
 
     public FirestationController(FirestationService firestationService) {
         this.firestationService = firestationService;
@@ -39,9 +43,17 @@ public class FirestationController {
      *                    be added.
      */
     @PostMapping("")
-    public void addFirestation(@RequestBody Firestation firestation) {
-        firestationService.saveFirestation(firestation);
-        Logger.info("Request : " + BeanService.getCurrentMethodName() + ".");
+    public ResponseEntity<String> addFirestation(@RequestBody Firestation firestation) {
+        Logger.info("Request " + BeanService.getCurrentMethodName() + ".");
+        Boolean areFieldsAreNull = beanService.areFieldsNullExceptId(firestation);
+        if (areFieldsAreNull) {
+            Logger.error("Answer " + BeanService.getCurrentMethodName() + " : content is incorrect.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Firestation content is incorrect.");
+        } else {
+            firestationService.saveFirestation(firestation);
+            Logger.info("Answer " + BeanService.getCurrentMethodName() + " : firestation added successfully.");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Firestation added successfully.");
+        }
     }
 
     /**
@@ -53,25 +65,35 @@ public class FirestationController {
      *                       number.
      */
     @PutMapping("/{address}")
-    public void updateNumberStationFromAddress(@PathVariable("address") String address,
+    public ResponseEntity<String> updateNumberStationFromAddress(@PathVariable("address") String address,
             @RequestBody Firestation newFirestation) {
-        Firestation oldFirestation = firestationService.findFirestationByAddress(address);
-        if (oldFirestation != null) {
-            try {
-                Firestation updateFirestation = BeanService.updateBeanWithNotNullPropertiesFromNewObject(oldFirestation,
-                        newFirestation);
-                updateFirestation.setId(oldFirestation.getId());
-                updateFirestation.setAddress(oldFirestation.getAddress());
-                firestationService.saveFirestation(updateFirestation);
-                Logger.info(
-                        "Request : " + BeanService.getCurrentMethodName() + " with this address : " + address + ".");
-            } catch (Exception e) {
-                Logger.error("Request : " + BeanService.getCurrentMethodName() + " with this address : " + address
-                        + ", genereted this exception : " + e);
-            }
+        Logger.info("Request " + BeanService.getCurrentMethodName()  + " : with this address = " + address + ".");
+        Boolean areFieldsAreNull = beanService.areFieldsNullExceptId(newFirestation);
+        if (areFieldsAreNull) {
+            Logger.error("Answer " + BeanService.getCurrentMethodName() + " : content is incorrect.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Firestation content is incorrect.");
         } else {
-            Logger.error("Request : " + BeanService.getCurrentMethodName() + " with this address : " + address
-                    + ", doesn't match with any Firestation.");
+            Firestation oldFirestation = firestationService.findFirestationByAddress(address);
+            if (oldFirestation != null) {
+                try {
+                    Firestation updateFirestation = BeanService.updateBeanWithNotNullPropertiesFromNewObject(
+                            oldFirestation,
+                            newFirestation);
+                    updateFirestation.setId(oldFirestation.getId());
+                    updateFirestation.setAddress(oldFirestation.getAddress());
+                    firestationService.saveFirestation(updateFirestation);
+                    Logger.info(
+                            "Answer " + BeanService.getCurrentMethodName() + " : modified successfully.");
+                    return ResponseEntity.status(HttpStatus.OK).body("Firestation modified successfully.");
+
+                } catch (Exception e) {
+                    Logger.error("Answer " + BeanService.getCurrentMethodName() + " : threw an exception.");
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Request threw an exception.");
+                }
+            } else {
+                Logger.error("Answer " + BeanService.getCurrentMethodName() + " : address doesn't match.");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Firestation address doesn't match.");
+            }
         }
     }
 
@@ -83,9 +105,19 @@ public class FirestationController {
      */
     @Transactional
     @DeleteMapping("/address/{address}")
-    public void deleteFirestationByAddress(@PathVariable("address") String address) {
-        firestationService.deleteFirestationByAddress(address);
-        Logger.info("Request : " + BeanService.getCurrentMethodName() + " with this address : " + address + ".");
+    public ResponseEntity<String> deleteFirestationByAddress(@PathVariable("address") String address) {
+        Logger.info(
+                "Request " + BeanService.getCurrentMethodName() + " : with this address = " + address + ".");
+        Firestation oldFirestation = firestationService.findFirestationByAddress(address);
+        if (oldFirestation != null) {
+            firestationService.deleteFirestationByAddress(address);
+            Logger.info(
+                    "Answer " + BeanService.getCurrentMethodName() + " :  deleted successfully.");
+            return ResponseEntity.status(HttpStatus.OK).body("Firestation deleted successfully.");
+        } else {
+            Logger.error("Answer " + BeanService.getCurrentMethodName() + " : firestation address doesn't match.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Firestation address doesn't match.");
+        }
     }
 
     /**
@@ -96,8 +128,17 @@ public class FirestationController {
      */
     @Transactional
     @DeleteMapping("/station/{station}")
-    public void deleteFirestationByStation(@PathVariable("station") String station) {
-        firestationService.deleteFirestationByStation(station);
-        Logger.info("Request : " + BeanService.getCurrentMethodName() + " with this station : " + station + ".");
+    public ResponseEntity<String> deleteFirestationByStation(@PathVariable("station") String station) {
+        Logger.info(
+                "Request " + BeanService.getCurrentMethodName() + " : with this station = " + station + ".");
+        Firestation oldFirestation = firestationService.findFirestationByStation(station);
+        if (oldFirestation != null) {
+            firestationService.deleteFirestationByStation(station);
+            Logger.info("Answer " + BeanService.getCurrentMethodName() + " : deleted successfully.");
+            return ResponseEntity.status(HttpStatus.OK).body("Firestation deleted successfully.");
+        } else {
+            Logger.error("Answer " + BeanService.getCurrentMethodName() + " : doesn't match with any Firestation.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Firestation address doesn't match.");
+        }
     }
 }

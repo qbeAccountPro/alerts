@@ -72,4 +72,16 @@ public class MedicalRecordServiceTest {
         assertEquals(exceptedMedicalRecords, actualMedicalRecords);
     }
 
+    /**
+     * SomeJavadoc.
+     * Test for 'GetMinorsAndAdultsNumbers' method.
+     */
+    @Test
+    void testGetMinorsAndAdultsNumbers() {
+        List<Integer> minorAndAdultsNumber = medicalRecordService.getMinorsAndAdultsNumbers(medicalRecords);
+        assertEquals(minorAndAdultsNumber.get(0), 1);
+        assertEquals(minorAndAdultsNumber.get(1), 1);
+
+    }
+
 }

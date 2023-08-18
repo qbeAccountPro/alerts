@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.safetynet.alerts.web.model.MedicalRecord;
 import com.safetynet.alerts.web.model.Person;
 import com.safetynet.alerts.web.serialization.Serialization;
+import com.safetynet.alerts.web.serialization.model.ChildAlert;
 import com.safetynet.alerts.web.serialization.service.ChildAlertService;
 import com.safetynet.alerts.web.serialization.service.FireService;
 import com.safetynet.alerts.web.serialization.service.FloodAddressService;
@@ -54,13 +55,13 @@ public class URLSServiceTest {
     @InjectMocks
     private URLSService urlsService;
 
-    private String city, station, firstName, lastName;
-    private List<Person> persons;
-    private String address;
-    private List<Person> childrenPerson;
-    private List<Person> adultsPerson;
-    private List<MedicalRecord> medicalRecords;
-    private List<String> addresses;
+    private String city, station, firstName, lastName, address1, address2;
+    private Person person1, person2;
+    private MedicalRecord medicalRecord1, medicalRecord2;
+    private List<Person> emptyPersonList, persons;
+    private List<MedicalRecord> emptyMedicalRecords, medicalRecords;
+    private List<String> addresses, allergies, medication;
+    private List<Integer> minorsThenAdultsNumber;
 
     @BeforeEach
     public void setUp() {
@@ -68,12 +69,27 @@ public class URLSServiceTest {
         lastName = "Beraud";
         station = "1";
         city = "Lyon";
-        address = "123 ici";
-        addresses = Arrays.asList("123 ici", "123 là");
-        persons = new ArrayList<>();
-        childrenPerson = new ArrayList<>();
-        adultsPerson = new ArrayList<>();
-        medicalRecords = new ArrayList<>();
+        allergies = new ArrayList<>();
+        medication = new ArrayList<>();
+        emptyPersonList = new ArrayList<>();
+        emptyMedicalRecords = new ArrayList<>();
+        address1 = "123 ici";
+        address2 = "123 là";
+
+        person1 = new Person(1, firstName, lastName, address1, city, "69006", "06 88 88 88 88",
+                "Quentin.beraud@gmail.com");
+        person2 = new Person(2, "George", "Boo", address2, city, "69006", "06 66 66 68 88",
+                "george.boo@email.com");
+
+        medicalRecord1 = new MedicalRecord(1, firstName, lastName, "02/25/1988", allergies, medication);
+        medicalRecord2 = new MedicalRecord(1, person2.getFirstName(), person2.getLastName(), "08/08/2000", allergies,
+                medication);
+
+        minorsThenAdultsNumber = Arrays.asList(2, 8);
+        addresses = Arrays.asList(address1, address2);
+        persons = Arrays.asList(person1, person2);
+        medicalRecords = Arrays.asList(medicalRecord1, medicalRecord2);
+
     }
 
    /**
@@ -81,39 +97,79 @@ public class URLSServiceTest {
      * Test for 'GetAllResidentsEmailsWithWrongCity' method.
      */
     @Test
-    void testGetAllResidentsEmailsWithWrongCity() {
-        when(personService.getPersonsByCity(city)).thenReturn(persons);
+    void testAllResidentsEmailsWithWrongCity() {
+        when(personService.getPersonsByCity(city)).thenReturn(emptyPersonList);
         urlsService.allResidentsEmailsFromCity(city);
-        verify(serialization, times(1)).emptyAnswer("getAllResidentsEmails", city);
+        verify(serialization, times(1)).emptyAnswer("allResidentsEmailsFromCity", city);
     }
 
    /**
      * SomeJavadoc.
-     * Test for 'GetChildrenByAddress' method with empty list.
+     * Test for 'childrenLivingAtThisAddress' method with empty list.
      */
     @Test
     void testGetChildrenByAddressIfEmptyList() {
-        when(personService.getPersonsListByAddress(address)).thenReturn(persons);
-        when(medicalRecordService.getMedicalRecordsByPersons(persons, medicalRecords)).thenReturn(medicalRecords);
-        when(personService.getChildren(persons, medicalRecords)).thenReturn(childrenPerson);
-        when(personService.getAdults(persons, medicalRecords)).thenReturn(adultsPerson);
-        urlsService.childrenLivingAtThisAddress(address);
-        verify(serialization, times(1)).emptyAnswer("getChildrenByAddress", address);
+        when(personService.getPersonsListByAddress(address1)).thenReturn(emptyPersonList);
+        when(medicalRecordService.getMedicalRecordsByPersons(emptyPersonList, emptyMedicalRecords)).thenReturn(emptyMedicalRecords);
+        when(personService.getChildren(emptyPersonList, emptyMedicalRecords)).thenReturn(emptyPersonList);
+        when(personService.getAdults(emptyPersonList, emptyMedicalRecords)).thenReturn(emptyPersonList);
+        urlsService.childrenLivingAtThisAddress(address1);
+        verify(serialization, times(1)).emptyAnswer("childrenLivingAtThisAddress", address1);
     }
 
     /**
      * SomeJavadoc.
-     * Test for 'GetFireStationData' method with empty list.
+     * Test for 'childrenLivingAtThisAddress' method with normal content.
      */
     @Test
-    void testGetFireStationDataIfEmptyPersonsList() {
-        List<Integer> minorsThenAdultsNumber = Arrays.asList(2, 8);
+    void testchildrenLivingAtThisAddress() {
+        List<Person> personLivingAtThisAddress = Arrays.asList(person1);
+        List<MedicalRecord> medicalRecordsAtThisAddress = Arrays.asList(medicalRecord1);
+        List<ChildAlert> minorsChildAlert = new ArrayList<>();
+        ChildAlert childAlert1 = new ChildAlert(firstName, lastName, 35);
+        List<ChildAlert> adultsChildAlert = Arrays.asList(childAlert1);
+
+        when(personService.getPersonsListByAddress(address1)).thenReturn(personLivingAtThisAddress);
+        when(medicalRecordService.getAllMedicalRecord()).thenReturn(medicalRecords);
+        when(medicalRecordService.getMedicalRecordsByPersons(personLivingAtThisAddress, medicalRecords)).thenReturn(medicalRecordsAtThisAddress);
+        when(personService.getChildren(personLivingAtThisAddress, medicalRecordsAtThisAddress)).thenReturn(emptyPersonList);
+        when(personService.getAdults(personLivingAtThisAddress, medicalRecordsAtThisAddress)).thenReturn(personLivingAtThisAddress);
+        urlsService.childrenLivingAtThisAddress(address1);
+
+        verify(serialization, times(1)).childAlertSerialization(minorsChildAlert, adultsChildAlert,
+                "childrenLivingAtThisAddress", address1);
+    }
+
+    /**
+     * SomeJavadoc.
+     * Test for 'personCoveredByFireStation' method with empty list.
+     */
+    @Test
+    void testpersonCoveredByFireStationIfEmptyPersonsList() {
+        when(firestationService.getAddressesCoveredByStationfireNumber(station)).thenReturn(addresses);
+        when(personService.getPersonsByAddresses(addresses)).thenReturn(emptyPersonList);
+        when(medicalRecordService.getMedicalRecordsByPersons(emptyPersonList, emptyMedicalRecords))
+                .thenReturn(emptyMedicalRecords);
+        when(medicalRecordService.getMinorsAndAdultsNumbers(emptyMedicalRecords)).thenReturn(minorsThenAdultsNumber);
+        urlsService.personCoveredByFireStation(station);
+        verify(serialization, times(1)).emptyAnswer("personCoveredByFireStation", station);
+    }
+
+    /**
+     * SomeJavadoc.
+     * Test for 'personCoveredByFireStation' with content.
+     */
+    @Test
+    void testpersonCoveredByFireStation() {
         when(firestationService.getAddressesCoveredByStationfireNumber(station)).thenReturn(addresses);
         when(personService.getPersonsByAddresses(addresses)).thenReturn(persons);
-        when(medicalRecordService.getMedicalRecordsByPersons(persons, medicalRecords)).thenReturn(medicalRecords);
+        when(medicalRecordService.getAllMedicalRecord()).thenReturn(medicalRecords);
+        when(medicalRecordService.getMedicalRecordsByPersons(persons,
+        medicalRecords)).thenReturn(medicalRecords);
         when(medicalRecordService.getMinorsAndAdultsNumbers(medicalRecords)).thenReturn(minorsThenAdultsNumber);
         urlsService.personCoveredByFireStation(station);
-        verify(serialization, times(1)).emptyAnswer("getFireStationData", station);
+        verify(serialization, times(1)).firestationSerialization(persons, "personCoveredByFireStation",
+        station, minorsThenAdultsNumber.get(0), minorsThenAdultsNumber.get(1));
     }
 
    /**
@@ -122,21 +178,22 @@ public class URLSServiceTest {
      */
     @Test
     void testGetPersonInfoByFirstNameAndLastNameWithWrongFirstName() {
-        when(personService.getPersonsByFirstNameAndLastName(firstName, lastName)).thenReturn(persons);
+        when(personService.getPersonsByFirstNameAndLastName(firstName, lastName)).thenReturn(emptyPersonList);
         urlsService.personInfoFromFirstAndLastName(firstName, lastName);
-        verify(serialization, times(1)).emptyAnswer("getPersonInfoByFirstNameAndLastName", firstName + " " + lastName);
+        verify(serialization, times(1)).emptyAnswer("personInfoFromFirstAndLastName", firstName + " " + lastName);
     }
 
     /**
      * SomeJavadoc.
-     * Test for 'GetPersonsWithTheirMedicalRecordsByStationNumber' method with wrong station number.
+     * Test for 'GetPersonsWithTheirMedicalRecordsByStationNumber' method with wrong
+     * station number.
      */
     @Test
     void testGetPersonsWithTheirMedicalRecordsByStationNumberWithWrongNumber() {
         addresses = new ArrayList<>();
         when(firestationService.getAddressesCoveredByStationfireNumber(station)).thenReturn(addresses);
         urlsService.personsByAddressFromStationNumber(station);
-        verify(serialization, times(1)).emptyAnswer("getPersonsWithTheirMedicalRecordsByStationNumber", station);
+        verify(serialization, times(1)).emptyAnswer("personsByAddressFromStationNumber", station);
     }
 
    /**
@@ -146,9 +203,9 @@ public class URLSServiceTest {
     @Test
     void testGetPhoneNumbersByFirestationNumberWrongStationNumber() {
         when(firestationService.getAddressesCoveredByStationfireNumber(station)).thenReturn(addresses);
-        when(personService.getPersonsByAddresses(addresses)).thenReturn(persons);
+        when(personService.getPersonsByAddresses(addresses)).thenReturn(emptyPersonList);
         urlsService.phoneNumberOfResidentsCoveredByFireStation(station);
-        verify(serialization, times(1)).emptyAnswer("getPhoneNumbersByFirestationNumber", station);
+        verify(serialization, times(1)).emptyAnswer("phoneNumberOfResidentsCoveredByFireStation", station);
     }
 
    /**
@@ -157,10 +214,11 @@ public class URLSServiceTest {
      */
     @Test
     void testGetStationAndPersonsByAddress() {
-        when(personService.getPersonsListByAddress(address)).thenReturn(persons);
-        when(medicalRecordService.getMedicalRecordsByPersons(persons, medicalRecords)).thenReturn(medicalRecords);
-        when(firestationService.getStationNumberByAdress(address)).thenReturn("1");
-        urlsService.residentsAndFireStationAtThisAddress(address);
-        verify(serialization, times(1)).emptyAnswer("getStationAndPersonsByAddress", address);
+        when(personService.getPersonsListByAddress(address1)).thenReturn(emptyPersonList);
+        when(medicalRecordService.getMedicalRecordsByPersons(emptyPersonList, emptyMedicalRecords)).thenReturn(emptyMedicalRecords);
+        when(firestationService.getStationNumberByAdress(address1)).thenReturn("1");
+        urlsService.residentsAndFireStationAtThisAddress(address1);
+        verify(serialization, times(1)).emptyAnswer("residentsAndFireStationAtThisAddress", address1);
     }
+
 }

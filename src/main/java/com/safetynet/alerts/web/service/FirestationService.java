@@ -19,6 +19,7 @@ import com.safetynet.alerts.web.model.Firestation;
 public class FirestationService {
 
     private final FirestationDao firestationDao;
+
     @Autowired
     public FirestationService(FirestationDao firestationDao) {
         this.firestationDao = firestationDao;
@@ -103,5 +104,9 @@ public class FirestationService {
             }
         }
         return null;
+    }
+
+    public Firestation findFirestationByStation(String station) {
+        return firestationDao.findByStation(station);
     }
 }

@@ -4,6 +4,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,11 +34,13 @@ public class MedicalRecordControllerTest {
 
     @BeforeEach
     public void setUp() {
-        medicalRecord = new MedicalRecord(1, FIRSTNAME, LASTNAME, BIRTHDATE, null, null);
-        oldMedicalRecord = medicalRecord;
-        newMedicalRecord = new MedicalRecord(1, FIRSTNAME, LASTNAME, "26/02/1998", null, null);
-    }
+        List<String> medication = new ArrayList<String>();
+        List<String> allergie = new ArrayList<String>();
 
+        medicalRecord = new MedicalRecord(1, FIRSTNAME, LASTNAME, BIRTHDATE, medication, allergie);
+        oldMedicalRecord = medicalRecord;
+        newMedicalRecord = new MedicalRecord(1, FIRSTNAME, LASTNAME, "26/02/1998", medication, allergie);
+    }
 
     /**
      * SomeJavadoc.
@@ -53,6 +58,8 @@ public class MedicalRecordControllerTest {
      */
     @Test
     void testDeleteMedicalRecord() {
+        when(medicalRecordService.findMedicalRecordByFirstNameAndLastName(FIRSTNAME,
+        LASTNAME)).thenReturn(medicalRecord);
         medicalRecordController.deleteMedicalRecord(FIRSTNAME, LASTNAME);
         verify(medicalRecordService, times(1)).deleteMedicalRecordByFirstNameAndLastName(FIRSTNAME, LASTNAME);
     }

@@ -106,6 +106,32 @@ public class BeanService {
         return true;
     }
 
+    public boolean areFieldsNullExceptId(Object object) {
+        if (object == null) {
+            return true;
+        }
+        Field[] fields = object.getClass().getDeclaredFields();
+        try {
+            for (Field field : fields) {
+                if (Modifier.isStatic(field.getModifiers())) {
+                    continue;
+                }
+                if (field.getName().equals("id")) {
+                    continue;
+                }
+                field.setAccessible(true);
+                Object value = field.get(object);
+                if (value == null) {
+                    return true;
+                }
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Some javadoc.
      * Retrieves the name of the current method being executed.

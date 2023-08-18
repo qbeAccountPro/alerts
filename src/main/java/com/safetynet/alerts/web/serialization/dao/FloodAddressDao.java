@@ -32,9 +32,12 @@ public class FloodAddressDao extends StdSerializer<FloodAddress> {
     @Override
     public void serialize(FloodAddress floodAddress, JsonGenerator gen, SerializerProvider provider) {
         try {
+
             gen.writeStartArray();
             for (Flood flood : floodAddress.getFlood()) {
+
                 gen.writeStartObject();
+                gen.writeStringField("address", flood.getAddress());
                 gen.writeStringField("lastName", flood.getLastName());
                 gen.writeNumberField("age", flood.getAge());
                 gen.writeStringField("phone", flood.getPhone());
@@ -74,11 +77,11 @@ public class FloodAddressDao extends StdSerializer<FloodAddress> {
     public void serializeList(List<FloodAddress> floodAddresses, JsonGenerator gen,
             SerializerProvider provider) {
         try {
+            gen.writeStartArray();
             for (FloodAddress floodAddress : floodAddresses) {
-                gen.writeStartArray();
                 serialize(floodAddress, gen, provider);
-                gen.writeEndArray();
             }
+            gen.writeEndArray();
         } catch (IOException e) {
             e.printStackTrace();
         }

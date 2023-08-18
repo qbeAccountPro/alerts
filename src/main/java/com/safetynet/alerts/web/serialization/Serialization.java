@@ -61,10 +61,10 @@ public class Serialization {
      * Some javadoc.
      * Serialize and save data related to child alerts.
      *
-     * @param children       List of children .
-     * @param adults         List of adults.
-     * @param method         The method name.
-     * @param argument       The argument value.
+     * @param children List of children .
+     * @param adults   List of adults.
+     * @param method   The method name.
+     * @param argument The argument value.
      */
     public void childAlertSerialization(List<ChildAlert> children, List<ChildAlert> adults, String method,
             String argument) {
@@ -136,6 +136,9 @@ public class Serialization {
             ObjectNode fireObject = mapper.createObjectNode();
             ArrayNode fireArray = mapper.valueToTree(fires);
             fireObject.set("persons", fireArray);
+            ObjectNode fireStationNumberObject = mapper.createObjectNode();
+            fireStationNumberObject.put("station", firestationNumber);
+            fireObject.set("stationServing", fireStationNumberObject);
             mapper.writeValue(new File(setFileNameString(method, argument)), fireObject);
         } catch (Exception e) {
             System.out.println(e);
@@ -159,11 +162,9 @@ public class Serialization {
         mapper.registerModule(module);
         try {
             ObjectNode floodObject = mapper.createObjectNode();
-            for (FloodAddress floodAddress : floods) {
-                ArrayNode floodArray = mapper.valueToTree(floodAddress);
-                floodObject.set("persons", floodArray);
-                mapper.writeValue(new File(setFileNameString(method, argument)), floodObject);
-            }
+            ArrayNode floodArray = mapper.valueToTree(floods);
+            floodObject.set("persons", floodArray);
+            mapper.writeValue(new File(setFileNameString(method, argument)), floodObject);
         } catch (Exception e) {
             System.out.println(e);
         }
