@@ -7,6 +7,7 @@ import com.safetynet.alerts.web.model.MedicalRecord;
 
 /**
  * Some javadoc.
+ * 
  * This interface represents the data access object (DAO) for the MedicalRecord
  * entity.
  * It extends JpaRepository to provide standard CRUD operations for
@@ -15,8 +16,7 @@ import com.safetynet.alerts.web.model.MedicalRecord;
 @Repository
 public interface MedicalRecordDao extends JpaRepository<MedicalRecord, Integer> {
 
-    MedicalRecord findByFirstNameAndLastName(String firstName, String lastName);
+    MedicalRecord findByIdPerson(int idPerson);
 
-    void deleteByFirstNameAndLastName(String firstName, String lastName);
-
+    void deleteByIdPerson(Integer idPerson);
 }

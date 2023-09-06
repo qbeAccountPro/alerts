@@ -1,6 +1,5 @@
-package com.safetynet.alerts.web.model;
+package com.safetynet.alerts.web.deserialization.model;
 
-import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,19 +11,17 @@ import lombok.NoArgsConstructor;
 /**
  * Some javadoc.
  * 
- * This class represents a Medical Record entity in the system.
- * It is used to link a medical information by individual.
+ * This class represents a Firestation entity from the JSON.
+ * It is used to deserialize the firestation data.
  */
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class MedicalRecord {
+public class FirestationDeserialization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int idPerson;
-    private String birthdate;
-    private List<String> medications;
-    private List<String> allergies;
+    private String address;
+    private String station;
 }

@@ -1,10 +1,11 @@
 package com.safetynet.alerts.web.controller;
 
-import org.tinylog.Logger;
-import org.springframework.http.HttpStatus;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -12,13 +13,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.safetynet.alerts.web.deserialization.model.MedicalRecordDeserialization;
+import com.safetynet.alerts.web.logging.EndpointsLogger;
 import com.safetynet.alerts.web.model.MedicalRecord;
 import com.safetynet.alerts.web.service.BeanService;
 import com.safetynet.alerts.web.service.MedicalRecordService;
 
 /**
  * Some javadoc.
+ * 
  * This class represents a REST controller for managing medicalRecords.
+ * 
  * It provides endpoints for retrieving all medical records, adding new medical
  * records, updating existing medical records, and deleting medical records.
  */
@@ -27,83 +32,80 @@ import com.safetynet.alerts.web.service.MedicalRecordService;
 public class MedicalRecordController {
 
     private final MedicalRecordService medicalRecordService;
-    private BeanService beanService = new BeanService();
+    private final BeanService beanService;
+
+    private EndpointsLogger log = new EndpointsLogger();
 
     public MedicalRecordController(MedicalRecordService medicalRecordService) {
         this.medicalRecordService = medicalRecordService;
+        this.beanService = new BeanService();
     }
 
     /**
      * Some javadoc.
+     * 
      * Adds a new medical record to the system.
      *
-     * @param medicalrecord The MedicalRecord object representing the new medical
-     *                      record to be added.
+     * @param medicalrecordDeserialize A MedicalRecord object.
      */
     @PostMapping("")
-    public ResponseEntity<String> addMedicalRecord(@RequestBody MedicalRecord medicalrecord) {
-        Logger.info("Request " + BeanService.getCurrentMethodName() + ".");
-        Boolean areFieldsAreNull = beanService.areFieldsNullExceptId(medicalrecord);
-        if (areFieldsAreNull) {
-            Logger.error("Answer " + BeanService.getCurrentMethodName() + " : content is incorrect.");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Medicalrecord content is incorrect.");
-        } else {
-            medicalRecordService.saveMedicalRecord(medicalrecord);
-            Logger.info("Answer " + BeanService.getCurrentMethodName() + " : medicalrecord added successfully.");
-            return ResponseEntity.status(HttpStatus.CREATED).body("Medicalrecord added successfully.");
-        }
+    public ResponseEntity<String> addMedicalRecord(
+            @RequestBody MedicalRecordDeserialization medicalrecordDeserialize) {
+        // Log the request :
+        String methodeName = BeanService.getCurrentMethodName();
+        log.request(methodeName);
 
+        // Check the content request :
+        Boolean fieldsAreNull = beanService.areFieldsNullExceptId(medicalrecordDeserialize);
+        if (fieldsAreNull) {
+            return log.incorrectContent(methodeName);
+        } else {
+            return medicalRecordService.addMedicalRecord(medicalrecordDeserialize, methodeName);
+        }
     }
 
     /**
      * Some javadoc.
-     * Updates an existing medical record for a specific person.
+     * 
+     * WARNING : For the moment we cannot differentiate medical files if two people
+     * have the same name in a learning logic and not in a real case they will
+     * both be modified! In the future a telephone number or a birthday date should
+     * be added to both entities, to make the connection.
+     * 
+     * Updates an existing medicalRecord object for a specific person.
      *
-     * @param firstName        The first name of the person whose medical record is
-     *                         to be updated.
-     * @param lastName         The last name of the person whose medical record is
-     *                         to be updated.
-     * @param newMedicalRecord The updated MedicalRecord object with the new medical
-     *                         information.
+     * @param firstName
+     * @param lastName
+     * @param medicalrecordDeserialization The updated MedicalRecord object in the
+     *                                     deserialization format.
      */
     @PutMapping("/{firstName}/{lastName}")
     public ResponseEntity<String> updateMedicalRecord(@PathVariable("firstName") String firstName,
-            @PathVariable("lastName") String lastName, @RequestBody MedicalRecord newMedicalRecord) {
-        Logger.info("Request " + BeanService.getCurrentMethodName() + " : with this first and last name = " + firstName
-                + " "
-                + lastName + ".");
-        Boolean areFieldsAreNull = beanService.areFieldsNullExceptId(newMedicalRecord);
-        if (areFieldsAreNull) {
-            Logger.error("Answer " + BeanService.getCurrentMethodName() + " : content is incorrect.");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("MedicalRecord content is incorrect.");
+            @PathVariable("lastName") String lastName,
+            @RequestBody MedicalRecordDeserialization medicalrecordDeserialization) {
+        // Log the request :
+        String methodeName = BeanService.getCurrentMethodName();
+        log.request(methodeName, firstName, lastName);
+
+        // Check the request content :
+        Boolean fieldsAreNull = beanService.areFieldsNullExceptId(medicalrecordDeserialization);
+        if (fieldsAreNull) {
+            return log.incorrectContent(methodeName);
         } else {
-            MedicalRecord oldMedicalrecord = medicalRecordService.findMedicalRecordByFirstNameAndLastName(firstName,
-                    lastName);
-            if (oldMedicalrecord != null) {
-                try {
-                    MedicalRecord updatMedicalrecord = BeanService
-                            .updateBeanWithNotNullPropertiesFromNewObject(oldMedicalrecord, newMedicalRecord);
-                    updatMedicalrecord.setId(oldMedicalrecord.getId());
-                    updatMedicalrecord.setFirstName(firstName);
-                    updatMedicalrecord.setLastName(lastName);
-                    medicalRecordService.saveMedicalRecord(updatMedicalrecord);
-                    Logger.info(
-                            "Answer " + BeanService.getCurrentMethodName() + " : modified successfully.");
-                    return ResponseEntity.status(HttpStatus.OK).body("MedicalRecord modified successfully.");
-                } catch (Exception e) {
-                    Logger.error("Answer " + BeanService.getCurrentMethodName() + " : threw an exception.");
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Request threw an exception.");
-                }
-            } else {
-                Logger.error("Answer " + BeanService.getCurrentMethodName() + " : first and last name doesn't match.");
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("First and last name doesn't match.");
-            }
+            return medicalRecordService.updateMedicalRecord(firstName,lastName,medicalrecordDeserialization, methodeName);
         }
     }
 
     /**
      * Some javadoc.
+     * 
      * Deletes a medical record based on the first name and last name of the person.
+     * 
+     * WARNING : As same at the update method, we cannot differentiate medical files
+     * if two people
+     * have the same name in a learning logic and not in a real case they will
+     * both be modified! In the future a telephone number or a birthday date should
+     * be added to both entities, to make the connection.
      *
      * @param firstName The first name of the person whose medical record is to be
      *                  deleted.
@@ -114,18 +116,15 @@ public class MedicalRecordController {
     @DeleteMapping("/{firstName}/{lastName}")
     public ResponseEntity<String> deleteMedicalRecord(@PathVariable("firstName") String firstName,
             @PathVariable("lastName") String lastName) {
-        Logger.info(
-                "Request " + BeanService.getCurrentMethodName() + " : with this first and last name  = " + firstName
-                        + " " + lastName + ".");
-        MedicalRecord oldMedicalrecord = medicalRecordService.findMedicalRecordByFirstNameAndLastName(firstName,
-                lastName);
-        if (oldMedicalrecord != null) {
-            medicalRecordService.deleteMedicalRecordByFirstNameAndLastName(firstName, lastName);
-            Logger.info("Answer " + BeanService.getCurrentMethodName() + " : deleted successfully.");
-            return ResponseEntity.status(HttpStatus.OK).body("MedicalRecord deleted successfully.");
-        } else {
-            Logger.error("Answer " + BeanService.getCurrentMethodName() + " : doesn't match with any medicalRecord.");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("MedicalRecord address doesn't match.");
-        }
+        // Log the request :
+        String methodeName = BeanService.getCurrentMethodName();
+        log.request(methodeName, firstName, lastName);
+
+        return medicalRecordService.deleteMedicalRecord(firstName, lastName, methodeName);
+    }
+
+    @GetMapping("/all")
+    public List<MedicalRecord> getAllMedicalRecords() {
+        return medicalRecordService.getAllMedicalRecords();
     }
 }

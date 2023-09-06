@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 /**
  * Some javadoc.
  * 
- * Model class representing a child for the Child Alert feature.
+ * Model class representing a person covered by firestation.
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChildAlert {
+public class FirestationAlert {
     private String firstName;
     private String lastName;
-    private int age;
+    private String address;
+    private String phone;
 }

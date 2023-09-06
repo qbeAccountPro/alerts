@@ -6,22 +6,24 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-import com.safetynet.alerts.web.serialization.model.PersonInfo;
+import com.safetynet.alerts.web.serialization.model.PersonInfoAlert;
 
 /**
  * Some javadoc.
+ * 
  * Custom serializer for PersonInfo objects.
  * This serializer converts a PersonInfo object to JSON format with specific
  * fields.
  */
-public class PersonInfoDao extends StdSerializer<PersonInfo> {
+public class PersonInfoDao extends StdSerializer<PersonInfoAlert> {
 
-    public PersonInfoDao(Class<PersonInfo> t) {
+    public PersonInfoDao(Class<PersonInfoAlert> t) {
         super(t);
     }
 
     /**
      * Some javadoc.
+     * 
      * Serialize a single PersonInfo object to JSON format with specific fields.
      *
      * @param personInfo The PersonInfo object to be serialized.
@@ -29,7 +31,7 @@ public class PersonInfoDao extends StdSerializer<PersonInfo> {
      * @param provider   The SerializerProvider for the serialization process.
      */
     @Override
-    public void serialize(PersonInfo personInfo, JsonGenerator gen, SerializerProvider provider) {
+    public void serialize(PersonInfoAlert personInfo, JsonGenerator gen, SerializerProvider provider) {
         try {
             gen.writeStartObject();
             gen.writeStringField("lastName", personInfo.getLastName());
@@ -61,16 +63,17 @@ public class PersonInfoDao extends StdSerializer<PersonInfo> {
 
     /**
      * Some javadoc.
+     * 
      * Serialize a list of PersonInfo objects to JSON format with specific fields.
      *
      * @param personsInfos The list of PersonInfo objects to be serialized.
      * @param gen          The JsonGenerator to write JSON content.
      * @param provider     The SerializerProvider for the serialization process.
      */
-    public void serializeList(List<PersonInfo> personsInfos, JsonGenerator gen, SerializerProvider provider) {
+    public void serializeList(List<PersonInfoAlert> personsInfos, JsonGenerator gen, SerializerProvider provider) {
         try {
             gen.writeStartArray();
-            for (PersonInfo personInfo : personsInfos) {
+            for (PersonInfoAlert personInfo : personsInfos) {
                 serialize(personInfo, gen, provider);
             }
             gen.writeEndArray();
@@ -78,5 +81,4 @@ public class PersonInfoDao extends StdSerializer<PersonInfo> {
             e.printStackTrace();
         }
     }
-
 }

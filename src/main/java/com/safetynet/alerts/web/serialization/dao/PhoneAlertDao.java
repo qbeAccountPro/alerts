@@ -10,6 +10,7 @@ import com.safetynet.alerts.web.model.Person;
 
 /**
  * Some javadoc.
+ * 
  * Custom serializer for Person objects when serializing phone alert data.
  * This serializer converts a Person object to JSON format with the phone number
  * field.
@@ -22,6 +23,7 @@ public class PhoneAlertDao extends StdSerializer<Person> {
 
     /**
      * Some javadoc.
+     * 
      * Serialize a single Person object to JSON format with the phone number field.
      *
      * @param person   The Person object to be serialized.
@@ -41,6 +43,7 @@ public class PhoneAlertDao extends StdSerializer<Person> {
 
     /**
      * Some javadoc.
+     * 
      * Serialize a list of Person objects to JSON format with the phone number
      * field.
      *
@@ -59,5 +62,4 @@ public class PhoneAlertDao extends StdSerializer<Person> {
             e.printStackTrace();
         }
     }
-
 }

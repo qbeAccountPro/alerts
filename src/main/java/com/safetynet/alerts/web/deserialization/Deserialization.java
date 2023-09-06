@@ -1,26 +1,24 @@
 package com.safetynet.alerts.web.deserialization;
 
-import com.safetynet.alerts.web.model.Firestation;
-import com.safetynet.alerts.web.model.MedicalRecord;
-import com.safetynet.alerts.web.model.Person;
-
 import lombok.Data;
 
 import java.util.List;
 
+import com.safetynet.alerts.web.deserialization.model.FirestationDeserialization;
+import com.safetynet.alerts.web.deserialization.model.MedicalRecordDeserialization;
+import com.safetynet.alerts.web.deserialization.model.PersonDeserialization;
+
 /**
  * Some javadoc.
+ * 
  * This class represents a container for deserializing JSON data into Java
  * objects.
- * It is used to hold lists of Person, Firestation, and MedicalRecord objects
+ * It is used to hold lists of Person, Firestation,  MedicalRecord objects
  * during deserialization.
- * The @Data annotation is from Lombok library to generate getters, setters, and
- * other boilerplate code.
- * 
  */
 @Data
 public class Deserialization {
-    private List<Person> persons;
-    private List<Firestation> firestations;
-    private List<MedicalRecord> medicalrecords;
+    private List<PersonDeserialization> persons;
+    private List<FirestationDeserialization> firestations;
+    private List<MedicalRecordDeserialization> medicalrecords;
 }

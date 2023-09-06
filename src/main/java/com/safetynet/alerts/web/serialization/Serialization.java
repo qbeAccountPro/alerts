@@ -6,27 +6,32 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.safetynet.alerts.web.model.*;
+import com.safetynet.alerts.web.logging.EndpointsLogger;
+import com.safetynet.alerts.web.model.Person;
 import com.safetynet.alerts.web.serialization.dao.*;
 import com.safetynet.alerts.web.serialization.model.*;
 
 /**
  * Some javadoc.
+ * 
  * Service class for JSON serialization of various data.
  */
 @Service
 public class Serialization {
     private ObjectMapper mapper;
     private SimpleModule module;
+    private EndpointsLogger log = new EndpointsLogger();
 
     /**
      * Some javadoc.
+     * 
      * Serialize and save data related to fire stations.
      *
      * @param persons      List of Person objects.
@@ -35,13 +40,14 @@ public class Serialization {
      * @param minorsNumber The number of minors.
      * @param adultsNumber The number of adults.
      */
-    public void firestationSerialization(List<Person> persons, String method, String argument,
+    public ResponseEntity<String> firestationSerialization(List<FirestationAlert> persons, String method,
+            String argument,
             int minorsNumber, int adultsNumber) {
-        FirestationDao firestationDao = new FirestationDao(Person.class);
+        FirestationDao firestationDao = new FirestationDao(FirestationAlert.class);
         mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         module = new SimpleModule();
-        module.addSerializer(Person.class, firestationDao);
+        module.addSerializer(FirestationAlert.class, firestationDao);
         mapper.registerModule(module);
         try {
             ObjectNode mainObject = mapper.createObjectNode();
@@ -52,13 +58,16 @@ public class Serialization {
             adultsAndMinorsObject.put("minors", minorsNumber);
             mainObject.set("counters", adultsAndMinorsObject);
             mapper.writeValue(new File(setFileNameString(method, argument)), mainObject);
+            return log.successfullyGenerated(method);
         } catch (Exception e) {
             System.out.println(e);
+            return log.threwAnException(method);
         }
     }
 
     /**
      * Some javadoc.
+     * 
      * Serialize and save data related to child alerts.
      *
      * @param children List of children .
@@ -66,7 +75,8 @@ public class Serialization {
      * @param method   The method name.
      * @param argument The argument value.
      */
-    public void childAlertSerialization(List<ChildAlert> children, List<ChildAlert> adults, String method,
+    public ResponseEntity<String> childAlertSerialization(List<ChildAlert> children, List<ChildAlert> adults,
+            String method,
             String argument) {
         ChildAlertDao childAlertDao = new ChildAlertDao(ChildAlert.class);
         OtherResidentsDao otherResidentsDao = new OtherResidentsDao(Person.class);
@@ -85,20 +95,23 @@ public class Serialization {
             ArrayNode residentsArray = mapper.valueToTree(adults);
             childAlertObject.set("adults", residentsArray);
             mapper.writeValue(new File(setFileNameString(method, argument)), childAlertObject);
+            return log.successfullyGenerated(method);
         } catch (Exception e) {
             System.out.println(e);
+            return log.threwAnException(method);
         }
     }
 
     /**
      * Some javadoc.
+     * 
      * Serialize and save data related to phone alerts.
      *
      * @param persons  List of Person objects.
      * @param method   The method name.
      * @param argument The argument value.
      */
-    public void phoneAlertSerialization(List<Person> persons, String method,
+    public ResponseEntity<String> phoneAlertSerialization(List<Person> persons, String method,
             String argument) {
         PhoneAlertDao phoneAlertDao = new PhoneAlertDao(Person.class);
         mapper = new ObjectMapper();
@@ -111,13 +124,16 @@ public class Serialization {
             ArrayNode phoneAlertArray = mapper.valueToTree(persons);
             phoneAlertObject.set("phones", phoneAlertArray);
             mapper.writeValue(new File(setFileNameString(method, argument)), phoneAlertObject);
+            return log.successfullyGenerated(method);
         } catch (Exception e) {
             System.out.println(e);
+            return log.threwAnException(method);
         }
     }
 
     /**
      * Some javadoc.
+     * 
      * Serialize and save data related to fire alerts.
      *
      * @param fires             List of Fire objects.
@@ -125,12 +141,13 @@ public class Serialization {
      * @param method            The method name.
      * @param argument          The argument value.
      */
-    public void fireSerialization(List<Fire> fires, String firestationNumber, String method, String argument) {
-        FireDao fireDao = new FireDao(Fire.class);
+    public ResponseEntity<String> fireSerialization(List<FireAlert> fires, String firestationNumber, String method,
+            String argument) {
+        FireDao fireDao = new FireDao(FireAlert.class);
         mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         module = new SimpleModule();
-        module.addSerializer(Fire.class, fireDao);
+        module.addSerializer(FireAlert.class, fireDao);
         mapper.registerModule(module);
         try {
             ObjectNode fireObject = mapper.createObjectNode();
@@ -140,38 +157,45 @@ public class Serialization {
             fireStationNumberObject.put("station", firestationNumber);
             fireObject.set("stationServing", fireStationNumberObject);
             mapper.writeValue(new File(setFileNameString(method, argument)), fireObject);
+            return log.successfullyGenerated(method);
         } catch (Exception e) {
             System.out.println(e);
+            return log.threwAnException(method);
         }
     }
 
     /**
      * Some javadoc.
+     * 
      * Serialize and save data related to flood alerts.
      *
      * @param floods   List of FloodAddress objects.
      * @param method   The method name.
      * @param argument The argument value.
      */
-    public void floodSerialization(List<FloodAddress> floods, String method, String argument) {
-        FloodAddressDao floodAddressDao = new FloodAddressDao(FloodAddress.class);
+    public ResponseEntity<String> floodSerialization(List<FloodAlertByHousehold> floods, String method,
+            String argument) {
+        FloodDao floodDao = new FloodDao(FloodAlertByHousehold.class);
         mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         module = new SimpleModule();
-        module.addSerializer(FloodAddress.class, floodAddressDao);
+        module.addSerializer(FloodAlertByHousehold.class, floodDao);
         mapper.registerModule(module);
         try {
             ObjectNode floodObject = mapper.createObjectNode();
             ArrayNode floodArray = mapper.valueToTree(floods);
             floodObject.set("persons", floodArray);
             mapper.writeValue(new File(setFileNameString(method, argument)), floodObject);
+            return log.successfullyGenerated(method);
         } catch (Exception e) {
             System.out.println(e);
+            return log.threwAnException(method);
         }
     }
 
     /**
      * Some javadoc.
+     * 
      * Serialize and save data related to person information.
      *
      * @param personsInfo List of PersonInfo objects.
@@ -179,34 +203,38 @@ public class Serialization {
      * @param firstName   The first name.
      * @param lastName    The last name.
      */
-    public void personInfoSerialization(List<PersonInfo> personsInfo, String method, String firstName,
+    public ResponseEntity<String> personInfoSerialization(List<PersonInfoAlert> personInfo, String method,
+            String firstName,
             String lastName) {
-        PersonInfoDao personeInfoDao = new PersonInfoDao(PersonInfo.class);
+        PersonInfoDao personeInfoDao = new PersonInfoDao(PersonInfoAlert.class);
         mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         module = new SimpleModule();
-        module.addSerializer(PersonInfo.class, personeInfoDao);
+        module.addSerializer(PersonInfoAlert.class, personeInfoDao);
         mapper.registerModule(module);
         try {
             ObjectNode personInfoObject = mapper.createObjectNode();
-            ArrayNode personInfoArray = mapper.valueToTree(personsInfo);
+            ArrayNode personInfoArray = mapper.valueToTree(personInfo);
             personInfoObject.set("persons",
                     personInfoArray);
             mapper.writeValue(new File(setFileNameString(method, firstName + "_" + lastName)), personInfoObject);
+            return log.successfullyGenerated(method);
         } catch (Exception e) {
             System.out.println(e);
+            return log.threwAnException(method);
         }
     }
 
     /**
      * Some javadoc.
+     * 
      * Serialize and save data related to community emails.
      *
      * @param persons List of Person objects.
      * @param method  The method name.
      * @param city    The city name.
      */
-    public void communityEmailSerialization(List<Person> persons, String method, String city) {
+    public ResponseEntity<String> communityEmailSerialization(List<Person> persons, String method, String city) {
         CommunityEmailDao communityEmailDao = new CommunityEmailDao(Person.class);
         mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -219,29 +247,35 @@ public class Serialization {
             emailObject.set("emails",
                     emailArray);
             mapper.writeValue(new File(setFileNameString(method, city)), emailObject);
+            return log.successfullyGenerated(method);
         } catch (Exception e) {
             System.out.println(e);
+            return log.threwAnException(method);
         }
     }
 
     /**
      * Some javadoc.
+     * 
      * Save an empty answer for a specific request.
      *
      * @param method   The method name.
      * @param argument The argument value.
      */
-    public void emptyAnswer(String method, String argument) {
+    public ResponseEntity<String> emptyAnswer(String method, String argument) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             mapper.writeValue(new File(setFileNameString(method, argument)), "");
+            return log.successfullyGenerated(method);
         } catch (IOException e) {
             e.printStackTrace();
+            return log.threwAnException(method);
         }
     }
 
     /**
      * Some javadoc.
+     * 
      * Generate a file name based on the method and argument.
      *
      * @param method   The method name.
@@ -256,5 +290,4 @@ public class Serialization {
         String fileName = formattedDate + "_" + method + "_" + argument + ".json";
         return fileName;
     }
-
 }

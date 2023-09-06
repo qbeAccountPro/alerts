@@ -8,19 +8,21 @@ import org.springframework.stereotype.Service;
 import com.safetynet.alerts.web.service.BeanService;
 import com.safetynet.alerts.web.model.MedicalRecord;
 import com.safetynet.alerts.web.model.Person;
-import com.safetynet.alerts.web.serialization.model.Fire;
+import com.safetynet.alerts.web.serialization.model.FireAlert;
 
 /**
  * Some javadoc.
+ * 
  * Service class for generating a list of Fire objects from a list of Person and
  * MedicalRecord objects.
  */
 @Service
 public class FireService {
-    BeanService beanService = new BeanService();
+    private BeanService beanService = new BeanService();
 
     /**
      * Some javadoc.
+     * 
      * Generate a list of Fire objects from a list of Person and MedicalRecord
      * objects.
      *
@@ -29,13 +31,12 @@ public class FireService {
      * @return A list of Fire objects representing persons affected by fire from the
      *         input data.
      */
-    public List<Fire> getFireList(List<Person> persons, List<MedicalRecord> medicalRecords) {
-        List<Fire> fires = new ArrayList<>();
+    public List<FireAlert> getFireList(List<Person> persons, List<MedicalRecord> medicalRecords) {
+        List<FireAlert> fires = new ArrayList<>();
         for (Person person : persons) {
             for (MedicalRecord medicalRecord : medicalRecords) {
-                if (person.getFirstName().equals(medicalRecord.getFirstName())
-                        && person.getLastName().equals(medicalRecord.getLastName())) {
-                    Fire fire = new Fire();
+                if (person.getId() == medicalRecord.getIdPerson()) {
+                    FireAlert fire = new FireAlert();
                     fire.setLastName(person.getLastName());
                     fire.setPhone(person.getPhone());
                     fire.setAge(beanService.convertBirthdateToAge(medicalRecord.getBirthdate()));

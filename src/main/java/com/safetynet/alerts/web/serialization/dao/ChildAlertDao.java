@@ -10,6 +10,7 @@ import com.safetynet.alerts.web.serialization.model.ChildAlert;
 
 /**
  * Some javadoc.
+ * 
  * Custom serializer for ChildAlert objects.
  * This serializer converts a ChildAlert object to JSON format.
  */
@@ -42,6 +43,7 @@ public class ChildAlertDao extends StdSerializer<ChildAlert> {
 
     /**
      * Some javadoc.
+     * 
      * Serialize a list of ChildAlert objects to JSON format.
      *
      * @param childrenAlert The list of ChildAlert objects to be serialized.
@@ -59,5 +61,4 @@ public class ChildAlertDao extends StdSerializer<ChildAlert> {
             e.printStackTrace();
         }
     }
-
 }

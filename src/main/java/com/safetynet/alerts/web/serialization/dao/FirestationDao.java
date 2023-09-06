@@ -6,22 +6,23 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-import com.safetynet.alerts.web.model.Person;
+import com.safetynet.alerts.web.serialization.model.FirestationAlert;
 
 /**
  * Some javadoc.
+ * 
  * Custom serializer for Person objects when serializing fire station data.
  * This serializer converts a Person object to JSON format with specific fields.
  */
-public class FirestationDao extends StdSerializer<Person> {
+public class FirestationDao extends StdSerializer<FirestationAlert> {
 
-    public FirestationDao(Class<Person> t) {
+    public FirestationDao(Class<FirestationAlert> t) {
         super(t);
-
     }
 
     /**
      * Some javadoc.
+     * 
      * Serialize a single Person object to JSON format with specific fields.
      *
      * @param person   The Person object to be serialized.
@@ -29,7 +30,7 @@ public class FirestationDao extends StdSerializer<Person> {
      * @param provider The SerializerProvider for the serialization process.
      */
     @Override
-    public void serialize(Person person, JsonGenerator gen, SerializerProvider provider) {
+    public void serialize(FirestationAlert person, JsonGenerator gen, SerializerProvider provider) {
         try {
             gen.writeStartObject();
             gen.writeStringField("firstName", person.getFirstName());
@@ -44,16 +45,17 @@ public class FirestationDao extends StdSerializer<Person> {
 
     /**
      * Some javadoc.
+     * 
      * Serialize a list of Person objects to JSON format with specific fields.
      *
      * @param persons  The list of Person objects to be serialized.
      * @param gen      The JsonGenerator to write JSON content.
      * @param provider The SerializerProvider for the serialization process.
      */
-    public void serializeList(List<Person> persons, JsonGenerator gen, SerializerProvider provider) {
+    public void serializeList(List<FirestationAlert> persons, JsonGenerator gen, SerializerProvider provider) {
         try {
             gen.writeStartArray();
-            for (Person person : persons) {
+            for (FirestationAlert person : persons) {
                 serialize(person, gen, provider);
             }
             gen.writeEndArray();
@@ -61,5 +63,4 @@ public class FirestationDao extends StdSerializer<Person> {
             e.printStackTrace();
         }
     }
-
 }

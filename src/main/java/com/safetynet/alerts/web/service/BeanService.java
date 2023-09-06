@@ -12,6 +12,7 @@ public class BeanService {
 
     /**
      * Some javadoc.
+     * 
      * Updates an object with the non-null properties from a new object.
      *
      * @param oldObject The original object to be updated.
@@ -53,6 +54,7 @@ public class BeanService {
 
     /**
      * Some javadoc.
+     * 
      * Normalizes a string by removing diacritical marks and converting it to
      * lowercase.
      *

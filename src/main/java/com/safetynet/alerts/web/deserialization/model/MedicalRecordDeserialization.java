@@ -1,4 +1,4 @@
-package com.safetynet.alerts.web.model;
+package com.safetynet.alerts.web.deserialization.model;
 
 import java.util.List;
 import jakarta.persistence.Entity;
@@ -12,18 +12,19 @@ import lombok.NoArgsConstructor;
 /**
  * Some javadoc.
  * 
- * This class represents a Medical Record entity in the system.
- * It is used to link a medical information by individual.
+ * This class represents a Medical Record entity from the JSON entity.
+ * It is used to deserialize medical information.
  */
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class MedicalRecord {
+public class MedicalRecordDeserialization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int idPerson;
+    private String firstName;
+    private String lastName;
     private String birthdate;
     private List<String> medications;
     private List<String> allergies;

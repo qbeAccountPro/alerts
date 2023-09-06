@@ -12,15 +12,17 @@ import com.safetynet.alerts.web.service.BeanService;
 
 /**
  * Some javadoc.
+ * 
  * Service class for generating a list of ChildAlert objects from a list of
  * Person and MedicalRecord objects.
  */
 @Service
 public class ChildAlertService {
-    BeanService beanService = new BeanService();
+    private BeanService beanService = new BeanService();
 
     /**
      * Some javadoc.
+     * 
      * Generate a list of ChildAlert objects from a list of Person and MedicalRecord
      * objects.
      *
@@ -31,10 +33,9 @@ public class ChildAlertService {
      */
     public List<ChildAlert> getChildAlertListFromPersonList(List<Person> persons, List<MedicalRecord> medicalRecords) {
         List<ChildAlert> childrenAlert = new ArrayList<>();
-        for (Person person : persons) {
-            for (MedicalRecord medicalRecord : medicalRecords) {
-                if (person.getFirstName().equals(medicalRecord.getFirstName())
-                        && person.getLastName().equals(medicalRecord.getLastName())) {
+        for (MedicalRecord medicalRecord : medicalRecords) {
+            for (Person person : persons) {
+                if (medicalRecord.getIdPerson() == person.getId()) {
                     ChildAlert childAlert = new ChildAlert();
                     childAlert.setFirstName(person.getFirstName());
                     childAlert.setLastName(person.getLastName());
@@ -46,5 +47,4 @@ public class ChildAlertService {
         }
         return childrenAlert;
     }
-
 }

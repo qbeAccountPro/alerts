@@ -1,236 +1,212 @@
 package com.safetynet.alerts.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.safetynet.alerts.web.dao.MedicalRecordDao;
 import com.safetynet.alerts.web.dao.PersonDao;
-import com.safetynet.alerts.web.model.MedicalRecord;
+import com.safetynet.alerts.web.deserialization.model.PersonDeserialization;
+import com.safetynet.alerts.web.logging.EndpointsLogger;
+import com.safetynet.alerts.web.model.Household;
 import com.safetynet.alerts.web.model.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Some javadoc.
- * This service class provides operations related to the Person entity.
- * It interacts with the PersonDao to perform CRUD operations on Person objects.
+ * 
+ * This service class provides operations related to the person entity.
+ * It interacts with the PersonDao to perform CRUD operations on person
+ * objects.
  */
 @Service
 public class PersonService {
 
     @Autowired
     private final PersonDao personDao;
+    private final HouseHoldService householdService;
+    private final MedicalRecordDao medicalRecordDao;
+    private EndpointsLogger log = new EndpointsLogger();
 
-    public PersonService(PersonDao personDao) {
+    public PersonService(PersonDao personDao, HouseHoldService houseHoldService, MedicalRecordDao medicalRecordDao) {
         this.personDao = personDao;
+        this.householdService = houseHoldService;
+        this.medicalRecordDao = medicalRecordDao;
+    }
+
+    public ResponseEntity<String> addPerson(PersonDeserialization personDeserialize, String methodeName) {
+        // Check if a person with the same FirstName and lastName exists :
+        String firstName = personDeserialize.getFirstName();
+        String lastName = personDeserialize.getLastName();
+        Person matchingPerson = personDao.findByFirstNameAndLastName(firstName, lastName);
+        if (matchingPerson == null) {
+            // Create and convert the person from deserialization format to system format:
+            Person person = new Person();
+            person = convertPersonDeserializeOnPerson(personDeserialize);
+
+            // Get the corresponding household :
+            String address = personDeserialize.getAddress();
+            Household household = householdService.getHouseholdByAddress(address);
+
+            // If the households does not exist, one is created :
+            if (household == null) {
+                household = new Household();
+                household = householdService.saveHousehold(address);
+            }
+
+            person.setIdHousehold(household.getId());
+            personDao.save(person);
+            return log.addedSuccessfully(methodeName);
+        } else {
+            return log.personExists(methodeName);
+        }
+    }
+
+    public ResponseEntity<String> updateByFirstNameAndLastName(String firstName, String lastName,
+            PersonDeserialization personDeserialize, String methodeName) {
+
+        // Get the corresponding person :
+        Person person = personDao.findByFirstNameAndLastName(firstName, lastName);
+        if (person != null) {
+            // Get the address and check if exits or creates it :
+            String address = personDeserialize.getAddress();
+            Household household = householdService.getHouseholdByAddress(address);
+            if (household == null) {
+                householdService.saveHousehold(address);
+                household = householdService.getHouseholdByAddress(address);
+            }
+
+            updatePerson(person, personDeserialize, household.getId());
+            return log.updatedSuccessfully(methodeName);
+        } else {
+            return log.argumentHasNoMatch(methodeName);
+        }
+    }
+
+    public ResponseEntity<String> deleteByFirstNameAndLastName(String firstName, String lastName, String methodeName) {
+        // Check the person existing :
+        Person person = personDao.findByFirstNameAndLastName(firstName, lastName);
+        if (person != null) {
+            medicalRecordDao.deleteByIdPerson(person.getId());
+            deletePersonByFirstAndLastName(firstName, lastName);
+            return log.deletedSuccessfully(methodeName);
+        } else {
+            return log.argumentHasNoMatch(methodeName);
+        }
     }
 
     /**
      * Some javadoc.
-     * Retrieves a list of all persons in the system.
+     * 
+     * Get a list of all persons in the system.
      *
-     * @return A list of all Person objects.
+     * @return A list of all person objects.
      */
-    public List<Person> getAll() {
+    public List<Person> getAllPersons() {
         return personDao.findAll();
     }
 
     /**
      * Some javadoc.
-     * Saves a new or existing Person object.
+     * 
+     * Convert a person with deserialization format to a person with sytem format.
      *
-     * @param person The Person object to save.
-     * @return The saved Person object.
+     * @param personDeserialization A person with deserialization format.
+     * @return Return a person with system format.
      */
-    public Person savePerson(Person person) {
-        return personDao.save(person);
+    private Person convertPersonDeserializeOnPerson(PersonDeserialization personDeserialization) {
+        Person person = new Person();
+        person.setFirstName(personDeserialization.getFirstName());
+        person.setLastName(personDeserialization.getLastName());
+        person.setPhone(personDeserialization.getPhone());
+        person.setZip(personDeserialization.getZip());
+        person.setEmail(personDeserialization.getEmail());
+        person.setCity(personDeserialization.getCity());
+        return person;
     }
 
     /**
      * Some javadoc.
-     * Retrieves a list of persons corresponding to a list of addresses.
+     * 
+     * Update a person object from the sytem.
      *
-     * @param addresses The list of addresses for which to retrieve the persons.
-     * @return A list of Person objects corresponding to the provided list of
-     *         addresses.
+     * @param person            The person present in the system.
+     * @param deserializePerson The new data for the person in the system.
+     * @param idHousehold       The id corresponding at the deserializePerson.
+     * 
+     * @return A list of person objects corresponding to the provided first
+     *         name and
+     *         last name.
      */
-    public List<Person> getPersonsByAddresses(List<String> addresses) {
-        List<Person> persons = getAll();
-        List<Person> residents = new ArrayList<>();
-        for (Person person : persons) {
-            for (String address : addresses) {
-                if (BeanService.normalizeString(person.getAddress()).equalsIgnoreCase(BeanService
-                        .normalizeString(address))) {
-                    residents.add(person);
-                    break;
-                }
-            }
-        }
-        return residents;
+    public void updatePerson(Person person, PersonDeserialization deserializePerson, int idHousehold) {
+        person.setIdHousehold(idHousehold);
+        person.setCity(deserializePerson.getCity());
+        person.setEmail(deserializePerson.getEmail());
+        person.setPhone(deserializePerson.getPhone());
+        person.setZip(deserializePerson.getZip());
+        personDao.save(person);
     }
 
     /**
      * Some javadoc.
-     * Retrieves a list of persons living at a specific address.
+     * 
+     * Get a Person based on the provided ID.
      *
-     * @param address The address for which to retrieve the list of persons.
-     * @return A list of Person objects living at the provided address.
-     */
-
-    public List<Person> getPersonsListByAddress(String address) {
-        List<Person> persons = getAll();
-        List<Person> residents = new ArrayList<>();
-        for (Person person : persons) {
-            if (BeanService.normalizeString(person.getAddress()).equalsIgnoreCase(BeanService
-                    .normalizeString(address))) {
-                residents.add(person);
-            }
-        }
-        return residents;
-    }
-
-    /**
-     * Some javadoc.
-     * Retrieves a person based on the provided ID.
-     *
-     * @param id The ID of the person to find.
-     * @return The Person object corresponding to the provided ID, or null if not
+     * @param id The ID of the person object to find.
+     * @return The person object corresponding to the provided ID, or null if
+     *         not
      *         found.
      */
     public Person getPersonById(int id) {
-        return personDao.findById(id);
+        Optional<Person> personOptional = personDao.findById(id);
+        return personOptional.orElse(null);
     }
 
     /**
      * Some javadoc.
-     * Finds a person based on the first name and last name.
-     *
-     * @param firstName The first name of the person to find.
-     * @param lastName  The last name of the person to find.
-     * @return The Person object corresponding to the provided first name and last
-     *         name, or null if not found.
-     */
-    public Person findPersonByFirstNameAndLastName(String firstName, String lastName) {
-        return personDao.findByFirstNameAndLastName(firstName, lastName);
-    }
-
-    /**
-     * Some javadoc.
-     * Deletes a person based on the provided ID.
-     *
-     * @param id The ID of the person to delete.
-     */
-    public void deletePersonById(int id) {
-        personDao.deleteById(id);
-    }
-
-    /**
-     * Some javadoc.
+     * 
      * Deletes a person based on the provided FirstName and LastName.
+     * 
+     * @param oldPerson
      *
      * @param FirstName of the person to delete.
-     * @param LastName of the person to delete.
+     * @param LastName  of the person to delete.
      * 
      */
-    public void deletePersonByFirstNameAndLastName(String firstName, String lastName) {
+    public void deletePersonByFirstAndLastName(String firstName, String lastName) {
         personDao.deleteByFirstNameAndLastName(firstName, lastName);
     }
 
-    /**
-     * Some javadoc.
-     * Retrieves a list of children from a list of persons and their associated
-     * medical records.
-     *
-     * @param persons        The list of persons for which to retrieve children.
-     * @param medicalRecords The list of medical records associated with the
-     *                       persons.
-     * @return A list of Person objects corresponding to the children from the
-     *         provided list of persons and medical records.
-     */
-    public List<Person> getChildren(List<Person> persons,
-            List<MedicalRecord> medicalRecords) {
-        MedicalRecordService medicalRecordService = new MedicalRecordService(null);
-        List<Person> children = new ArrayList<>();
-        for (Person person : persons) {
-            for (MedicalRecord medicalRecord : medicalRecords) {
-                Boolean checkFirstName = person.getFirstName().equals(medicalRecord.getFirstName());
-                Boolean checkLastName = person.getLastName().equals(medicalRecord.getLastName());
-                Boolean checkMinor = medicalRecordService.isMinor(medicalRecord.getBirthdate());
-                if (checkFirstName && checkLastName && checkMinor) {
-                    children.add(person);
-                    break;
-                }
-            }
+    public List<Person> getPersonsByHouseholds(List<Household> households) {
+        List<Person> persons = new ArrayList<>();
+        for (Household household : households) {
+            persons.addAll(getPersonsByHousehold(household));
         }
-        return children;
+        return persons;
     }
 
-    /**
-     * Some javadoc.
-     * Retrieves a list of adults from a list of persons and their associated
-     * medical records.
-     *
-     * @param persons        The list of persons for which to retrieve adults.
-     * @param medicalRecords The list of medical records associated with the
-     *                       persons.
-     * @return A list of Person objects corresponding to the adults from the
-     *         provided list of persons and medical records.
-     */
-    public List<Person> getAdults(List<Person> persons, List<MedicalRecord> medicalRecords) {
-        MedicalRecordService medicalRecordService = new MedicalRecordService(null);
-        List<Person> adults = new ArrayList<>();
-        for (Person person : persons) {
-            for (MedicalRecord medicalRecord : medicalRecords) {
-                Boolean checkFirstName = person.getFirstName().equals(medicalRecord.getFirstName());
-                Boolean checkLastName = person.getLastName().equals(medicalRecord.getLastName());
-                Boolean checkMinor = medicalRecordService.isMinor(medicalRecord.getBirthdate());
-                if (checkFirstName && checkLastName && !checkMinor) {
-                    adults.add(person);
-                    break;
-                }
-            }
+    public List<Person> getPersonsByHousehold(Household household) {
+        List<Optional<Person>> personOptionals = personDao.findByIdHousehold(household.getId());
+        List<Person> persons = new ArrayList<>();
+        for (Optional<Person> personOptional : personOptionals) {
+            personOptional.ifPresent(persons::add);
         }
-        return adults;
+        return persons;
     }
 
-    /**
-     * Some javadoc.
-     * Retrieves a list of persons living in a specific city.
-     *
-     * @param city The city for which to retrieve the list of persons.
-     * @return A list of Person objects living in the provided city.
-     */
     public List<Person> getPersonsByCity(String city) {
-        List<Person> persons = getAll();
-        List<Person> residents = new ArrayList<>();
-        for (Person person : persons) {
-            Boolean checkCity = person.getCity().equals(city);
-            if (checkCity) {
-                residents.add(person);
-            }
+        List<Optional<Person>> personOptionals = personDao.findByCity(city);
+        List<Person> persons = new ArrayList<>();
+        for (Optional<Person> personOptional : personOptionals) {
+            personOptional.ifPresent(persons::add);
         }
-        return residents;
+        return persons;
     }
 
-    /**
-     * Some javadoc.
-     * Retrieves a list of persons based on the provided first name and last name.
-     *
-     * @param firstName The first name of the persons to find.
-     * @param lastName  The last name of the persons to find.
-     * @return A list of Person objects corresponding to the provided first name and
-     *         last name.
-     */
-    public List<Person> getPersonsByFirstNameAndLastName(String firstName, String lastName) {
-        List<Person> persons = getAll();
-        List<Person> matchingPersons = new ArrayList<>();
-        for (Person person : persons) {
-            Boolean checkFirstName = person.getFirstName().equals(firstName);
-            Boolean checkLastName = person.getLastName().equals(lastName);
-            if (checkFirstName && checkLastName) {
-                matchingPersons.add(person);
-            }
-        }
-        return matchingPersons;
+    public Person getPersonByFirstAndLastName(String firstName, String lastName) {
+        return personDao.findByFirstNameAndLastName(firstName, lastName);
     }
 }

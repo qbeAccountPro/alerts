@@ -6,22 +6,23 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-import com.safetynet.alerts.web.serialization.model.Fire;
+import com.safetynet.alerts.web.serialization.model.FireAlert;
 
 /**
  * Some javadoc.
+ * 
  * Custom serializer for Fire objects.
  * This serializer converts a Fire object to JSON format with specific fields.
  */
-public class FireDao extends StdSerializer<Fire> {
+public class FireDao extends StdSerializer<FireAlert> {
 
-    public FireDao(Class<Fire> t) {
+    public FireDao(Class<FireAlert> t) {
         super(t);
-
     }
 
     /**
      * Some javadoc.
+     * 
      * Serialize a single Fire object to JSON format with specific fields.
      *
      * @param fire     The Fire object to be serialized.
@@ -29,7 +30,7 @@ public class FireDao extends StdSerializer<Fire> {
      * @param provider The SerializerProvider for the serialization process.
      */
     @Override
-    public void serialize(Fire fire, JsonGenerator gen, SerializerProvider provider) {
+    public void serialize(FireAlert fire, JsonGenerator gen, SerializerProvider provider) {
         try {
             gen.writeStartObject();
             gen.writeStringField("lastName", fire.getLastName());
@@ -60,16 +61,17 @@ public class FireDao extends StdSerializer<Fire> {
 
     /**
      * Some javadoc.
+     * 
      * Serialize a list of Fire objects to JSON format with specific fields.
      *
      * @param fires    The list of Fire objects to be serialized.
      * @param gen      The JsonGenerator to write JSON content.
      * @param provider The SerializerProvider for the serialization process.
      */
-    public void serializeList(List<Fire> fires, JsonGenerator gen, SerializerProvider provider) {
+    public void serializeList(List<FireAlert> fires, JsonGenerator gen, SerializerProvider provider) {
         try {
             gen.writeStartArray();
-            for (Fire fire : fires) {
+            for (FireAlert fire : fires) {
                 serialize(fire, gen, provider);
             }
             gen.writeEndArray();
@@ -77,5 +79,4 @@ public class FireDao extends StdSerializer<Fire> {
             e.printStackTrace();
         }
     }
-
 }
