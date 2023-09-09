@@ -1,9 +1,9 @@
 package com.safetynet.alerts.web.configuration;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.boot.actuate.web.exchanges.HttpExchangeRepository;
 import org.springframework.boot.actuate.web.exchanges.InMemoryHttpExchangeRepository;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Some javadoc.
@@ -15,13 +15,13 @@ import org.springframework.boot.actuate.web.exchanges.InMemoryHttpExchangeReposi
 @Configuration
 public class HttpTraceActuatorConfiguration {
 
-    /**
-     * Creates an {@link InMemoryHttpExchangeRepository} bean instance.
-     *
-     * @return An {@link InMemoryHttpExchangeRepository} instance.
-     */
-    @Bean
-    public HttpExchangeRepository httpTraceRepository() {
-        return new InMemoryHttpExchangeRepository();
-    }
+  /**
+   * Creates an {@link InMemoryHttpExchangeRepository} bean instance.
+   *
+   * @return An {@link InMemoryHttpExchangeRepository} instance.
+   */
+  @Bean
+  public HttpExchangeRepository httpTraceRepository() {
+    return new InMemoryHttpExchangeRepository();
+  }
 }

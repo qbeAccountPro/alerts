@@ -54,7 +54,7 @@ public class AlertsApplication {
 
 				// Convert model :
 				List<Household> households = convertModel.getHouseholds(personsDeserialization,
-						firestationsDeserialization, null);
+						firestationsDeserialization);
 				householdDao.saveAll(households);
 
 				List<Firestation> firestations = convertModel.getFirestations(firestationsDeserialization,

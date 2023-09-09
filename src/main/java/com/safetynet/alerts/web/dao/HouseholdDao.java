@@ -18,7 +18,7 @@ import com.safetynet.alerts.web.model.Household;
  */
 @Repository
 public interface HouseholdDao extends JpaRepository<Household, Integer> {
-    List<Household> findAll();
+  List<Household> findAll();
 
-    Household findByAddress(String address);
+  Household findByAddress(String address);
 }

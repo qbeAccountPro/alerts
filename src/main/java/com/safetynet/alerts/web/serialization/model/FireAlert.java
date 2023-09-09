@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 /**
  * Some javadoc.
  * 
- * Model class representing a person affected by fire for the Fire feature.
+ * Model class representing a FireAlert for the Fire feature.
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class FireAlert {
-    private String lastName;
-    private String phone;
-    private int age;
-    private List<String> medications;
-    private List<String> allergies;
+  private String lastName;
+  private String phone;
+  private int age;
+  private List<String> medications;
+  private List<String> allergies;
 }

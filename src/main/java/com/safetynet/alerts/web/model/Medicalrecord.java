@@ -13,18 +13,18 @@ import lombok.NoArgsConstructor;
  * Some javadoc.
  * 
  * This class represents a Medical Record entity in the system.
- * It is used to link a medical information by individual.
+ * It is used to link a medical information by person.
  */
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class MedicalRecord {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int idPerson;
-    private String birthdate;
-    private List<String> medications;
-    private List<String> allergies;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
+  private int idPerson;
+  private String birthdate;
+  private List<String> medications;
+  private List<String> allergies;
 }

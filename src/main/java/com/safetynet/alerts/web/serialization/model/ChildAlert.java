@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 /**
  * Some javadoc.
  * 
- * Model class representing a child for the Child Alert feature.
+ * Model class representing a ChildAlert for the Child Alert feature.
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChildAlert {
-    private String firstName;
-    private String lastName;
-    private int age;
+  private String firstName;
+  private String lastName;
+  private int age;
 }

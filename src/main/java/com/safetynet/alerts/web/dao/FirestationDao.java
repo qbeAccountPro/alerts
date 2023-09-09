@@ -18,12 +18,11 @@ import com.safetynet.alerts.web.model.Firestation;
  */
 @Repository
 public interface FirestationDao extends JpaRepository<Firestation, Integer> {
+  List<Firestation> findAll();
 
-    List<Firestation> findAll();
+  void deleteByStation(String station);
 
-    void deleteByStation(String station);
+  Firestation findById(int id);
 
-    Firestation findById(int id);
-
-    Firestation findByStation(String station);
+  Firestation findByStation(String station);
 }

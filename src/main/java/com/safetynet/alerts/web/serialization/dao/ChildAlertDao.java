@@ -16,49 +16,49 @@ import com.safetynet.alerts.web.serialization.model.ChildAlert;
  */
 public class ChildAlertDao extends StdSerializer<ChildAlert> {
 
-    public ChildAlertDao(Class<ChildAlert> t) {
-        super(t);
-    }
+  public ChildAlertDao(Class<ChildAlert> t) {
+    super(t);
+  }
 
-    /**
-     * Some javadoc.
-     * Serialize a single ChildAlert object to JSON format.
-     *
-     * @param childAlert The ChildAlert object to be serialized.
-     * @param gen        The JsonGenerator to write JSON content.
-     * @param provider   The SerializerProvider for the serialization process.
-     */
-    @Override
-    public void serialize(ChildAlert childAlert, JsonGenerator gen, SerializerProvider provider) {
-        try {
-            gen.writeStartObject();
-            gen.writeStringField("firstName", childAlert.getFirstName());
-            gen.writeStringField("lastName", childAlert.getLastName());
-            gen.writeNumberField("age", childAlert.getAge());
-            gen.writeEndObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  /**
+   * Some javadoc.
+   * Serialize a single ChildAlert object to JSON format.
+   *
+   * @param childAlert The ChildAlert object to be serialized.
+   * @param gen        The JsonGenerator to write JSON content.
+   * @param provider   The SerializerProvider for the serialization process.
+   */
+  @Override
+  public void serialize(ChildAlert childAlert, JsonGenerator gen, SerializerProvider provider) {
+    try {
+      gen.writeStartObject();
+      gen.writeStringField("firstName", childAlert.getFirstName());
+      gen.writeStringField("lastName", childAlert.getLastName());
+      gen.writeNumberField("age", childAlert.getAge());
+      gen.writeEndObject();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 
-    /**
-     * Some javadoc.
-     * 
-     * Serialize a list of ChildAlert objects to JSON format.
-     *
-     * @param childrenAlert The list of ChildAlert objects to be serialized.
-     * @param gen           The JsonGenerator to write JSON content.
-     * @param provider      The SerializerProvider for the serialization process.
-     */
-    public void serializeList(List<ChildAlert> childrenAlert, JsonGenerator gen, SerializerProvider provider) {
-        try {
-            gen.writeStartArray();
-            for (ChildAlert childAlert : childrenAlert) {
-                serialize(childAlert, gen, provider);
-            }
-            gen.writeEndArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  /**
+   * Some javadoc.
+   * 
+   * Serialize a list of ChildAlert objects to JSON format.
+   *
+   * @param childrenAlert The list of ChildAlert objects to be serialized.
+   * @param gen           The JsonGenerator to write JSON content.
+   * @param provider      The SerializerProvider for the serialization process.
+   */
+  public void serializeList(List<ChildAlert> childrenAlert, JsonGenerator gen, SerializerProvider provider) {
+    try {
+      gen.writeStartArray();
+      for (ChildAlert childAlert : childrenAlert) {
+        serialize(childAlert, gen, provider);
+      }
+      gen.writeEndArray();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 }

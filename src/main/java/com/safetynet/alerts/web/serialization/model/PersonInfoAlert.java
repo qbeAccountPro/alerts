@@ -9,16 +9,17 @@ import lombok.NoArgsConstructor;
 /**
  * Some javadoc.
  * 
- * Model class representing a person for the personInfo Alert feature.
+ * Model class representing a PersonInfoAlert object for the person info alert
+ * feature.
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonInfoAlert {
-    private String lastName;
-    private String address;
-    private String mail;
-    private int age;
-    private List<String> medications;
-    private List<String> allergies;
+  private String lastName;
+  private String address;
+  private String mail;
+  private int age;
+  private List<String> medications;
+  private List<String> allergies;
 }

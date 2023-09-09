@@ -17,49 +17,49 @@ import com.safetynet.alerts.web.model.Person;
  */
 public class PhoneAlertDao extends StdSerializer<Person> {
 
-    public PhoneAlertDao(Class<Person> t) {
-        super(t);
-    }
+  public PhoneAlertDao(Class<Person> t) {
+    super(t);
+  }
 
-    /**
-     * Some javadoc.
-     * 
-     * Serialize a single Person object to JSON format with the phone number field.
-     *
-     * @param person   The Person object to be serialized.
-     * @param gen      The JsonGenerator to write JSON content.
-     * @param provider The SerializerProvider for the serialization process.
-     */
-    @Override
-    public void serialize(Person person, JsonGenerator gen, SerializerProvider provider) {
-        try {
-            gen.writeStartObject();
-            gen.writeStringField("phone", person.getPhone());
-            gen.writeEndObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  /**
+   * Some javadoc.
+   * 
+   * Serialize a single Person object to JSON format with the phone number field.
+   *
+   * @param person   The Person object to be serialized.
+   * @param gen      The JsonGenerator to write JSON content.
+   * @param provider The SerializerProvider for the serialization process.
+   */
+  @Override
+  public void serialize(Person person, JsonGenerator gen, SerializerProvider provider) {
+    try {
+      gen.writeStartObject();
+      gen.writeStringField("phone", person.getPhone());
+      gen.writeEndObject();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 
-    /**
-     * Some javadoc.
-     * 
-     * Serialize a list of Person objects to JSON format with the phone number
-     * field.
-     *
-     * @param persons  The list of Person objects to be serialized.
-     * @param gen      The JsonGenerator to write JSON content.
-     * @param provider The SerializerProvider for the serialization process.
-     */
-    public void serializeList(List<Person> persons, JsonGenerator gen, SerializerProvider provider) {
-        try {
-            gen.writeStartArray();
-            for (Person person : persons) {
-                serialize(person, gen, provider);
-            }
-            gen.writeEndArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  /**
+   * Some javadoc.
+   * 
+   * Serialize a list of Person objects to JSON format with the phone number
+   * field.
+   *
+   * @param persons  The list of Person objects to be serialized.
+   * @param gen      The JsonGenerator to write JSON content.
+   * @param provider The SerializerProvider for the serialization process.
+   */
+  public void serializeList(List<Person> persons, JsonGenerator gen, SerializerProvider provider) {
+    try {
+      gen.writeStartArray();
+      for (Person person : persons) {
+        serialize(person, gen, provider);
+      }
+      gen.writeEndArray();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 }

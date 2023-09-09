@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 /**
  * Some javadoc.
  * 
- * Model class representing a person affected by flood for the flood feature.
+ * Model class representing a FloodAlert object for the flood feature.
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class FloodAlert {
-    private String lastName;
-    private String phone;
-    private int age;
-    private List<String> medications;
-    private List<String> allergies;
+  private String lastName;
+  private String phone;
+  private int age;
+  private List<String> medications;
+  private List<String> allergies;
 }

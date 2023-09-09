@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.safetynet.alerts.web.communUtilts.DataManipulationUtils;
 import com.safetynet.alerts.web.deserialization.model.FirestationDeserialization;
 import com.safetynet.alerts.web.logging.EndpointsLogger;
 import com.safetynet.alerts.web.model.Firestation;
-import com.safetynet.alerts.web.service.BeanService;
 import com.safetynet.alerts.web.service.FirestationService;
 
 /**
@@ -31,98 +31,107 @@ import com.safetynet.alerts.web.service.FirestationService;
 @RequestMapping("/firestation")
 public class FirestationController {
 
-    private final FirestationService firestationService;
-    private final BeanService beanService;
-    private EndpointsLogger log = new EndpointsLogger();
+  private final FirestationService firestationService;
+  private final DataManipulationUtils beanService;
+  private EndpointsLogger log = new EndpointsLogger();
 
-    public FirestationController(FirestationService firestationService) {
-        this.firestationService = firestationService;
-        this.beanService = new BeanService();
+  public FirestationController(FirestationService firestationService) {
+    this.firestationService = firestationService;
+    this.beanService = new DataManipulationUtils();
+  }
+
+  /**
+   * Some javadoc.
+   * 
+   * Adds a new firestation to the system.
+   *
+   * @param firestationDeserialization The Firestation object representing
+   *                                   the new firestation to be added in the
+   *                                   deserialization format.
+   */
+  @PostMapping("")
+  public ResponseEntity<String> addFirestation(@RequestBody FirestationDeserialization firestationDeserialization) {
+    // Log the request :
+    String methodeName = DataManipulationUtils.getCurrentMethodName();
+    log.request(methodeName);
+
+    // Check the request content :
+    Boolean fieldsAreNull = beanService.areFieldsNullExceptId(firestationDeserialization);
+    if (fieldsAreNull) {
+      return log.incorrectContent(methodeName);
+    } else {
+      return firestationService.addFirestation(firestationDeserialization, methodeName);
     }
+  }
 
-    /**
-     * Some javadoc.
-     * Adds a new firestation to the system.
-     *
-     * @param firestationDeserialization The Firestation object representing
-     *                                   the new firestation to be added in the
-     *                                   deserialization format.
-     */
-    @PostMapping("")
-    public ResponseEntity<String> addFirestation(@RequestBody FirestationDeserialization firestationDeserialization) {
-        // Log the request :
-        String methodeName = BeanService.getCurrentMethodName();
-        log.request(methodeName);
+  /**
+   * Some javadoc.
+   * 
+   * Updates the firestation number for a specific address.
+   *
+   * @param address                    The address of the firestation to be
+   *                                   updated.
+   * @param firestationDeserialization The updated Firestation object in the
+   *                                   deserialization format.
+   */
+  @PutMapping("/{address}")
+  public ResponseEntity<String> updateStationByAddress(@PathVariable("address") String address,
+      @RequestBody FirestationDeserialization firestationDeserialization) {
+    // Log the request :
+    String methodeName = DataManipulationUtils.getCurrentMethodName();
+    log.request(methodeName, address);
 
-        // Check the request content :
-        Boolean fieldsAreNull = beanService.areFieldsNullExceptId(firestationDeserialization);
-        if (fieldsAreNull) {
-            return log.incorrectContent(methodeName);
-        } else {
-            return firestationService.addFirestation(firestationDeserialization, methodeName);
-        }
+    // Check the request content :
+    Boolean fieldsAreNull = beanService.areFieldsNullExceptId(firestationDeserialization);
+    if (fieldsAreNull) {
+      return log.incorrectContent(methodeName);
+    } else {
+      return firestationService.updateStationByAddress(firestationDeserialization, address, methodeName);
     }
+  }
 
-    /**
-     * Some javadoc.
-     * 
-     * Updates the firestation number for a specific address.
-     *
-     * @param address                    The address of the firestation to be
-     *                                   updated.
-     * @param firestationDeserialization The updated Firestation object in the
-     *                                   deserialization format.
-     */
-    @PutMapping("/{address}")
-    public ResponseEntity<String> updateStationNumberByAddress(@PathVariable("address") String address,
-            @RequestBody FirestationDeserialization firestationDeserialization) {
-        // Log the request :
-        String methodeName = BeanService.getCurrentMethodName();
-        log.request(methodeName, address);
+  /**
+   * Some javadoc.
+   * 
+   * Deletes a firestation based on address.
+   *
+   * @param address The address of the firestation to be deleted.
+   */
+  @Transactional
+  @DeleteMapping("/address/{address}")
+  public ResponseEntity<String> deleteStationAtThisAddress(@PathVariable("address") String address) {
+    // Log the request :
+    String methodeName = DataManipulationUtils.getCurrentMethodName();
+    log.request(methodeName);
+    return firestationService.deleteStationAtThisAddress(address, methodeName);
+  }
 
-        // Check the request content :
-        Boolean fieldsAreNull = beanService.areFieldsNullExceptId(firestationDeserialization);
-        if (fieldsAreNull) {
-            return log.incorrectContent(methodeName);
-        } else {
-            return firestationService.updateStationNumberByAddress(firestationDeserialization, address, methodeName);
-        }
-    }
+  /**
+   * Some javadoc.
+   * 
+   * Deletes a firestation based on this station.
+   *
+   * @param station The station number of the firestation to be deleted.
+   */
+  @Transactional
+  @DeleteMapping("/station/{station}")
+  public ResponseEntity<String> deleteFirestationByStation(@PathVariable("station") String station) {
+    // Log the request :
+    String methodeName = DataManipulationUtils.getCurrentMethodName();
+    log.request(methodeName);
+    return firestationService.deleteFirestationByStation(station, methodeName);
+  }
 
-    /**
-     * Some javadoc.
-     * 
-     * Deletes a firestation based on address.
-     *
-     * @param address The address of the firestation to be deleted.
-     */
-    @Transactional
-    @DeleteMapping("/address/{address}")
-    public ResponseEntity<String> deleteStationNumbersAtThisAddress(@PathVariable("address") String address) {
-        // Log the request :
-        String methodeName = BeanService.getCurrentMethodName();
-        log.request(methodeName);
-        return firestationService.deleteStationNumbersAtThisAddress(address, methodeName);
-    }
-
-    /**
-     * Some javadoc.
-     * 
-     * Deletes a firestation based on station number.
-     *
-     * @param station The station number of the firestation to be deleted.
-     */
-    @Transactional
-    @DeleteMapping("/station/{station}")
-    public ResponseEntity<String> deleteFirestationByStation(@PathVariable("station") String station) {
-        // Log the request :
-        String methodeName = BeanService.getCurrentMethodName();
-        log.request(methodeName);
-        return firestationService.deleteFirestationByStation(station, methodeName);
-    }
-
-    @GetMapping("/all")
-    public List<Firestation> getAllFirestations() {
-        return firestationService.getAllFirestations();
-    }
+  /**
+   * Some javadoc.
+   * 
+   * Get all firestations.
+   */
+  @GetMapping("/all")
+  public List<Firestation> getAllFirestations() {
+    // Log the request :
+    String methodeName = DataManipulationUtils.getCurrentMethodName();
+    log.request(methodeName);
+    return firestationService.getAllFirestations();
+  }
 }

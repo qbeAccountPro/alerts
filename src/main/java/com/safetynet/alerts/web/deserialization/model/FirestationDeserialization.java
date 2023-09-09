@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 /**
  * Some javadoc.
  * 
- * This class represents a Firestation entity from the JSON.
+ * This class represents a Firestation entity from the JSON entity.
+ * 
  * It is used to deserialize the firestation data.
  */
 @Data

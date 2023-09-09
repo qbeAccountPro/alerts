@@ -17,48 +17,48 @@ import com.safetynet.alerts.web.model.Person;
  */
 public class CommunityEmailDao extends StdSerializer<Person> {
 
-    public CommunityEmailDao(Class<Person> t) {
-        super(t);
-    }
+  public CommunityEmailDao(Class<Person> t) {
+    super(t);
+  }
 
-    /**
-     * Some javadoc.
-     * 
-     * Serialize a single Person object to JSON format with only the email field.
-     *
-     * @param person   The Person object to be serialized.
-     * @param gen      The JsonGenerator to write JSON content.
-     * @param provider The SerializerProvider for the serialization process.
-     */
-    @Override
-    public void serialize(Person person, JsonGenerator gen, SerializerProvider provider) {
-        try {
-            gen.writeStartObject();
-            gen.writeStringField("email", person.getEmail());
-            gen.writeEndObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  /**
+   * Some javadoc.
+   * 
+   * Serialize a single Person object to JSON format with only the email field.
+   *
+   * @param person   The Person object to be serialized.
+   * @param gen      The JsonGenerator to write JSON content.
+   * @param provider The SerializerProvider for the serialization process.
+   */
+  @Override
+  public void serialize(Person person, JsonGenerator gen, SerializerProvider provider) {
+    try {
+      gen.writeStartObject();
+      gen.writeStringField("email", person.getEmail());
+      gen.writeEndObject();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 
-    /**
-     * Some javadoc.
-     * 
-     * Serialize a list of Person objects to JSON format with only the email field.
-     *
-     * @param persons  The list of Person objects to be serialized.
-     * @param gen      The JsonGenerator to write JSON content.
-     * @param provider The SerializerProvider for the serialization process.
-     */
-    public void serializeList(List<Person> persons, JsonGenerator gen, SerializerProvider provider) {
-        try {
-            gen.writeStartArray();
-            for (Person person : persons) {
-                serialize(person, gen, provider);
-            }
-            gen.writeEndArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  /**
+   * Some javadoc.
+   * 
+   * Serialize a list of Person objects to JSON format with only the email field.
+   *
+   * @param persons  The list of Person objects to be serialized.
+   * @param gen      The JsonGenerator to write JSON content.
+   * @param provider The SerializerProvider for the serialization process.
+   */
+  public void serializeList(List<Person> persons, JsonGenerator gen, SerializerProvider provider) {
+    try {
+      gen.writeStartArray();
+      for (Person person : persons) {
+        serialize(person, gen, provider);
+      }
+      gen.writeEndArray();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 }

@@ -11,12 +11,13 @@ import lombok.NoArgsConstructor;
 /**
  * Some javadoc.
  * 
- * Model class representing an object containinf floodAlert by household.
+ * Model class representing an FloodAlertByHousehold object to contains all
+ * floods object by address.
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class FloodAlertByHousehold {
-    private Household household;
-    private List<FloodAlert> floods;
+  private Household household;
+  private List<FloodAlert> floods;
 }

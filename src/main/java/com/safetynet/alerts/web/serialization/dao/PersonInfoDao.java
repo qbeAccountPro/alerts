@@ -11,74 +11,77 @@ import com.safetynet.alerts.web.serialization.model.PersonInfoAlert;
 /**
  * Some javadoc.
  * 
- * Custom serializer for PersonInfo objects.
- * This serializer converts a PersonInfo object to JSON format with specific
+ * Custom serializer for PersonInfoAlert objects.
+ * This serializer converts a PersonInfoAlert object to JSON format with
+ * specific
  * fields.
  */
 public class PersonInfoDao extends StdSerializer<PersonInfoAlert> {
 
-    public PersonInfoDao(Class<PersonInfoAlert> t) {
-        super(t);
-    }
+  public PersonInfoDao(Class<PersonInfoAlert> t) {
+    super(t);
+  }
 
-    /**
-     * Some javadoc.
-     * 
-     * Serialize a single PersonInfo object to JSON format with specific fields.
-     *
-     * @param personInfo The PersonInfo object to be serialized.
-     * @param gen        The JsonGenerator to write JSON content.
-     * @param provider   The SerializerProvider for the serialization process.
-     */
-    @Override
-    public void serialize(PersonInfoAlert personInfo, JsonGenerator gen, SerializerProvider provider) {
-        try {
-            gen.writeStartObject();
-            gen.writeStringField("lastName", personInfo.getLastName());
-            gen.writeStringField("address", personInfo.getAddress());
-            gen.writeNumberField("age", personInfo.getAge());
-            gen.writeStringField("phone", personInfo.getMail());
-            gen.writeFieldName("medications");
-            gen.writeStartArray();
-            if (personInfo.getMedications() != null) {
-                for (String medication : personInfo.getMedications()) {
-                    gen.writeString(medication);
-                }
-            }
-            gen.writeEndArray();
-            gen.writeFieldName("allergies");
-            gen.writeStartArray();
-            if (personInfo.getAllergies() != null) {
-                for (String allergie : personInfo.getAllergies()) {
-                    gen.writeString(allergie);
-                }
-            }
-            gen.writeEndArray();
-
-            gen.writeEndObject();
-        } catch (IOException e) {
-            e.printStackTrace();
+  /**
+   * Some javadoc.
+   * 
+   * Serialize a single PersonInfoAlert object to JSON format with specific
+   * fields.
+   *
+   * @param PersonInfoAlert The PersonInfoAlert object to be serialized.
+   * @param gen             The JsonGenerator to write JSON content.
+   * @param provider        The SerializerProvider for the serialization process.
+   */
+  @Override
+  public void serialize(PersonInfoAlert personInfoAlert, JsonGenerator gen, SerializerProvider provider) {
+    try {
+      gen.writeStartObject();
+      gen.writeStringField("lastName", personInfoAlert.getLastName());
+      gen.writeStringField("address", personInfoAlert.getAddress());
+      gen.writeNumberField("age", personInfoAlert.getAge());
+      gen.writeStringField("phone", personInfoAlert.getMail());
+      gen.writeFieldName("medications");
+      gen.writeStartArray();
+      if (personInfoAlert.getMedications() != null) {
+        for (String medication : personInfoAlert.getMedications()) {
+          gen.writeString(medication);
         }
-    }
-
-    /**
-     * Some javadoc.
-     * 
-     * Serialize a list of PersonInfo objects to JSON format with specific fields.
-     *
-     * @param personsInfos The list of PersonInfo objects to be serialized.
-     * @param gen          The JsonGenerator to write JSON content.
-     * @param provider     The SerializerProvider for the serialization process.
-     */
-    public void serializeList(List<PersonInfoAlert> personsInfos, JsonGenerator gen, SerializerProvider provider) {
-        try {
-            gen.writeStartArray();
-            for (PersonInfoAlert personInfo : personsInfos) {
-                serialize(personInfo, gen, provider);
-            }
-            gen.writeEndArray();
-        } catch (IOException e) {
-            e.printStackTrace();
+      }
+      gen.writeEndArray();
+      gen.writeFieldName("allergies");
+      gen.writeStartArray();
+      if (personInfoAlert.getAllergies() != null) {
+        for (String allergie : personInfoAlert.getAllergies()) {
+          gen.writeString(allergie);
         }
+      }
+      gen.writeEndArray();
+
+      gen.writeEndObject();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
+
+  /**
+   * Some javadoc.
+   * 
+   * Serialize a list of PersonInfoAlert objects to JSON format with specific
+   * fields.
+   *
+   * @param personsInfoAlert The list of PersonInfoAlert objects to be serialized.
+   * @param gen              The JsonGenerator to write JSON content.
+   * @param provider         The SerializerProvider for the serialization process.
+   */
+  public void serializeList(List<PersonInfoAlert> personsInfoAlert, JsonGenerator gen, SerializerProvider provider) {
+    try {
+      gen.writeStartArray();
+      for (PersonInfoAlert personInfo : personsInfoAlert) {
+        serialize(personInfo, gen, provider);
+      }
+      gen.writeEndArray();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 }
