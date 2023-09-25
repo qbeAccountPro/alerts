@@ -39,7 +39,7 @@ public class PersonInfoDao extends StdSerializer<PersonInfoAlert> {
       gen.writeStringField("lastName", personInfoAlert.getLastName());
       gen.writeStringField("address", personInfoAlert.getAddress());
       gen.writeNumberField("age", personInfoAlert.getAge());
-      gen.writeStringField("phone", personInfoAlert.getMail());
+      gen.writeStringField("email", personInfoAlert.getMail());
       gen.writeFieldName("medications");
       gen.writeStartArray();
       if (personInfoAlert.getMedications() != null) {

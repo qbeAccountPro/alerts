@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.web.dao.HouseholdDao;
@@ -17,7 +16,6 @@ public class HouseHoldService {
 
   private final HouseholdDao householdDao;
 
-  @Autowired
   public HouseHoldService(HouseholdDao householdDao) {
     this.householdDao = householdDao;
   }

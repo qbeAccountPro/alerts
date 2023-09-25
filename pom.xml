@@ -133,7 +133,6 @@
 					<excludes>
 						<exclude>**/model/**</exclude>
 						<exclude>**/deserialization/**</exclude>
-
 					</excludes>
 				</configuration>
 				<executions>

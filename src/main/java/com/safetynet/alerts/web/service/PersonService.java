@@ -1,6 +1,9 @@
 package com.safetynet.alerts.web.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +13,6 @@ import com.safetynet.alerts.web.deserialization.model.PersonDeserialization;
 import com.safetynet.alerts.web.logging.EndpointsLogger;
 import com.safetynet.alerts.web.model.Household;
 import com.safetynet.alerts.web.model.Person;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Some javadoc.
@@ -25,7 +24,6 @@ import java.util.Optional;
 @Service
 public class PersonService {
 
-  @Autowired
   private final PersonDao personDao;
   private final HouseHoldService householdService;
   private final MedicalRecordDao medicalRecordDao;

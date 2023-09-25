@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +29,6 @@ public class FirestationService {
   private final HouseHoldService houseHoldService;
   private EndpointsLogger log = new EndpointsLogger();
 
-  @Autowired
   public FirestationService(FirestationDao firestationDao, HouseHoldService houseHoldService) {
     this.firestationDao = firestationDao;
     this.houseHoldService = houseHoldService;
@@ -135,10 +133,10 @@ public class FirestationService {
       // For each firestation check if they have at least one address or delete it :
       for (Firestation firestation : firestations) {
         List<Integer> idHouseholds = firestation.getIdHouseholds();
-        idHouseholds.remove(Integer.valueOf(household.getId()));
-        if (idHouseholds.isEmpty()) {
+        if (idHouseholds.size() == 1) {
           firestationDao.deleteByStation(firestation.getStation());
         } else {
+          idHouseholds.remove(Integer.valueOf(household.getId()));
           firestation.setIdHouseholds(idHouseholds);
           saveFirestation(firestation);
         }

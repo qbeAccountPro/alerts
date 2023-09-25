@@ -1,17 +1,19 @@
 package com.safetynet.alerts;
 
+import java.io.InputStream;
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.web.dao.FirestationDao;
+import com.safetynet.alerts.web.dao.HouseholdDao;
 import com.safetynet.alerts.web.dao.MedicalRecordDao;
 import com.safetynet.alerts.web.dao.PersonDao;
-import com.safetynet.alerts.web.dao.HouseholdDao;
 import com.safetynet.alerts.web.deserialization.Deserialization;
 import com.safetynet.alerts.web.deserialization.model.FirestationDeserialization;
 import com.safetynet.alerts.web.deserialization.model.MedicalRecordDeserialization;
@@ -22,16 +24,12 @@ import com.safetynet.alerts.web.model.MedicalRecord;
 import com.safetynet.alerts.web.model.Person;
 import com.safetynet.alerts.web.service.ConvertModelService;
 
-import java.io.InputStream;
-import java.util.List;
-
 /**
  * Some javadoc.
  * 
  * Main class of the Safetynet Alerts application.
  */
 @SpringBootApplication
-@EnableWebMvc
 public class AlertsApplication {
 	private ConvertModelService convertModel = new ConvertModelService();
 

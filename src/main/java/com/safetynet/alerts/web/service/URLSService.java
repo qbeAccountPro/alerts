@@ -59,6 +59,9 @@ public class URLSService {
   public ResponseEntity<String> personCoveredByFireStation(String station) {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
     Firestation firestation = firestationService.getFirestationByStation(station);
+    if (firestation == null) {
+      return serialization.emptyAnswer(methodeName, station);
+    }
     List<Household> households = houseHoldService.getHouseholdsByFirestation(firestation);
     List<Person> persons = personService.getPersonsByHouseholds(households);
     List<MedicalRecord> medicalRecords = medicalRecordService.getMedicalRecordsByPersons(persons);
@@ -86,6 +89,9 @@ public class URLSService {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
     // Household at this address :
     Household household = houseHoldService.getHouseholdByAddress(address);
+    if (household == null) {
+      return serialization.emptyAnswer(methodeName, address);
+    }
     // Persons at this address :
     List<Person> persons = personService.getPersonsByHousehold(household);
     // MedicalRecords at this address :
@@ -98,8 +104,7 @@ public class URLSService {
     List<ChildAlert> children = childAlertService.getChildAlertListFromPersonList(persons, childrenMedicalRecords);
     List<ChildAlert> adults = childAlertService.getChildAlertListFromPersonList(persons, adultsMedicalRecords);
     if (children.isEmpty() && adults.isEmpty()) {
-      serialization.emptyAnswer(methodeName, address);
-      return log.emptyAnswer(methodeName);
+      return serialization.emptyAnswer(methodeName, address);
     } else {
       serialization.childAlertSerialization(children, adults, methodeName, address);
       return log.successfullyGenerated(methodeName);
@@ -118,6 +123,9 @@ public class URLSService {
   public ResponseEntity<String> personsPhoneNumbersCoveredByStation(String station) {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
     Firestation firestation = firestationService.getFirestationByStation(station);
+    if (firestation == null) {
+      return serialization.emptyAnswer(methodeName, station);
+    }
     List<Household> households = houseHoldService.getHouseholdsByFirestation(firestation);
     List<Person> persons = personService.getPersonsByHouseholds(households);
     if (persons.isEmpty()) {
@@ -141,6 +149,9 @@ public class URLSService {
   public ResponseEntity<String> stationAndPersonsByAddress(String address) {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
     Household household = houseHoldService.getHouseholdByAddress(address);
+    if (household == null) {
+      return serialization.emptyAnswer(methodeName, address);
+    }
     List<Firestation> firestations = firestationService.getFirestationsByHousehold(household);
     List<Person> persons = personService.getPersonsByHousehold(household);
     List<MedicalRecord> medicalRecords = medicalRecordService.getMedicalRecordsByPersons(persons);
@@ -174,6 +185,9 @@ public class URLSService {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
     FloodService floodService = new FloodService();
     Firestation firestation = firestationService.getFirestationByStation(station);
+    if (firestation == null) {
+      return serialization.emptyAnswer(methodeName, station);
+    }
     List<Household> households = houseHoldService.getHouseholdsByFirestation(firestation);
     List<Person> persons = personService.getPersonsByHouseholds(households);
     List<MedicalRecord> medicalRecords = medicalRecordService.getMedicalRecordsByPersons(persons);
@@ -199,6 +213,10 @@ public class URLSService {
 
     PersonInfoService personInfoService = new PersonInfoService();
     Person person = personService.getPersonByFirstAndLastName(firstName, lastName);
+    if (person == null) {
+      return serialization.emptyAnswer(methodeName, firstName + " "
+          + lastName);
+    }
     MedicalRecord medicalRecords = medicalRecordService.getMedicalRecordByPerson(person);
     Household household = houseHoldService.getHouseholdById(person.getIdHousehold());
     List<PersonInfoAlert> personInfo = personInfoService.getPersonInfo(person, medicalRecords, household);

@@ -3,7 +3,6 @@ package com.safetynet.alerts.web.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,6 @@ public class MedicalRecordService {
   private final PersonService personService;
   private EndpointsLogger log = new EndpointsLogger();
 
-  @Autowired
   public MedicalRecordService(
       MedicalRecordDao medicalrecordDao, PersonService personService) {
     this.medicalRecordDao = medicalrecordDao;
