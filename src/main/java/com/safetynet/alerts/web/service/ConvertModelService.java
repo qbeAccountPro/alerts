@@ -35,6 +35,7 @@ public class ConvertModelService {
    */
   public List<Household> getHouseholds(List<PersonDeserialization> personsDeserialization,
       List<FirestationDeserialization> firestationDeserializations) {
+    int id = 1;
     List<Household> households = new ArrayList<>();
     List<String> addresses = new ArrayList<>();
     // Add addresses from Firestation
@@ -72,8 +73,9 @@ public class ConvertModelService {
       }
     }
     for (String address : addresses) {
-      Household newHousehold = new Household(0, address);
+      Household newHousehold = new Household(id, address);
       households.add(newHousehold);
+      id++;
     }
     return households;
   }
@@ -90,6 +92,7 @@ public class ConvertModelService {
    */
   public List<Firestation> getFirestations(List<FirestationDeserialization> firestationDeserializations,
       List<Household> households) {
+    int id = 1;
     List<Firestation> firestations = new ArrayList<>();
 
     // Get a list of firestation with only STATION.
@@ -105,7 +108,9 @@ public class ConvertModelService {
         }
       }
       if (!ifStationExists) {
+        newFirestation.setId(id);
         firestations.add(newFirestation);
+        id++;
       }
     }
 
@@ -117,7 +122,9 @@ public class ConvertModelService {
         if (firestationDeserialization.getStation().equals(firestation.getStation())) {
           for (Household household : households) {
             if (household.getAddress().equals(firestationDeserialization.getAddress())) {
+              if(!idHouseholds.contains(household.getId())){
               idHouseholds.add(household.getId());
+              }
               break;
             }
           }
@@ -142,6 +149,7 @@ public class ConvertModelService {
   public List<MedicalRecord> getMedicalRecords(List<MedicalRecordDeserialization> medicalRecordDeserializations,
       List<Person> persons) {
     List<MedicalRecord> medicalRecords = new ArrayList<>();
+    int id = 1;
 
     for (MedicalRecordDeserialization medicalRecordDeserialization : medicalRecordDeserializations) {
       MedicalRecord medicalRecord = new MedicalRecord();
@@ -153,10 +161,12 @@ public class ConvertModelService {
           break;
         }
       }
+      medicalRecord.setId(id);
       medicalRecord.setBirthdate(medicalRecordDeserialization.getBirthdate());
       medicalRecord.setMedications(medicalRecordDeserialization.getMedications());
       medicalRecord.setAllergies(medicalRecordDeserialization.getAllergies());
       medicalRecords.add(medicalRecord);
+      id++;
     }
     return medicalRecords;
   }
@@ -173,6 +183,7 @@ public class ConvertModelService {
    */
   public List<Person> getPersons(List<PersonDeserialization> personDeserializations, List<Household> households) {
     List<Person> persons = new ArrayList<>();
+    int id = 1;
     for (PersonDeserialization personDeserialization : personDeserializations) {
       Person person = new Person();
       for (Household household : households) {
@@ -181,6 +192,7 @@ public class ConvertModelService {
           break;
         }
       }
+      person.setId(id);
       person.setFirstName(personDeserialization.getFirstName());
       person.setLastName(personDeserialization.getLastName());
       person.setCity(personDeserialization.getCity());
@@ -189,6 +201,7 @@ public class ConvertModelService {
       person.setEmail(personDeserialization.getEmail());
       person.setZip(personDeserialization.getZip());
       persons.add(person);
+      id++;
     }
     return persons;
   }

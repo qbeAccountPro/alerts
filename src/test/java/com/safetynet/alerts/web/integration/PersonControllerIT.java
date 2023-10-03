@@ -16,29 +16,25 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.web.controller.PersonController;
-import com.safetynet.alerts.web.dao.HouseholdDao;
-import com.safetynet.alerts.web.dao.MedicalRecordDao;
-import com.safetynet.alerts.web.dao.PersonDao;
 import com.safetynet.alerts.web.deserialization.model.PersonDeserialization;
 import com.safetynet.alerts.web.model.Household;
 import com.safetynet.alerts.web.model.Person;
 import com.safetynet.alerts.web.service.HouseHoldService;
+import com.safetynet.alerts.web.service.MedicalRecordService;
 import com.safetynet.alerts.web.service.PersonService;
-
-import jakarta.transaction.Transactional;
 
 @SpringBootTest
 public class PersonControllerIT {
   private MockMvc mvc;
 
   @Autowired
-  PersonDao personDao;
+  private PersonService personService;
 
   @Autowired
-  HouseholdDao householdDao;
+  private HouseHoldService houseHoldService;
 
   @Autowired
-  MedicalRecordDao medicalRecordDao;
+  private MedicalRecordService medicalRecordService;
 
   String firstName = "Quentin", lastName = "Beraud", address = "Rue d'ici";
   String city = "Lyon", email = "qbe.pro@yahoo.com", phone = "06 66 66 66 66", zip = "69000";
@@ -47,13 +43,13 @@ public class PersonControllerIT {
   public void setUp() {
     this.mvc = MockMvcBuilders
         .standaloneSetup(
-            new PersonController(new PersonService(personDao, new HouseHoldService(householdDao), medicalRecordDao)))
+            new PersonController(personService))
         .setControllerAdvice()
         .build();
 
-    Person person = personDao.findByFirstNameAndLastName(firstName, lastName);
+    Person person = personService.getPersonByFirstAndLastName(firstName, lastName);
     if (person != null) {
-      personDao.delete(person);
+      personService.deleteByFirstAndLastName(firstName, lastName, "deletePersonITTest");
     }
   }
 
@@ -80,8 +76,10 @@ public class PersonControllerIT {
         .andExpect(status().isCreated());
 
     // Check if the person exists and match
-    List<Person> allPersons = personDao.findAll();
-    Household matchingHousehold = householdDao.findByAddress(address);
+
+    List<Person> allPersons = personService.getAllPersons();
+
+    Household matchingHousehold = houseHoldService.getHouseholdByAddress(address);
     boolean personAdded = false;
     for (Person person : allPersons) {
       if (person.getFirstName().equals(firstName)
@@ -126,8 +124,8 @@ public class PersonControllerIT {
         .andExpect(status().isOk());
 
     // Check if the person already exists and match
-    List<Person> allPersons = personDao.findAll();
-    Household matchingHousehold = householdDao.findByAddress("pas là");
+    List<Person> allPersons = personService.getAllPersons();
+    Household matchingHousehold = houseHoldService.getHouseholdByAddress("pas là");
     boolean personAdded = false;
     for (Person person : allPersons) {
       if (person.getFirstName().equals(firstName)
@@ -148,7 +146,6 @@ public class PersonControllerIT {
   }
 
   @Test
-  @Transactional
   public void deleteByFirstAndLastNameTest() throws Exception {
     // Add a new Person
     addPersonTest();
@@ -158,7 +155,7 @@ public class PersonControllerIT {
         .andExpect(status().isOk());
 
     // Check if the person does not exist
-    List<Person> allPersons = personDao.findAll();
+    List<Person> allPersons = personService.getAllPersons();
     boolean personAdded = true;
     for (Person person : allPersons) {
       if (person.getFirstName().equals(firstName)

@@ -26,6 +26,7 @@ import com.safetynet.alerts.web.serialization.model.FloodAlert;
 import com.safetynet.alerts.web.serialization.model.FloodAlertByHousehold;
 import com.safetynet.alerts.web.serialization.model.PersonInfoAlert;
 import com.safetynet.alerts.web.serialization.service.ChildAlertService;
+import com.safetynet.alerts.web.serialization.service.PersonCoveredService;
 
 @ExtendWith(MockitoExtension.class)
 public class URLSServiceTest {
@@ -50,6 +51,9 @@ public class URLSServiceTest {
 
   @Mock
   private ChildAlertService childAlertService;
+
+  @Mock
+  private PersonCoveredService personCoveredService;
 
   // Example of addresses or stations :
   private String ADDRESS_1, ADDRESS_2, ADDRESS_3, STATION_1, STATION_2, CITY_1;
@@ -168,6 +172,7 @@ public class URLSServiceTest {
     when(medicalRecordService.getMedicalRecordsByPersons(persons_1)).thenReturn(medicalRecords_1);
     when(medicalRecordService.getAdultsNumber(medicalRecords_1)).thenReturn(1);
     when(medicalRecordService.getMinorsNumber(medicalRecords_1)).thenReturn(0);
+    when(personCoveredService.getPersonCoveredList(persons_1, households_1)).thenReturn(firestationAlerts);
 
     urlsService.personCoveredByFireStation(STATION_1);
 

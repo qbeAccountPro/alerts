@@ -1,4 +1,4 @@
-package com.safetynet.alerts.web.serialization.dao;
+package com.safetynet.alerts.web.serialization.serializer;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,19 +11,20 @@ import com.safetynet.alerts.web.model.Person;
 /**
  * Some javadoc.
  * 
- * Custom serializer for Person objects when serializing other residents' data.
- * This serializer converts a Person object to JSON format with specific fields.
+ * Custom serializer for Person objects when serializing phone alert data.
+ * This serializer converts a Person object to JSON format with the phone number
+ * field.
  */
-public class OtherResidentsDao extends StdSerializer<Person> {
+public class PhoneAlertSerializer extends StdSerializer<Person> {
 
-  public OtherResidentsDao(Class<Person> t) {
+  public PhoneAlertSerializer(Class<Person> t) {
     super(t);
   }
 
   /**
    * Some javadoc.
    * 
-   * Serialize a single Person object to JSON format with specific fields.
+   * Serialize a single Person object to JSON format with the phone number field.
    *
    * @param person   The Person object to be serialized.
    * @param gen      The JsonGenerator to write JSON content.
@@ -33,8 +34,7 @@ public class OtherResidentsDao extends StdSerializer<Person> {
   public void serialize(Person person, JsonGenerator gen, SerializerProvider provider) {
     try {
       gen.writeStartObject();
-      gen.writeStringField("firstName", person.getFirstName());
-      gen.writeStringField("lastName", person.getLastName());
+      gen.writeStringField("phone", person.getPhone());
       gen.writeEndObject();
     } catch (IOException e) {
       e.printStackTrace();
@@ -44,7 +44,8 @@ public class OtherResidentsDao extends StdSerializer<Person> {
   /**
    * Some javadoc.
    * 
-   * Serialize a list of Person objects to JSON format with specific fields.
+   * Serialize a list of Person objects to JSON format with the phone number
+   * field.
    *
    * @param persons  The list of Person objects to be serialized.
    * @param gen      The JsonGenerator to write JSON content.

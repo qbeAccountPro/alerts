@@ -3,12 +3,12 @@ package com.safetynet.alerts.web.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.safetynet.alerts.web.dao.FirestationDao;
 import com.safetynet.alerts.web.deserialization.model.FirestationDeserialization;
 import com.safetynet.alerts.web.logging.EndpointsLogger;
 import com.safetynet.alerts.web.model.Firestation;
@@ -24,14 +24,15 @@ import com.safetynet.alerts.web.model.Household;
  */
 @Service
 public class FirestationService {
+  List<Firestation> firestations;
 
-  private final FirestationDao firestationDao;
-  private final HouseHoldService houseHoldService;
+  @Autowired
+  HouseHoldService houseHoldService;
+
   private EndpointsLogger log = new EndpointsLogger();
 
-  public FirestationService(FirestationDao firestationDao, HouseHoldService houseHoldService) {
-    this.firestationDao = firestationDao;
-    this.houseHoldService = houseHoldService;
+  public void setFirestations(List<Firestation> firestations) {
+    this.firestations = firestations;
   }
 
   /**
@@ -45,29 +46,26 @@ public class FirestationService {
    *                                   operation.
    * @return A ResponseEntity indicating the result of the operation.
    */
-  public ResponseEntity<String> addFirestation(FirestationDeserialization firestationDeserialization,
+  public ResponseEntity<String> addFirestation(FirestationDeserialization fD,
       String methodeName) {
-    String station = firestationDeserialization.getStation();
-    String address = firestationDeserialization.getAddress();
 
-    Household household = houseHoldService.getHouseholdByAddress(address);
-    Firestation firestation = getFirestationByStation(station);
+    Household household = houseHoldService.getHouseholdByAddress(fD.getAddress());
+    Firestation firestation = getFirestationByStation(fD.getStation());
 
     if (household == null) {
-      household = houseHoldService.saveHousehold(address);
+      household = houseHoldService.saveHousehold(fD.getAddress());
     }
-
     if (firestation == null) {
       firestation = new Firestation();
+      firestation.setId(firestations.size() + 1);
       firestation.setIdHouseholds(Arrays.asList(household.getId()));
-      firestation.setStation(station);
-      saveFirestation(firestation);
+      firestation.setStation(fD.getStation());
+      firestations.add(firestation);
       return log.addedSuccessfully(methodeName);
     } else if (firestationGetIdHousehold(firestation, household)) {
       return log.ExistingMappingBetweenAddressAndFirestation(methodeName);
     } else {
       firestation.getIdHouseholds().add(household.getId());
-      firestationDao.save(firestation);
       return log.addedSuccessfully(methodeName);
     }
   }
@@ -88,28 +86,38 @@ public class FirestationService {
     Household household = houseHoldService.getHouseholdByAddress(address);
     if (household == null) {
       return log.argumentHasNoMatch(methodeName);
-    }
-    String station = firestationDeserialization.getStation();
-    List<Firestation> firestations = getFirestationsByHousehold(household);
-    for (Firestation firestation : firestations) {
-      if (!firestation.getStation().equals(station)) {
-        firestation.getIdHouseholds().remove(Integer.valueOf(household.getId()));
-        saveFirestation(firestation);
-      }
-    }
-    Firestation firestation = getFirestationByStation(station);
-    if (firestation == null) {
-      firestation = new Firestation();
-      firestation.setStation(station);
-      firestation.setIdHouseholds(Arrays.asList(household.getId()));
-      saveFirestation(firestation);
-      return log.updatedSuccessfully(methodeName);
     } else {
-      ArrayList<Integer> newIdHouseholds = new ArrayList<>();
-      newIdHouseholds.add(household.getId());
-      firestation.setIdHouseholds(newIdHouseholds);
-      saveFirestation(firestation);
-      return log.updatedSuccessfully(methodeName);
+      Integer idHousehold = household.getId();
+      List<Firestation> matchingFirestations = getFirestationsByHousehold(household);
+      String station = firestationDeserialization.getStation();
+      for (Firestation firestation : matchingFirestations) {
+        if (!firestation.getStation().equals(station)) {
+          if (firestation.getIdHouseholds().size() == 1) {
+            firestations.remove(firestation);
+          } else {
+          firestation.getIdHouseholds().remove(Integer.valueOf(idHousehold));
+          firestations.set(firestation.getId() - 1, firestation);
+          }
+        }
+      }
+      Firestation firestation = getFirestationByStation(station);
+      if (firestation == null) {
+        firestation = new Firestation();
+        firestation.setStation(station);
+        firestation.setIdHouseholds(Arrays.asList(idHousehold));
+        firestation.setId(firestations.size() + 1);
+        firestations.add(firestation);
+        return log.updatedSuccessfully(methodeName);
+      } else {
+        List<Integer> idHouseholds = new ArrayList<>();
+        for (Integer id : firestation.getIdHouseholds()) {
+          idHouseholds.add(id);
+        }
+        idHouseholds.add(idHousehold);
+        firestation.setIdHouseholds(idHouseholds);
+        firestations.set(firestation.getId() - 1, firestation);
+        return log.updatedSuccessfully(methodeName);
+      }
     }
   }
 
@@ -125,20 +133,17 @@ public class FirestationService {
 
     // Get all firestations by an address :
     Household household = houseHoldService.getHouseholdByAddress(address);
-    List<Firestation> firestations = getFirestationsByHousehold(household);
+    List<Firestation> firestationsMatching = getFirestationsByHousehold(household);
     // Check if any firestation match with this address :
-    if (firestations.isEmpty()) {
+    if (firestationsMatching.isEmpty()) {
       return log.argumentHasNoMatch(methodeName);
     } else {
       // For each firestation check if they have at least one address or delete it :
-      for (Firestation firestation : firestations) {
-        List<Integer> idHouseholds = firestation.getIdHouseholds();
-        if (idHouseholds.size() == 1) {
-          firestationDao.deleteByStation(firestation.getStation());
+      for (Firestation firestation : firestationsMatching) {
+        if (firestation.getIdHouseholds().size() == 1) {
+          firestations.remove(firestation);
         } else {
-          idHouseholds.remove(Integer.valueOf(household.getId()));
-          firestation.setIdHouseholds(idHouseholds);
-          saveFirestation(firestation);
+          firestation.getIdHouseholds().remove(Integer.valueOf(household.getId()));
         }
       }
       return log.deletedSuccessfully(methodeName);
@@ -158,33 +163,11 @@ public class FirestationService {
     // Check if the firestation exists :
     Firestation firestation = getFirestationByStation(station);
     if (firestation != null) {
-      firestationDao.deleteByStation(station);
+      firestations.remove(firestation);
       return log.deletedSuccessfully(methodeName);
     } else {
       return log.argumentHasNoMatch(methodeName);
     }
-  }
-
-  /**
-   * Some javadoc.
-   * 
-   * Get all firestation objects in the system.
-   *
-   * @return A list of all firestation objects.
-   */
-  public List<Firestation> getAllFirestations() {
-    return firestationDao.findAll();
-  }
-
-  /**
-   * Some javadoc.
-   * 
-   * Save a firestation inside the JPA repository.
-   *
-   * @return A firestation object.
-   */
-  public Firestation saveFirestation(Firestation firestation) {
-    return firestationDao.save(firestation);
   }
 
   /**
@@ -195,7 +178,8 @@ public class FirestationService {
    * @param station The firestation number to link at this objects.
    */
   public Firestation getFirestationByStation(String station) {
-    return firestationDao.findByStation(station);
+    return firestations.stream()
+        .filter(firestation -> firestation.getStation().equals(station)).findFirst().orElse(null);
   }
 
   /**
@@ -206,12 +190,9 @@ public class FirestationService {
    * @param id An list of firestation id.
    */
   public List<Firestation> getFirestationsByIdList(List<Integer> ids) {
-    List<Firestation> firestations = new ArrayList<>();
-    for (Integer id : ids) {
-      Optional<Firestation> firestationOptional = firestationDao.findById(id);
-      firestationOptional.ifPresent(firestations::add);
-    }
-    return firestations;
+    return firestations.stream()
+        .filter(firestation -> ids.contains(firestation.getId()))
+        .collect(Collectors.toList());
   }
 
   /**
@@ -225,16 +206,8 @@ public class FirestationService {
    *         household.
    */
   public List<Firestation> getFirestationsByHousehold(Household household) {
-    List<Firestation> allFirestations = getAllFirestations();
-    List<Firestation> firestations = new ArrayList<>();
-    for (Firestation firestation : allFirestations) {
-      for (Integer idhousehold : firestation.getIdHouseholds()) {
-        if (idhousehold == household.getId()) {
-          firestations.add(firestation);
-        }
-      }
-    }
-    return firestations;
+    return firestations.stream().filter(firestation -> firestation.getIdHouseholds().contains(household.getId()))
+        .collect(Collectors.toList());
   }
 
   /**
@@ -255,4 +228,9 @@ public class FirestationService {
     }
     return false;
   }
+
+  public List<Firestation> getAllFirestations() {
+    return firestations;
+  }
+
 }

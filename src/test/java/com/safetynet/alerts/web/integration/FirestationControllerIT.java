@@ -16,15 +16,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.web.controller.FirestationController;
-import com.safetynet.alerts.web.dao.FirestationDao;
-import com.safetynet.alerts.web.dao.HouseholdDao;
 import com.safetynet.alerts.web.deserialization.model.FirestationDeserialization;
 import com.safetynet.alerts.web.model.Firestation;
 import com.safetynet.alerts.web.model.Household;
 import com.safetynet.alerts.web.service.FirestationService;
 import com.safetynet.alerts.web.service.HouseHoldService;
-
-import jakarta.transaction.Transactional;
 
 @SpringBootTest
 public class FirestationControllerIT {
@@ -32,10 +28,10 @@ public class FirestationControllerIT {
   private MockMvc mvc;
 
   @Autowired
-  FirestationDao firestationDao;
+  FirestationService firestationService;
 
   @Autowired
-  HouseholdDao householdDao;
+  HouseHoldService houseHoldService;
 
   String address = "Rue du marché";
   String station = "88";
@@ -44,14 +40,13 @@ public class FirestationControllerIT {
   @BeforeEach
   public void setup() {
     this.mvc = MockMvcBuilders
-        .standaloneSetup(new FirestationController(
-            new FirestationService(firestationDao, new HouseHoldService(householdDao))))
+        .standaloneSetup(new FirestationController(firestationService))
         .setControllerAdvice()
         .build();
 
-    Firestation firestation = firestationDao.findByStation(station);
+    Firestation firestation = firestationService.getFirestationByStation(station);
     if (firestation != null) {
-      firestationDao.delete(firestation);
+      firestationService.deleteFirestationByStation(station, address);
     }
   }
 
@@ -79,8 +74,8 @@ public class FirestationControllerIT {
         .andExpect(status().isCreated());
 
     // Check if the firestation exists and match the id household
-    List<Firestation> allFirestations = firestationDao.findAll();
-    Household matchingHousehold = householdDao.findByAddress(address);
+    List<Firestation> allFirestations = firestationService.getAllFirestations();
+    Household matchingHousehold = houseHoldService.getHouseholdByAddress(address);
     boolean firestationAdded = false;
     for (Firestation firestation : allFirestations) {
       if (station.equals(firestation.getStation())
@@ -95,7 +90,6 @@ public class FirestationControllerIT {
   }
 
   @Test
-  @Transactional
   public void deleteFirestationByStationTest() throws Exception {
     // Add Firestation
     addFirestationTest();
@@ -105,7 +99,7 @@ public class FirestationControllerIT {
         .andExpect(status().isOk());
 
     // Checks if the firestation has deleted
-    List<Firestation> allFirestations = firestationDao.findAll();
+    List<Firestation> allFirestations = firestationService.getAllFirestations();
     boolean firestationDeleted = true;
     for (Firestation firestation : allFirestations) {
       if (station.equals(firestation.getStation())) {
@@ -119,7 +113,6 @@ public class FirestationControllerIT {
   }
 
   @Test
-  @Transactional
   public void deleteFirestationByAddressTest() throws Exception {
     // Add Firestation
     addFirestationTest();
@@ -129,8 +122,8 @@ public class FirestationControllerIT {
         .andExpect(status().isOk());
 
     // Checks if the firestation has been deleted
-    List<Firestation> allFirestations = firestationDao.findAll();
-    Household matchingHousehold = householdDao.findByAddress(address);
+    List<Firestation> allFirestations = firestationService.getAllFirestations();
+    Household matchingHousehold = houseHoldService.getHouseholdByAddress(address);
     boolean firestationDeleted = true;
     for (Firestation firestation : allFirestations) {
       if (station.equals(firestation.getStation())
@@ -165,8 +158,8 @@ public class FirestationControllerIT {
         .andExpect(status().isOk());
 
     // Checks if the firestation has updated
-    List<Firestation> allFirestations = firestationDao.findAll();
-    Household matchingHousehold = householdDao.findByAddress(address);
+    List<Firestation> allFirestations = firestationService.getAllFirestations();
+    Household matchingHousehold = houseHoldService.getHouseholdByAddress(address);
     boolean firestationUpdated = false;
     for (Firestation firestation : allFirestations) {
       if (updateStation.equals(firestation.getStation())
@@ -179,5 +172,4 @@ public class FirestationControllerIT {
     // Check the successfully added firestation
     assertTrue(firestationUpdated);
   }
-
 }

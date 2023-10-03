@@ -1,4 +1,4 @@
-package com.safetynet.alerts.web.serialization.dao;
+package com.safetynet.alerts.web.serialization.serializer;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,9 +16,9 @@ import com.safetynet.alerts.web.serialization.model.FirestationAlert;
  * This serializer converts a FirestationAlert object to JSON format with
  * specific fields.
  */
-public class FirestationAlertDao extends StdSerializer<FirestationAlert> {
+public class FirestationAlertSerializer extends StdSerializer<FirestationAlert> {
 
-  public FirestationAlertDao(Class<FirestationAlert> t) {
+  public FirestationAlertSerializer(Class<FirestationAlert> t) {
     super(t);
   }
 

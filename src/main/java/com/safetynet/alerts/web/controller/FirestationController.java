@@ -3,7 +3,6 @@ package com.safetynet.alerts.web.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,14 +29,12 @@ import com.safetynet.alerts.web.service.FirestationService;
 @RestController
 @RequestMapping("/firestation")
 public class FirestationController {
-
-  private final FirestationService firestationService;
-  private final DataManipulationUtils beanService;
+  private FirestationService firestationService;
+  private DataManipulationUtils beanService = new DataManipulationUtils();
   private EndpointsLogger log = new EndpointsLogger();
 
   public FirestationController(FirestationService firestationService) {
     this.firestationService = firestationService;
-    this.beanService = new DataManipulationUtils();
   }
 
   /**
@@ -97,7 +94,6 @@ public class FirestationController {
    *
    * @param address The address of the firestation to be deleted.
    */
-  @Transactional
   @DeleteMapping("/address/{address}")
   public ResponseEntity<String> deleteStationAtThisAddress(@PathVariable("address") String address) {
     // Log the request :
@@ -113,7 +109,6 @@ public class FirestationController {
    *
    * @param station The station number of the firestation to be deleted.
    */
-  @Transactional
   @DeleteMapping("/station/{station}")
   public ResponseEntity<String> deleteFirestationByStation(@PathVariable("station") String station) {
     // Log the request :

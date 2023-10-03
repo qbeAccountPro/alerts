@@ -3,6 +3,9 @@ package com.safetynet.alerts.web.httpResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 /**
  * Some javadoc.
  * 
@@ -69,8 +72,12 @@ public class ResponseBuilder {
    * @return A ResponseEntity with a "Request threw an exception" message and
    *         status code BAD_REQUEST.
    */
-  public ResponseEntity<String> threwAnException() {
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Request threw an exception.");
+  public ResponseEntity<ObjectNode> threwAnException() {
+    ObjectMapper mapper = new ObjectMapper();
+    ObjectNode responseJson = mapper.createObjectNode();
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseJson);
+
   }
 
   /**
@@ -94,8 +101,8 @@ public class ResponseBuilder {
    *         and
    *         status code OK.
    */
-  public ResponseEntity<String> emptyAnswer() {
-    return ResponseEntity.status(HttpStatus.OK).body("Request generated an empty answer.");
+  public ResponseEntity<ObjectNode> emptyAnswer() {
+    return ResponseEntity.ok(null);
   }
 
   /**
@@ -107,8 +114,8 @@ public class ResponseBuilder {
    *         and
    *         status code OK.
    */
-  public ResponseEntity<String> successfullyGenerated() {
-    return ResponseEntity.status(HttpStatus.OK).body("Successfully generated.");
+  public ResponseEntity<ObjectNode> successfullyGenerated(ObjectNode mainObject) {
+    return ResponseEntity.ok(mainObject);
   }
 
   /**

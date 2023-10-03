@@ -4,8 +4,8 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.safetynet.alerts.web.communUtilts.DataManipulationUtils;
-import com.safetynet.alerts.web.logging.EndpointsLogger;
 import com.safetynet.alerts.web.model.Firestation;
 import com.safetynet.alerts.web.model.Household;
 import com.safetynet.alerts.web.model.MedicalRecord;
@@ -38,15 +38,17 @@ public class URLSService {
   private final MedicalRecordService medicalRecordService;
   private final Serialization serialization;
   private final HouseHoldService houseHoldService;
-  private EndpointsLogger log = new EndpointsLogger();
+  private final PersonCoveredService personCoveredService;
 
   public URLSService(FirestationService firestationService, PersonService personService,
-      MedicalRecordService medicalRecordService, Serialization serialization, HouseHoldService houseHoldService) {
+      MedicalRecordService medicalRecordService, Serialization serialization, HouseHoldService houseHoldService,
+      PersonCoveredService personCoveredService) {
     this.firestationService = firestationService;
     this.personService = personService;
     this.medicalRecordService = medicalRecordService;
     this.serialization = serialization;
     this.houseHoldService = houseHoldService;
+    this.personCoveredService = personCoveredService;
   }
 
   /**
@@ -56,7 +58,7 @@ public class URLSService {
    *
    * @param station The fire station number for which to retrieve the data.
    */
-  public ResponseEntity<String> personCoveredByFireStation(String station) {
+  public ResponseEntity<ObjectNode> personCoveredByFireStation(String station) {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
     Firestation firestation = firestationService.getFirestationByStation(station);
     if (firestation == null) {
@@ -65,7 +67,6 @@ public class URLSService {
     List<Household> households = houseHoldService.getHouseholdsByFirestation(firestation);
     List<Person> persons = personService.getPersonsByHouseholds(households);
     List<MedicalRecord> medicalRecords = medicalRecordService.getMedicalRecordsByPersons(persons);
-    PersonCoveredService personCoveredService = new PersonCoveredService();
     List<FirestationAlert> personsCovered = personCoveredService.getPersonCoveredList(persons, households);
 
     int adults = medicalRecordService.getAdultsNumber(medicalRecords);
@@ -85,7 +86,7 @@ public class URLSService {
    *
    * @param address The address for which to retrieve the children and adults.
    */
-  public ResponseEntity<String> childrenLivingAtThisAddress(String address) {
+  public ResponseEntity<ObjectNode> childrenLivingAtThisAddress(String address) {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
     // Household at this address :
     Household household = houseHoldService.getHouseholdByAddress(address);
@@ -106,8 +107,7 @@ public class URLSService {
     if (children.isEmpty() && adults.isEmpty()) {
       return serialization.emptyAnswer(methodeName, address);
     } else {
-      serialization.childAlertSerialization(children, adults, methodeName, address);
-      return log.successfullyGenerated(methodeName);
+      return serialization.childAlertSerialization(children, adults, methodeName, address);
     }
   }
 
@@ -120,7 +120,7 @@ public class URLSService {
    * @param station The fire station number for which to retrieve the phone
    * numbers.
    */
-  public ResponseEntity<String> personsPhoneNumbersCoveredByStation(String station) {
+  public ResponseEntity<ObjectNode> personsPhoneNumbersCoveredByStation(String station) {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
     Firestation firestation = firestationService.getFirestationByStation(station);
     if (firestation == null) {
@@ -146,7 +146,7 @@ public class URLSService {
    * persons.
    * 
    */
-  public ResponseEntity<String> stationAndPersonsByAddress(String address) {
+  public ResponseEntity<ObjectNode> stationAndPersonsByAddress(String address) {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
     Household household = houseHoldService.getHouseholdByAddress(address);
     if (household == null) {
@@ -181,7 +181,7 @@ public class URLSService {
    * @param station The fire station number for which to retrieve persons and
    * their medical records.
    */
-  public ResponseEntity<String> personsByHouseholdsFromStation(String station) {
+  public ResponseEntity<ObjectNode> personsByHouseholdsFromStation(String station) {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
     FloodService floodService = new FloodService();
     Firestation firestation = firestationService.getFirestationByStation(station);
@@ -208,7 +208,7 @@ public class URLSService {
    * 
    * @param city The city for which to retrieve the email addresses of residents.
    */
-  public ResponseEntity<String> personInfoByFirstAndLastName(String firstName, String lastName) {
+  public ResponseEntity<ObjectNode> personInfoByFirstAndLastName(String firstName, String lastName) {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
 
     PersonInfoService personInfoService = new PersonInfoService();
@@ -237,7 +237,7 @@ public class URLSService {
    * @param city The city for which to retrieve the email addresses of residents.
    * 
    */
-  public ResponseEntity<String> allResidentsEmailsFromCity(String city) {
+  public ResponseEntity<ObjectNode> allResidentsEmailsFromCity(String city) {
     String methodeName = DataManipulationUtils.getCurrentMethodName();
 
     List<Person> persons = personService.getPersonsByCity(city);

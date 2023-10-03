@@ -1,23 +1,21 @@
 package com.safetynet.alerts.web.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.safetynet.alerts.web.dao.HouseholdDao;
 import com.safetynet.alerts.web.model.Firestation;
 import com.safetynet.alerts.web.model.Household;
 import com.safetynet.alerts.web.model.Person;
 
 @Service
 public class HouseHoldService {
+  List<Household> households;
 
-  private final HouseholdDao householdDao;
-
-  public HouseHoldService(HouseholdDao householdDao) {
-    this.householdDao = householdDao;
+  public void setHouseholds(List<Household> households) {
+    this.households = households;
   }
 
   /**
@@ -28,7 +26,7 @@ public class HouseHoldService {
    * @return A list of all households.
    */
   public List<Household> getAllHouseholds() {
-    return householdDao.findAll();
+    return households;
   }
 
   /**
@@ -42,7 +40,9 @@ public class HouseHoldService {
   public Household saveHousehold(String address) {
     Household household = new Household();
     household.setAddress(address);
-    return householdDao.save(household);
+    household.setId(households.size()+1);
+    households.add(household);
+    return household;
   }
 
   /**
@@ -54,8 +54,15 @@ public class HouseHoldService {
    * @return The ID of the household, or 0 if not found.
    */
   public int getId(String address) {
-    Household household = householdDao.findByAddress(address);
-    return household.getId();
+    Optional<Household> householdAtAddress = households.stream()
+        .filter(household -> household.getAddress().equals(address))
+        .findFirst();
+    if (householdAtAddress.isPresent()) {
+      Household household = householdAtAddress.get();
+      return household.getId();
+    } else {
+      return 0;
+    }
   }
 
   /**
@@ -68,7 +75,14 @@ public class HouseHoldService {
    *         found.
    */
   public Household getHouseholdByAddress(String address) {
-    return householdDao.findByAddress(address);
+    Optional<Household> householdAtAddress = households.stream()
+        .filter(household -> household.getAddress().equals(address))
+        .findFirst();
+    if (householdAtAddress.isPresent()) {
+      return householdAtAddress.get();
+    } else {
+      return null;
+    }
   }
 
   /**
@@ -80,12 +94,9 @@ public class HouseHoldService {
    * @return A list of households associated with the provided addresses.
    */
   public List<Household> getHouseholdsByAddresses(List<String> addresses) {
-    List<Household> households = new ArrayList<>();
-    for (String address : addresses) {
-      Household household = householdDao.findByAddress(address);
-      households.add(household);
-    }
-    return households;
+    return households.stream()
+        .filter(household -> addresses.contains(household.getAddress()))
+        .collect(Collectors.toList());
   }
 
   /**
@@ -98,12 +109,11 @@ public class HouseHoldService {
    * @return A list of households associated with the provided firestation.
    */
   public List<Household> getHouseholdsByFirestation(Firestation firestation) {
-    List<Household> households = new ArrayList<>();
-    for (Integer idHousehold : firestation.getIdHouseholds()) {
-      Optional<Household> householdOptional = householdDao.findById(idHousehold);
-      householdOptional.ifPresent(households::add);
-    }
-    return households;
+    List<Integer> idHouseholds = firestation.getIdHouseholds();
+
+    return households.stream()
+        .filter(household -> idHouseholds.contains(household.getId()))
+        .collect(Collectors.toList());
   }
 
   /**
@@ -116,12 +126,13 @@ public class HouseHoldService {
    * @return A list of households associated with the provided persons.
    */
   public List<Household> getHouseholdsByPersons(List<Person> persons) {
-    List<Household> households = new ArrayList<>();
-    for (Person person : persons) {
-      Optional<Household> householdOptional = householdDao.findById(person.getIdHousehold());
-      householdOptional.ifPresent(households::add);
-    }
-    return households;
+    List<Integer> idHouseholds = persons.stream()
+        .map(Person::getIdHousehold)
+        .collect(Collectors.toList());
+
+    return households.stream()
+        .filter(household -> idHouseholds.contains(household.getId()))
+        .collect(Collectors.toList());
   }
 
   /**
@@ -133,7 +144,7 @@ public class HouseHoldService {
    * @return The household associated with the provided ID, or null if not found.
    */
   public Household getHouseholdById(int idHousehold) {
-    Optional<Household> householdOptional = householdDao.findById(idHousehold);
-    return householdOptional.orElse(null);
+    return households.stream().filter(household -> household.getId() == idHousehold)
+        .findFirst().orElse(null);
   }
 }

@@ -2,12 +2,13 @@ package com.safetynet.alerts.web.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.safetynet.alerts.web.communUtilts.DataManipulationUtils;
-import com.safetynet.alerts.web.dao.MedicalRecordDao;
 import com.safetynet.alerts.web.deserialization.model.MedicalRecordDeserialization;
 import com.safetynet.alerts.web.logging.EndpointsLogger;
 import com.safetynet.alerts.web.model.MedicalRecord;
@@ -22,15 +23,16 @@ import com.safetynet.alerts.web.model.Person;
  */
 @Service
 public class MedicalRecordService {
-  private DataManipulationUtils beanService = new DataManipulationUtils();
-  private final MedicalRecordDao medicalRecordDao;
-  private final PersonService personService;
-  private EndpointsLogger log = new EndpointsLogger();
+  List<MedicalRecord> medicalRecords;
 
-  public MedicalRecordService(
-      MedicalRecordDao medicalrecordDao, PersonService personService) {
-    this.medicalRecordDao = medicalrecordDao;
-    this.personService = personService;
+  @Autowired
+  PersonService personService;
+
+  private EndpointsLogger log = new EndpointsLogger();
+  private DataManipulationUtils beanService = new DataManipulationUtils();
+
+  public void setMedicalRecords(List<MedicalRecord> medicalRecords) {
+    this.medicalRecords = medicalRecords;
   }
 
   /**
@@ -41,7 +43,7 @@ public class MedicalRecordService {
    * @param medicalRecord The MedicalRecord object to save.
    */
   public void saveMedicalRecord(MedicalRecord medicalRecord) {
-    medicalRecordDao.save(medicalRecord);
+    medicalRecords.add(medicalRecord);
   }
 
   /**
@@ -153,11 +155,12 @@ public class MedicalRecordService {
    */
   public void saveMedicalRecord(MedicalRecordDeserialization medicalrecordDeserialization, int personId) {
     MedicalRecord medicalRecord = new MedicalRecord();
+    medicalRecord.setId(medicalRecords.size() + 1);
     medicalRecord.setIdPerson(personId);
     medicalRecord.setBirthdate(medicalrecordDeserialization.getBirthdate());
     medicalRecord.setAllergies(medicalrecordDeserialization.getAllergies());
     medicalRecord.setMedications(medicalrecordDeserialization.getMedications());
-    medicalRecordDao.save(medicalRecord);
+    medicalRecords.add(medicalRecord);
   }
 
   /**
@@ -181,12 +184,13 @@ public class MedicalRecordService {
     if (person == null) {
       return log.argumentHasNoMatch(methodeName);
     } else {
-      MedicalRecord medicalRecord = medicalRecordDao.findByIdPerson(person.getId());
-      if (medicalRecord == null) {
+      Optional<MedicalRecord> matchingMedicalRecord = medicalRecords.stream()
+          .filter(medicalRecord -> medicalRecord.getIdPerson() == person.getId()).findFirst();
+      if (matchingMedicalRecord.isPresent()) {
+        return log.ExistingMedicalRecord(methodeName);
+      } else {
         saveMedicalRecord(medicalrecordDeserialize, person.getId());
         return log.addedSuccessfully(methodeName);
-      } else {
-        return log.ExistingMedicalRecord(methodeName);
       }
     }
   }
@@ -211,15 +215,15 @@ public class MedicalRecordService {
     if (person == null) {
       return log.argumentHasNoMatch(methodeName);
     } else {
-      MedicalRecord medicalRecord = medicalRecordDao.findByIdPerson(person.getId());
-      if (medicalRecord == null) {
-        return log.argumentHasNoMatch(methodeName);
-      } else {
-        medicalRecord.setBirthdate(medicalrecordDeserialize.getBirthdate());
-        medicalRecord.setAllergies(medicalrecordDeserialize.getAllergies());
-        medicalRecord.setMedications(medicalrecordDeserialize.getMedications());
-        medicalRecordDao.save(medicalRecord);
+      MedicalRecord medicalRecordMatching = getMedicalRecordByPerson(person);
+      if (medicalRecordMatching != null) {
+        medicalRecordMatching.setBirthdate(medicalrecordDeserialize.getBirthdate());
+        medicalRecordMatching.setAllergies(medicalrecordDeserialize.getAllergies());
+        medicalRecordMatching.setMedications(medicalrecordDeserialize.getMedications());
+        medicalRecords.add(medicalRecordMatching.getId(), medicalRecordMatching);
         return log.updatedSuccessfully(methodeName);
+      } else {
+        return log.argumentHasNoMatch(methodeName);
       }
     }
   }
@@ -242,12 +246,12 @@ public class MedicalRecordService {
       return log.argumentHasNoMatch(methodeName);
     }
     // Get the corresponding medicalRecord from the person
-    MedicalRecord medicalRecord = medicalRecordDao.findByIdPerson(person.getId());
-    if (medicalRecord == null) {
-      return log.argumentHasNoMatch(methodeName);
-    } else {
-      medicalRecordDao.deleteById(medicalRecord.getId());
+    MedicalRecord medicalRecordMatching = getMedicalRecordByPerson(person);
+    if (medicalRecordMatching != null) {
+      medicalRecords.remove(getMedicalRecordByPerson(person).getId() - 1);
       return log.deletedSuccessfully(methodeName);
+    } else {
+      return log.argumentHasNoMatch(methodeName);
     }
   }
 
@@ -263,7 +267,10 @@ public class MedicalRecordService {
   public List<MedicalRecord> getMedicalRecordsByPersons(List<Person> persons) {
     List<MedicalRecord> medicalRecords = new ArrayList<>();
     for (Person person : persons) {
-      medicalRecords.add(medicalRecordDao.findByIdPerson(person.getId()));
+      MedicalRecord medicalRecordMatching = getMedicalRecordByPerson(person);
+      if (medicalRecordMatching != null) {
+        medicalRecords.add(getMedicalRecordByPerson(person));
+      }
     }
     return medicalRecords;
   }
@@ -278,15 +285,11 @@ public class MedicalRecordService {
    *         not found.
    */
   public MedicalRecord getMedicalRecordByPerson(Person person) {
-    return medicalRecordDao.findByIdPerson(person.getId());
+    return medicalRecords.stream()
+        .filter(medicalRecord -> medicalRecord.getIdPerson() == person.getId()).findFirst().orElse(null);
   }
 
-  /**
-   * Retrieves a list of all medical records in the system.
-   *
-   * @return A list of all medical records.
-   */
   public List<MedicalRecord> getAllMedicalRecords() {
-    return medicalRecordDao.findAll();
+    return medicalRecords;
   }
 }

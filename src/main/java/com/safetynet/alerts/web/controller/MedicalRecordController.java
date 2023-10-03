@@ -2,8 +2,8 @@ package com.safetynet.alerts.web.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,14 +31,13 @@ import com.safetynet.alerts.web.service.MedicalRecordService;
 @RequestMapping("/medicalRecord")
 public class MedicalRecordController {
 
-  private final MedicalRecordService medicalRecordService;
-  private final DataManipulationUtils beanService;
+  private MedicalRecordService medicalRecordService;
 
+  private DataManipulationUtils beanService = new DataManipulationUtils();
   private EndpointsLogger log = new EndpointsLogger();
 
   public MedicalRecordController(MedicalRecordService medicalRecordService) {
     this.medicalRecordService = medicalRecordService;
-    this.beanService = new DataManipulationUtils();
   }
 
   /**
@@ -101,7 +100,6 @@ public class MedicalRecordController {
    * @param firstName of the person.
    * @param lastName  of the person.
    */
-  @Transactional
   @DeleteMapping("/{firstName}/{lastName}")
   public ResponseEntity<String> deleteMedicalRecord(@PathVariable("firstName") String firstName,
       @PathVariable("lastName") String lastName) {

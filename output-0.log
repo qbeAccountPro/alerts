@@ -1,0 +1,1770 @@
+2023-10-03 12:46:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 12:46:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 12:46:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 12:46:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 12:46:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 12:46:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 12:46:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 12:46:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:18:55 [http-nio-8080-exec-1] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 13:19:00 [http-nio-8080-exec-3] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:19:00 [http-nio-8080-exec-3] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:19:02 [http-nio-8080-exec-4] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 13:19:10 [http-nio-8080-exec-5] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteFirestationByStation.
+2023-10-03 13:19:10 [http-nio-8080-exec-5] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 13:19:16 [http-nio-8080-exec-6] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 13:19:16 [http-nio-8080-exec-6] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 13:19:21 [http-nio-8080-exec-7] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 13:19:21 [http-nio-8080-exec-7] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 13:19:26 [http-nio-8080-exec-8] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 13:19:26 [http-nio-8080-exec-8] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 13:19:34 [http-nio-8080-exec-9] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 13:19:34 [http-nio-8080-exec-9] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 13:19:40 [http-nio-8080-exec-10] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 13:19:40 [http-nio-8080-exec-10] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 13:19:47 [http-nio-8080-exec-2] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 13:19:47 [http-nio-8080-exec-2] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer childrenLivingAtThisAddress : successfully generated.
+2023-10-03 13:19:56 [http-nio-8080-exec-1] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 13:19:56 [http-nio-8080-exec-1] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer childrenLivingAtThisAddress : successfully generated.
+2023-10-03 13:19:59 [http-nio-8080-exec-3] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 13:19:59 [http-nio-8080-exec-3] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsPhoneNumbersCoveredByStation : successfully generated.
+2023-10-03 13:20:03 [http-nio-8080-exec-4] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 13:20:03 [http-nio-8080-exec-4] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsPhoneNumbersCoveredByStation : successfully generated.
+2023-10-03 13:20:07 [http-nio-8080-exec-5] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 13:20:07 [http-nio-8080-exec-5] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 13:20:15 [http-nio-8080-exec-6] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 13:20:15 [http-nio-8080-exec-6] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer stationAndPersonsByAddress : successfully generated.
+2023-10-03 13:20:21 [http-nio-8080-exec-7] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 13:20:21 [http-nio-8080-exec-7] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer stationAndPersonsByAddress : successfully generated.
+2023-10-03 13:20:25 [http-nio-8080-exec-8] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 13:20:25 [http-nio-8080-exec-8] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsByHouseholdsFromStation : successfully generated.
+2023-10-03 13:20:28 [http-nio-8080-exec-9] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 13:20:28 [http-nio-8080-exec-9] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsByHouseholdsFromStation : successfully generated.
+2023-10-03 13:20:39 [http-nio-8080-exec-10] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 13:20:39 [http-nio-8080-exec-10] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personInfoByFirstAndLastName : successfully generated.
+2023-10-03 13:20:42 [http-nio-8080-exec-2] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 13:20:42 [http-nio-8080-exec-2] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personInfoByFirstAndLastName : successfully generated.
+2023-10-03 13:20:45 [http-nio-8080-exec-1] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 13:20:45 [http-nio-8080-exec-1] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer allResidentsEmailsFromCity : successfully generated.
+2023-10-03 13:20:47 [http-nio-8080-exec-3] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 13:20:47 [http-nio-8080-exec-3] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer allResidentsEmailsFromCity : successfully generated.
+2023-10-03 13:20:50 [http-nio-8080-exec-4] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 13:20:50 [http-nio-8080-exec-4] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer allResidentsEmailsFromCity : successfully generated.
+2023-10-03 13:20:53 [http-nio-8080-exec-5] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 13:20:53 [http-nio-8080-exec-5] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer allResidentsEmailsFromCity : successfully generated.
+2023-10-03 13:22:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:22:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:22:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:22:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:22:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:22:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:22:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:22:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updateMedicalRecord : content is incorrect.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addMedicalRecord : content is incorrect.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 13:22:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 13:22:46 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 13:22:46 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updatePersonByFirstAndLastName : content is incorrect.
+2023-10-03 13:22:46 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 13:22:46 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteByFirstAndLastName.
+2023-10-03 13:22:46 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 13:22:46 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addPerson : content is incorrect.
+2023-10-03 13:22:46 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 13:26:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 13:26:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updatePersonByFirstAndLastName : content is incorrect.
+2023-10-03 13:26:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 13:26:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteByFirstAndLastName.
+2023-10-03 13:26:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 13:26:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addPerson : content is incorrect.
+2023-10-03 13:26:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 13:26:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 13:26:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updateMedicalRecord : content is incorrect.
+2023-10-03 13:26:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 13:26:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 13:26:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addMedicalRecord : content is incorrect.
+2023-10-03 13:26:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 13:26:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 13:26:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 13:26:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 13:26:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 13:26:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 13:26:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 13:26:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 13:26:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 13:26:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 13:27:16 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:27:16 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:27:16 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:27:16 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:27:16 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 13:27:16 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer testMethodeITPersonAdd : content added successfully.
+2023-10-03 13:27:17 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 13:27:17 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 13:27:17 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 13:27:17 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 13:27:17 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deletePersonITTest : argument has no match.
+2023-10-03 13:27:17 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 13:27:17 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 13:27:17 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 13:27:17 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 13:27:34 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 13:27:34 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 13:27:35 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 13:27:35 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 13:27:35 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 13:27:35 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 13:27:35 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 13:27:35 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 13:27:35 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 13:27:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:27:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:27:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:27:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:27:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:27:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:27:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:27:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 13:28:14 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateStationByAddress : argument has no match.
+2023-10-03 13:28:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteMedicalRecord : argument has no match.
+2023-10-03 13:28:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateMedicalRecord : argument has no match.
+2023-10-03 13:28:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer Quentin : argument has no match.
+2023-10-03 13:29:02 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 13:33:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:33:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:33:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:33:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:33:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 13:39:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:39:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:39:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:39:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:39:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 13:44:17 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteFirestationByStation.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer Rue du marché : deleted successfully.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteStationAtThisAddress.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteStationAtThisAddress : deleted successfully.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : Rue du marché.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer Rue du marché : deleted successfully.
+2023-10-03 13:46:37 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 13:49:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:49:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:49:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : Rue du marché.
+2023-10-03 13:51:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:51:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:51:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : Rue du marché.
+2023-10-03 13:52:04 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:52:04 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:52:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : Rue du marché.
+2023-10-03 13:54:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:54:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:54:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : Rue du marché.
+2023-10-03 13:54:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteFirestationByStation.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer Rue du marché : deleted successfully.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteStationAtThisAddress.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteStationAtThisAddress : deleted successfully.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : Rue du marché.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 13:54:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 13:55:34 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer testMethodeITPersonAdd : content added successfully.
+2023-10-03 13:55:34 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 13:55:34 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 13:55:34 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 13:55:34 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 13:55:34 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer testMethodeITdeleteMedicalRecord : deleted successfully.
+2023-10-03 13:55:34 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 14:02:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer testMethodeITPersonAdd : content added successfully.
+2023-10-03 14:02:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 14:02:23 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 14:02:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer testMethodeITPersonAdd : content added successfully.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer testMethodeITdeleteMedicalRecord : deleted successfully.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer testMethodeITdeleteMedicalRecord : deleted successfully.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 14:03:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deletePersonITTest : argument has no match.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updatePersonByFirstAndLastName : content updated successfully.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deletePersonITTest : argument has no match.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteByFirstAndLastName.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteByFirstAndLastName : argument has no match.
+2023-10-03 14:05:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 14:05:32 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 14:05:32 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 14:05:32 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 14:05:32 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updatePersonByFirstAndLastName : content updated successfully.
+2023-10-03 14:06:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 14:06:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 14:06:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 14:06:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updatePersonByFirstAndLastName : content updated successfully.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deletePersonITTest : argument has no match.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updatePersonByFirstAndLastName : content updated successfully.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deletePersonITTest : argument has no match.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteByFirstAndLastName.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteByFirstAndLastName : argument has no match.
+2023-10-03 14:08:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 14:10:30 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 14:10:30 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 14:10:30 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 14:10:30 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personInfoByFirstAndLastName : successfully generated.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer childrenLivingAtThisAddress : successfully generated.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsPhoneNumbersCoveredByStation : successfully generated.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer stationAndPersonsByAddress : successfully generated.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsByHouseholdsFromStation : successfully generated.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 14:10:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer allResidentsEmailsFromCity : successfully generated.
+2023-10-03 14:14:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 14:14:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 14:14:59 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 14:14:59 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 14:15:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 14:15:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 14:15:34 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 14:15:34 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 14:15:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 14:15:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 14:15:49 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 14:16:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 14:17:56 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 14:17:56 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 14:17:57 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 14:17:57 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 14:20:35 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 14:20:35 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personInfoByFirstAndLastName : successfully generated.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer childrenLivingAtThisAddress : successfully generated.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsPhoneNumbersCoveredByStation : successfully generated.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer stationAndPersonsByAddress : successfully generated.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsByHouseholdsFromStation : successfully generated.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 14:20:36 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer allResidentsEmailsFromCity : successfully generated.
+2023-10-03 14:21:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 14:21:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 14:21:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 14:21:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer childrenLivingAtThisAddress : successfully generated.
+2023-10-03 14:21:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 14:21:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 14:21:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 14:21:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer childrenLivingAtThisAddress : successfully generated.
+2023-10-03 14:23:01 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 14:23:01 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 14:23:02 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 14:23:02 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer childrenLivingAtThisAddress : successfully generated.
+2023-10-03 14:24:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 14:24:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 14:24:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personInfoByFirstAndLastName : successfully generated.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer childrenLivingAtThisAddress : successfully generated.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsPhoneNumbersCoveredByStation : successfully generated.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer stationAndPersonsByAddress : successfully generated.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsByHouseholdsFromStation : successfully generated.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 14:24:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer allResidentsEmailsFromCity : successfully generated.
+2023-10-03 14:25:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:25:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:25:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:25:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:25:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:25:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:25:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:25:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:31:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:32:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:34:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:34:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:34:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:34:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:34:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:34:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:34:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:34:47 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:35:04 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:35:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:37:05 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:37:15 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:37:15 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:37:15 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:37:15 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:37:15 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:37:15 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:37:15 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:37:15 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 14:50:31 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateStationByAddress : argument has no match.
+2023-10-03 14:52:14 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateStationByAddress : argument has no match.
+2023-10-03 17:14:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteStationNumbersAtThisAddress : deleted successfully.
+2023-10-03 17:14:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateStationByAddress : argument has no match.
+2023-10-03 17:14:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMappingBetweenAddressAndFirestation()
+ERROR: Answer addFirestation : existing mapping between the address and the fire station.
+2023-10-03 17:14:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 17:14:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMappingBetweenAddressAndFirestation()
+ERROR: Answer addFirestation : existing mapping between the address and the fire station.
+2023-10-03 17:14:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:16:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteStationNumbersAtThisAddress : deleted successfully.
+2023-10-03 17:16:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateStationByAddress : argument has no match.
+2023-10-03 17:16:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMappingBetweenAddressAndFirestation()
+ERROR: Answer addFirestation : existing mapping between the address and the fire station.
+2023-10-03 17:16:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 17:16:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMappingBetweenAddressAndFirestation()
+ERROR: Answer addFirestation : existing mapping between the address and the fire station.
+2023-10-03 17:16:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:16:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:16:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:17:59 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteMedicalRecord : argument has no match.
+2023-10-03 17:17:59 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateMedicalRecord : argument has no match.
+2023-10-03 17:17:59 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer Quentin : argument has no match.
+2023-10-03 17:18:39 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteMedicalRecord : argument has no match.
+2023-10-03 17:18:39 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMedicalRecord()
+ERROR: Answer Quentin : existing medicalRecord with this first and last.
+2023-10-03 17:18:39 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateMedicalRecord : argument has no match.
+2023-10-03 17:18:39 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:18:39 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:18:39 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMedicalRecord()
+ERROR: Answer Quentin : existing medicalRecord with this first and last.
+2023-10-03 17:18:39 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:18:39 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer Quentin : argument has no match.
+2023-10-03 17:18:39 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:22:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer methodeTestit : argument has no match.
+2023-10-03 17:22:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMedicalRecord()
+ERROR: Answer Quentin : existing medicalRecord with this first and last.
+2023-10-03 17:22:18 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer methodeTestit : argument has no match.
+2023-10-03 17:22:18 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMedicalRecord()
+ERROR: Answer Quentin : existing medicalRecord with this first and last.
+2023-10-03 17:22:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer methodeTestit : argument has no match.
+2023-10-03 17:23:54 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodeTestit : deleted successfully.
+2023-10-03 17:23:54 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer Quentin : content added successfully.
+2023-10-03 17:24:03 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteMedicalRecord : argument has no match.
+2023-10-03 17:24:03 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodeTestit : deleted successfully.
+2023-10-03 17:24:03 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer Quentin : content added successfully.
+2023-10-03 17:24:03 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateMedicalRecord : argument has no match.
+2023-10-03 17:24:03 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:24:03 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:24:03 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMedicalRecord()
+ERROR: Answer Quentin : existing medicalRecord with this first and last.
+2023-10-03 17:24:03 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:24:03 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer Quentin : argument has no match.
+2023-10-03 17:24:03 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:24:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:25:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteMedicalRecord : argument has no match.
+2023-10-03 17:25:46 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:25:56 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateMedicalRecord : argument has no match.
+2023-10-03 17:27:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:27:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:27:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateByFirstAndLastName : content updated successfully.
+2023-10-03 17:27:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:28:04 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:28:04 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateByFirstAndLastName : content updated successfully.
+2023-10-03 17:28:04 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:29:57 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:29:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:30:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:30:10 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:30:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:30:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:30:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:30:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:30:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateByFirstAndLastName : content updated successfully.
+2023-10-03 17:30:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:30:20 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:30:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:30:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:31:01 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:31:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteByFirstAndLastName : argument has no match.
+2023-10-03 17:31:48 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:33:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:33:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:33:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:33:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateByFirstAndLastName : content updated successfully.
+2023-10-03 17:33:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:33:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateByFirstAndLastName : content updated successfully.
+2023-10-03 17:33:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteByFirstAndLastName : argument has no match.
+2023-10-03 17:33:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:33:33 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:34:03 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateByFirstAndLastName : argument has no match.
+2023-10-03 17:34:13 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateByFirstAndLastName : argument has no match.
+2023-10-03 17:34:21 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:34:21 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:34:21 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:34:21 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateByFirstAndLastName : argument has no match.
+2023-10-03 17:34:21 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:34:21 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateByFirstAndLastName : content updated successfully.
+2023-10-03 17:34:21 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteByFirstAndLastName : argument has no match.
+2023-10-03 17:34:21 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:34:21 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteFirestationByStation.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer Rue du marché : deleted successfully.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteStationAtThisAddress.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteStationAtThisAddress : deleted successfully.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : Rue du marché.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 17:40:42 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer testMethodeITPersonAdd : content added successfully.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer testMethodeITdeleteMedicalRecord : deleted successfully.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer testMethodeITdeleteMedicalRecord : deleted successfully.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:40:43 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updateMedicalRecord : content is incorrect.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addMedicalRecord : content is incorrect.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteStationAtThisAddress.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : 123 Main St.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updateStationByAddress : content is incorrect.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteFirestationByStation.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addFirestation : content is incorrect.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : 123 Main St.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updatePersonByFirstAndLastName : content is incorrect.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteByFirstAndLastName.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addPerson : content is incorrect.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteStationNumbersAtThisAddress : deleted successfully.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateStationByAddress : argument has no match.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMappingBetweenAddressAndFirestation()
+ERROR: Answer addFirestation : existing mapping between the address and the fire station.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMappingBetweenAddressAndFirestation()
+ERROR: Answer addFirestation : existing mapping between the address and the fire station.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteMedicalRecord : argument has no match.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodeTestit : deleted successfully.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer Quentin : content added successfully.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateMedicalRecord : argument has no match.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateMedicalRecord : argument has no match.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMedicalRecord()
+ERROR: Answer Quentin : existing medicalRecord with this first and last.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer Quentin : argument has no match.
+2023-10-03 17:40:44 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteMedicalRecord : argument has no match.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateByFirstAndLastName : argument has no match.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateByFirstAndLastName : content updated successfully.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteByFirstAndLastName : argument has no match.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:40:45 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:44:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteStationAtThisAddress.
+2023-10-03 17:44:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : 123 Main St.
+2023-10-03 17:44:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updateStationByAddress : content is incorrect.
+2023-10-03 17:44:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteFirestationByStation.
+2023-10-03 17:44:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:44:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addFirestation : content is incorrect.
+2023-10-03 17:44:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : 123 Main St.
+2023-10-03 17:44:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:44:58 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 17:45:19 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : 123 Main St.
+2023-10-03 17:45:19 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updateStationByAddress : content is incorrect.
+2023-10-03 17:45:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 17:45:40 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personInfoByFirstAndLastName : successfully generated.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer childrenLivingAtThisAddress : successfully generated.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsPhoneNumbersCoveredByStation : successfully generated.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer stationAndPersonsByAddress : successfully generated.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsByHouseholdsFromStation : successfully generated.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 17:45:41 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer allResidentsEmailsFromCity : successfully generated.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deletePersonITTest : argument has no match.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updatePersonByFirstAndLastName : content updated successfully.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deletePersonITTest : argument has no match.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteByFirstAndLastName.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteByFirstAndLastName : argument has no match.
+2023-10-03 17:45:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteFirestationByStation.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer Rue du marché : deleted successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteStationAtThisAddress.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteStationAtThisAddress : deleted successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : Rue du marché.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer testMethodeITPersonAdd : content added successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer testMethodeITdeleteMedicalRecord : deleted successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer testMethodeITdeleteMedicalRecord : deleted successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:46:06 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updateMedicalRecord : content is incorrect.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addMedicalRecord : content is incorrect.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:46:07 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteStationAtThisAddress.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : 123 Main St.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updateStationByAddress : content is incorrect.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteFirestationByStation.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addFirestation : content is incorrect.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : 123 Main St.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updatePersonByFirstAndLastName : content is incorrect.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteByFirstAndLastName.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addPerson : content is incorrect.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteStationNumbersAtThisAddress : deleted successfully.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateStationByAddress : argument has no match.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMappingBetweenAddressAndFirestation()
+ERROR: Answer addFirestation : existing mapping between the address and the fire station.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMappingBetweenAddressAndFirestation()
+ERROR: Answer addFirestation : existing mapping between the address and the fire station.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteMedicalRecord : argument has no match.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodeTestit : deleted successfully.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer Quentin : content added successfully.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateMedicalRecord : argument has no match.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateMedicalRecord : argument has no match.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMedicalRecord()
+ERROR: Answer Quentin : existing medicalRecord with this first and last.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer Quentin : argument has no match.
+2023-10-03 17:46:08 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteMedicalRecord : argument has no match.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateByFirstAndLastName : argument has no match.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateByFirstAndLastName : content updated successfully.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteByFirstAndLastName : argument has no match.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:46:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deletePersonITTest : argument has no match.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updatePersonByFirstAndLastName : content updated successfully.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deletePersonITTest : argument has no match.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteByFirstAndLastName.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteByFirstAndLastName : argument has no match.
+2023-10-03 17:46:50 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteFirestationByStation.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer Rue du marché : deleted successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteStationAtThisAddress.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteStationAtThisAddress : deleted successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : Rue du marché.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer testMethodeITPersonAdd : content added successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer testMethodeITdeleteMedicalRecord : deleted successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer testMethodeITdeleteMedicalRecord : deleted successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:47:00 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:47:01 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:47:01 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:47:51 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPersonITtest : content added successfully.
+2023-10-03 17:47:51 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestationITtest : content added successfully.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personInfoByFirstAndLastName : successfully generated.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer childrenLivingAtThisAddress : successfully generated.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsPhoneNumbersCoveredByStation : successfully generated.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer stationAndPersonsByAddress : successfully generated.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 17:47:52 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsByHouseholdsFromStation : successfully generated.
+2023-10-03 17:47:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 17:47:53 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer allResidentsEmailsFromCity : successfully generated.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deletePersonITTest : argument has no match.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updatePersonByFirstAndLastName : content updated successfully.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deletePersonITTest : argument has no match.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteByFirstAndLastName.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteByFirstAndLastName : argument has no match.
+2023-10-03 17:48:09 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteFirestationByStation.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer Rue du marché : deleted successfully.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteStationAtThisAddress.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteStationAtThisAddress : deleted successfully.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : Rue du marché.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:48:24 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer testMethodeITPersonAdd : content added successfully.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer testMethodeITdeleteMedicalRecord : deleted successfully.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer testMethodeITdeleteMedicalRecord : deleted successfully.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addMedicalRecord : content added successfully.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deletePersonITTest : deleted successfully.
+2023-10-03 17:48:25 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updateMedicalRecord : content is incorrect.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllMedicalRecords.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:48:26 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addMedicalRecord : content is incorrect.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateMedicalRecord with this arguments : Quentin & Beraud.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addMedicalRecord.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteStationAtThisAddress.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : 123 Main St.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updateStationByAddress : content is incorrect.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteFirestationByStation.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addFirestation : content is incorrect.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updateStationByAddress with this argument : 123 Main St.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addFirestation.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllFirestations.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer updatePersonByFirstAndLastName : content is incorrect.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request deleteByFirstAndLastName.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request addPerson.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.incorrectContent()
+INFO: Answer addPerson : content is incorrect.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request updatePersonByFirstAndLastName with this arguments : Quentin & Beraud.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteStationNumbersAtThisAddress : deleted successfully.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateStationByAddress : argument has no match.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMappingBetweenAddressAndFirestation()
+ERROR: Answer addFirestation : existing mapping between the address and the fire station.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteFirestationByStation : deleted successfully.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMappingBetweenAddressAndFirestation()
+ERROR: Answer addFirestation : existing mapping between the address and the fire station.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateStationByAddress : content updated successfully.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addFirestation : content added successfully.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteMedicalRecord : argument has no match.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodeTestit : deleted successfully.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer Quentin : content added successfully.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateMedicalRecord : argument has no match.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateMedicalRecord : content updated successfully.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateMedicalRecord : argument has no match.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingMedicalRecord()
+ERROR: Answer Quentin : existing medicalRecord with this first and last.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteMedicalRecord : deleted successfully.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer Quentin : argument has no match.
+2023-10-03 17:48:27 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteMedicalRecord : argument has no match.
+2023-10-03 17:48:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:48:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:48:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.ExistingPerson()
+ERROR: Answer addPerson : existing person with this first and last name.
+2023-10-03 17:48:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer updateByFirstAndLastName : argument has no match.
+2023-10-03 17:48:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer deleteByFirstAndLastName : deleted successfully.
+2023-10-03 17:48:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.updatedSuccessfully()
+INFO: Answer updateByFirstAndLastName : content updated successfully.
+2023-10-03 17:48:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.argumentHasNoMatch()
+INFO: Answer deleteByFirstAndLastName : argument has no match.
+2023-10-03 17:48:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.deletedSuccessfully()
+INFO: Answer methodITtest : deleted successfully.
+2023-10-03 17:48:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.addedSuccessfully()
+INFO: Answer addPerson : content added successfully.
+2023-10-03 17:48:28 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:48:29 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:48:29 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:48:29 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:48:29 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:48:29 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:48:29 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.
+2023-10-03 17:48:29 [main] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer someMethod : successfully generated.

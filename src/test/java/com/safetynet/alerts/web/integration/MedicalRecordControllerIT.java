@@ -17,10 +17,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alerts.web.controller.MedicalRecordController;
-import com.safetynet.alerts.web.dao.HouseholdDao;
-import com.safetynet.alerts.web.dao.MedicalRecordDao;
-import com.safetynet.alerts.web.dao.PersonDao;
 import com.safetynet.alerts.web.deserialization.model.MedicalRecordDeserialization;
+import com.safetynet.alerts.web.deserialization.model.PersonDeserialization;
 import com.safetynet.alerts.web.model.MedicalRecord;
 import com.safetynet.alerts.web.model.Person;
 import com.safetynet.alerts.web.service.HouseHoldService;
@@ -33,13 +31,13 @@ public class MedicalRecordControllerIT {
   private MockMvc mvc;
 
   @Autowired
-  PersonDao personDao;
+  PersonService personService;
 
   @Autowired
-  MedicalRecordDao medicalRecordDao;
+  MedicalRecordService medicalRecordService;
 
   @Autowired
-  HouseholdDao householdDao;
+  HouseHoldService houseHoldService;
 
   String firstName = "Quentin", lastName = "Beraud", birthdate = "12/31/1997";
   List<String> medications = new ArrayList<>(), allergies = new ArrayList<>();
@@ -47,24 +45,23 @@ public class MedicalRecordControllerIT {
   @BeforeEach
   public void setUp() {
     this.mvc = MockMvcBuilders
-        .standaloneSetup(new MedicalRecordController(new MedicalRecordService(medicalRecordDao,
-            new PersonService(personDao, new HouseHoldService(householdDao), medicalRecordDao))))
+        .standaloneSetup(new MedicalRecordController(medicalRecordService))
         .setControllerAdvice()
         .build();
 
-    Person person = personDao.findByFirstNameAndLastName(firstName, lastName);
+    Person person = personService.getPersonByFirstAndLastName(firstName, lastName);
     if (person == null) {
       // Save a coresponding person
-      person = new Person();
-      person.setFirstName(firstName);
-      person.setLastName(lastName);
-      personDao.save(person);
-      person = personDao.findByFirstNameAndLastName(firstName, lastName);
+      PersonDeserialization personDeserialization = new PersonDeserialization();
+      personDeserialization.setFirstName(firstName);
+      personDeserialization.setLastName(lastName);
+      personService.addPerson(personDeserialization, "testMethodeITPersonAdd");
+      person = personService.getPersonByFirstAndLastName(firstName, lastName);
 
     }
-    MedicalRecord medicalRecord = medicalRecordDao.findByIdPerson(person.getId());
+    MedicalRecord medicalRecord = medicalRecordService.getMedicalRecordByPerson(person);
     if (medicalRecord != null) {
-      medicalRecordDao.delete(medicalRecord);
+      medicalRecordService.deleteMedicalRecord(firstName, lastName, "testMethodeITdeleteMedicalRecord");
     }
   }
 
@@ -90,8 +87,9 @@ public class MedicalRecordControllerIT {
         .andExpect(status().isCreated());
 
     // Check if the medicalRecord exists and match
-    List<MedicalRecord> medicalRecords = medicalRecordDao.findAll();
-    Person matchingPerson = personDao.findByFirstNameAndLastName(firstName, lastName);
+
+    List<MedicalRecord> medicalRecords = medicalRecordService.getAllMedicalRecords();
+    Person matchingPerson = personService.getPersonByFirstAndLastName(firstName, lastName);
     boolean medicalRecordAdded = false;
     for (MedicalRecord medicalRecord : medicalRecords) {
       if (medicalRecord.getIdPerson() == matchingPerson.getId()
@@ -131,8 +129,8 @@ public class MedicalRecordControllerIT {
         .andExpect(status().isOk());
 
     // Checks if the firestation has updated
-    List<MedicalRecord> medicalRecords = medicalRecordDao.findAll();
-    Person matchingPerson = personDao.findByFirstNameAndLastName(firstName, lastName);
+    List<MedicalRecord> medicalRecords = medicalRecordService.getAllMedicalRecords();
+    Person matchingPerson = personService.getPersonByFirstAndLastName(firstName, lastName);
     boolean medicalRecordUpdated = false;
     for (MedicalRecord medicalRecord : medicalRecords) {
       if (medicalRecord.getIdPerson() == matchingPerson.getId() && medicalRecord.getBirthdate().equals("02/25/1999")) {
@@ -155,8 +153,8 @@ public class MedicalRecordControllerIT {
         .andExpect(status().isOk());
 
     // Check if the medicalRecord has been deleted
-    List<MedicalRecord> medicalRecords = medicalRecordDao.findAll();
-    Person matchingPerson = personDao.findByFirstNameAndLastName(firstName, lastName);
+    List<MedicalRecord> medicalRecords = medicalRecordService.getAllMedicalRecords();
+    Person matchingPerson = personService.getPersonByFirstAndLastName(firstName, lastName);
     boolean medicalRecordDeleted = true;
     for (MedicalRecord medicalRecord : medicalRecords) {
       if (medicalRecord.getIdPerson() == matchingPerson.getId()) {

@@ -3,6 +3,7 @@ package com.safetynet.alerts.web.logging;
 import org.springframework.http.ResponseEntity;
 import org.tinylog.Logger;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.safetynet.alerts.web.httpResponse.ResponseBuilder;
 
 /* 
@@ -110,7 +111,7 @@ public class EndpointsLogger {
    * @param methodName The name of the method.
    * @return A response indicating an exception.
    */
-  public ResponseEntity<String> threwAnException(String methodName) {
+  public ResponseEntity<ObjectNode> threwAnException(String methodName) {
     Logger.error("Answer " + methodName + " : thew an exception.");
     return response.threwAnException();
   }
@@ -136,7 +137,7 @@ public class EndpointsLogger {
    * @param methodName The name of the method.
    * @return A response indicating an empty answer.
    */
-  public ResponseEntity<String> emptyAnswer(String methodeName) {
+  public ResponseEntity<ObjectNode> emptyAnswer(String methodeName) {
     Logger.info("Answer " + methodeName + " : empty answer.");
     return response.emptyAnswer();
   }
@@ -149,9 +150,9 @@ public class EndpointsLogger {
    * @param methodName The name of the method.
    * @return A response indicating successful generation.
    */
-  public ResponseEntity<String> successfullyGenerated(String methodeName) {
+  public ResponseEntity<ObjectNode> successfullyGenerated(String methodeName, ObjectNode mainObject) {
     Logger.info("Answer " + methodeName + " : successfully generated.");
-    return response.successfullyGenerated();
+    return response.successfullyGenerated(mainObject);
   }
 
   /**

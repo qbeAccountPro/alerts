@@ -1,13 +1,12 @@
 package com.safetynet.alerts.web.serialization;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -15,8 +14,19 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.safetynet.alerts.web.logging.EndpointsLogger;
 import com.safetynet.alerts.web.model.Person;
-import com.safetynet.alerts.web.serialization.dao.*;
-import com.safetynet.alerts.web.serialization.model.*;
+import com.safetynet.alerts.web.serialization.model.ChildAlert;
+import com.safetynet.alerts.web.serialization.model.FireAlert;
+import com.safetynet.alerts.web.serialization.model.FirestationAlert;
+import com.safetynet.alerts.web.serialization.model.FloodAlertByHousehold;
+import com.safetynet.alerts.web.serialization.model.PersonInfoAlert;
+import com.safetynet.alerts.web.serialization.serializer.ChildAlertSerializer;
+import com.safetynet.alerts.web.serialization.serializer.CommunityEmailSerializer;
+import com.safetynet.alerts.web.serialization.serializer.FireAlertSerializer;
+import com.safetynet.alerts.web.serialization.serializer.FirestationAlertSerializer;
+import com.safetynet.alerts.web.serialization.serializer.FloodAlertSerializer;
+import com.safetynet.alerts.web.serialization.serializer.OtherResidentsSerializer;
+import com.safetynet.alerts.web.serialization.serializer.PersonInfoSerializer;
+import com.safetynet.alerts.web.serialization.serializer.PhoneAlertSerializer;
 
 /**
  * Some javadoc.
@@ -40,11 +50,11 @@ public class Serialization {
    * @param minorsNumber      The number of minors.
    * @param adultsNumber      The number of adults.
    */
-  public ResponseEntity<String> firestationAlertSerialization(List<FirestationAlert> firestationsAlert,
+  public ResponseEntity<ObjectNode> firestationAlertSerialization(List<FirestationAlert> firestationsAlert,
       String methodName,
       String argument,
       int minorsNumber, int adultsNumber) {
-    FirestationAlertDao firestationDao = new FirestationAlertDao(FirestationAlert.class);
+    FirestationAlertSerializer firestationDao = new FirestationAlertSerializer(FirestationAlert.class);
     mapper = new ObjectMapper();
     mapper.enable(SerializationFeature.INDENT_OUTPUT);
     module = new SimpleModule();
@@ -59,8 +69,8 @@ public class Serialization {
       adultsAndMinorsObject.put("adults", adultsNumber);
       adultsAndMinorsObject.put("minors", minorsNumber);
       mainObject.set("counters", adultsAndMinorsObject);
-      mapper.writeValue(new File(generateFileName(methodName, argument)), mainObject);
-      return log.successfullyGenerated(methodName);
+
+      return log.successfullyGenerated(methodName, mainObject);
     } catch (Exception e) {
       System.out.println(e);
       return log.threwAnException(methodName);
@@ -77,11 +87,11 @@ public class Serialization {
    * @param method   The method name.
    * @param argument The argument value.
    */
-  public ResponseEntity<String> childAlertSerialization(List<ChildAlert> children, List<ChildAlert> adults,
+  public ResponseEntity<ObjectNode> childAlertSerialization(List<ChildAlert> children, List<ChildAlert> adults,
       String method,
       String argument) {
-    ChildAlertDao childAlertDao = new ChildAlertDao(ChildAlert.class);
-    OtherResidentsDao otherResidentsDao = new OtherResidentsDao(Person.class);
+    ChildAlertSerializer childAlertDao = new ChildAlertSerializer(ChildAlert.class);
+    OtherResidentsSerializer otherResidentsDao = new OtherResidentsSerializer(Person.class);
     SimpleModule childModule = new SimpleModule(), personModule = new SimpleModule();
     childModule.addSerializer(ChildAlert.class, childAlertDao);
     personModule.addSerializer(Person.class, otherResidentsDao);
@@ -96,8 +106,7 @@ public class Serialization {
       childAlertObject.set("children", childAlertArray);
       ArrayNode residentsArray = mapper.valueToTree(adults);
       childAlertObject.set("adults", residentsArray);
-      mapper.writeValue(new File(generateFileName(method, argument)), childAlertObject);
-      return log.successfullyGenerated(method);
+      return log.successfullyGenerated(method, childAlertObject);
     } catch (Exception e) {
       System.out.println(e);
       return log.threwAnException(method);
@@ -113,9 +122,9 @@ public class Serialization {
    * @param method   The method name.
    * @param argument The argument value.
    */
-  public ResponseEntity<String> phoneAlertSerialization(List<Person> persons, String method,
+  public ResponseEntity<ObjectNode> phoneAlertSerialization(List<Person> persons, String method,
       String argument) {
-    PhoneAlertDao phoneAlertDao = new PhoneAlertDao(Person.class);
+    PhoneAlertSerializer phoneAlertDao = new PhoneAlertSerializer(Person.class);
     mapper = new ObjectMapper();
     mapper.enable(SerializationFeature.INDENT_OUTPUT);
     module = new SimpleModule();
@@ -125,8 +134,7 @@ public class Serialization {
       ObjectNode phoneAlertObject = mapper.createObjectNode();
       ArrayNode phoneAlertArray = mapper.valueToTree(persons);
       phoneAlertObject.set("phones", phoneAlertArray);
-      mapper.writeValue(new File(generateFileName(method, argument)), phoneAlertObject);
-      return log.successfullyGenerated(method);
+      return log.successfullyGenerated(method, phoneAlertObject);
     } catch (Exception e) {
       System.out.println(e);
       return log.threwAnException(method);
@@ -143,9 +151,10 @@ public class Serialization {
    * @param method            The method name.
    * @param argument          The argument value.
    */
-  public ResponseEntity<String> fireSerialization(List<FireAlert> firesAlert, String firestationNumber, String method,
+  public ResponseEntity<ObjectNode> fireSerialization(List<FireAlert> firesAlert, String firestationNumber,
+      String method,
       String argument) {
-    FireAlertDao fireDao = new FireAlertDao(FireAlert.class);
+    FireAlertSerializer fireDao = new FireAlertSerializer(FireAlert.class);
     mapper = new ObjectMapper();
     mapper.enable(SerializationFeature.INDENT_OUTPUT);
     module = new SimpleModule();
@@ -158,8 +167,7 @@ public class Serialization {
       ObjectNode fireStationNumberObject = mapper.createObjectNode();
       fireStationNumberObject.put("station", firestationNumber);
       fireObject.set("stationServing", fireStationNumberObject);
-      mapper.writeValue(new File(generateFileName(method, argument)), fireObject);
-      return log.successfullyGenerated(method);
+      return log.successfullyGenerated(method, fireObject);
     } catch (Exception e) {
       System.out.println(e);
       return log.threwAnException(method);
@@ -175,9 +183,10 @@ public class Serialization {
    * @param method                 The method name.
    * @param argument               The argument value.
    */
-  public ResponseEntity<String> floodSerialization(List<FloodAlertByHousehold> floodsAlertByHousehold, String method,
+  public ResponseEntity<ObjectNode> floodSerialization(List<FloodAlertByHousehold> floodsAlertByHousehold,
+      String method,
       String argument) {
-    FloodAlertDao floodDao = new FloodAlertDao(FloodAlertByHousehold.class);
+    FloodAlertSerializer floodDao = new FloodAlertSerializer(FloodAlertByHousehold.class);
     mapper = new ObjectMapper();
     mapper.enable(SerializationFeature.INDENT_OUTPUT);
     module = new SimpleModule();
@@ -187,8 +196,7 @@ public class Serialization {
       ObjectNode floodObject = mapper.createObjectNode();
       ArrayNode floodArray = mapper.valueToTree(floodsAlertByHousehold);
       floodObject.set("persons", floodArray);
-      mapper.writeValue(new File(generateFileName(method, argument)), floodObject);
-      return log.successfullyGenerated(method);
+      return log.successfullyGenerated(method, floodObject);
     } catch (Exception e) {
       System.out.println(e);
       return log.threwAnException(method);
@@ -205,10 +213,10 @@ public class Serialization {
    * @param firstName       The first name.
    * @param lastName        The last name.
    */
-  public ResponseEntity<String> personInfoSerialization(List<PersonInfoAlert> personInfoAlert, String method,
+  public ResponseEntity<ObjectNode> personInfoSerialization(List<PersonInfoAlert> personInfoAlert, String method,
       String firstName,
       String lastName) {
-    PersonInfoDao personeInfoDao = new PersonInfoDao(PersonInfoAlert.class);
+    PersonInfoSerializer personeInfoDao = new PersonInfoSerializer(PersonInfoAlert.class);
     mapper = new ObjectMapper();
     mapper.enable(SerializationFeature.INDENT_OUTPUT);
     module = new SimpleModule();
@@ -219,8 +227,7 @@ public class Serialization {
       ArrayNode personInfoArray = mapper.valueToTree(personInfoAlert);
       personInfoObject.set("persons",
           personInfoArray);
-      mapper.writeValue(new File(generateFileName(method, firstName + "_" + lastName)), personInfoObject);
-      return log.successfullyGenerated(method);
+      return log.successfullyGenerated(method, personInfoObject);
     } catch (Exception e) {
       System.out.println(e);
       return log.threwAnException(method);
@@ -236,8 +243,8 @@ public class Serialization {
    * @param method  The method name.
    * @param city    The city name.
    */
-  public ResponseEntity<String> communityEmailSerialization(List<Person> persons, String method, String city) {
-    CommunityEmailDao communityEmailDao = new CommunityEmailDao(Person.class);
+  public ResponseEntity<ObjectNode> communityEmailSerialization(List<Person> persons, String method, String city) {
+    CommunityEmailSerializer communityEmailDao = new CommunityEmailSerializer(Person.class);
     mapper = new ObjectMapper();
     mapper.enable(SerializationFeature.INDENT_OUTPUT);
     module = new SimpleModule();
@@ -248,8 +255,7 @@ public class Serialization {
       ArrayNode emailArray = mapper.valueToTree(persons);
       emailObject.set("emails",
           emailArray);
-      mapper.writeValue(new File(generateFileName(method, city)), emailObject);
-      return log.successfullyGenerated(method);
+      return log.successfullyGenerated(method, emailObject);
     } catch (Exception e) {
       System.out.println(e);
       return log.threwAnException(method);
@@ -264,17 +270,8 @@ public class Serialization {
    * @param method   The method name.
    * @param argument The argument value.
    */
-  public ResponseEntity<String> emptyAnswer(String method, String argument) {
-    File file = new File(generateFileName(method, argument));
-    try {
-      if (!file.exists()) {
-        file.createNewFile();
-      }
-      return log.successfullyGenerated(method);
-    } catch (IOException e) {
-      e.printStackTrace();
-      return log.threwAnException(method);
-    }
+  public ResponseEntity<ObjectNode> emptyAnswer(String method, String argument) {
+      return log.successfullyGenerated(method, null);
   }
 
   /**

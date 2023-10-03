@@ -50,6 +50,7 @@ public class FirestationControllerTest {
     firestation_1.setAddress(null);
     ResponseEntity<String> result = firestationController.addFirestation(firestation_1);
     ResponseEntity<String> expected = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Incorrect content.");
+
     assertEquals(expected, result);
     verify(firestationService, times(0)).addFirestation(firestation_1, "addFirestation");
   }
@@ -83,6 +84,7 @@ public class FirestationControllerTest {
     firestation_1.setAddress(null);
     ResponseEntity<String> result = firestationController.updateStationByAddress(address, firestation_1);
     ResponseEntity<String> expected = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Incorrect content.");
+
     assertEquals(expected, result);
     verify(firestationService, times(0)).updateStationByAddress(firestation_1, address, "updateStationByAddress");
   }

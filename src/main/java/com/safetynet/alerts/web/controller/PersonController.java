@@ -2,9 +2,7 @@ package com.safetynet.alerts.web.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import com.safetynet.alerts.web.communUtilts.DataManipulationUtils;
@@ -24,15 +22,14 @@ import com.safetynet.alerts.web.service.PersonService;
 @RequestMapping("/person")
 public class PersonController {
 
-  @Autowired
-  private final PersonService personService;
-  private final DataManipulationUtils beanService;
-  private EndpointsLogger log = new EndpointsLogger();
+  private PersonService personService;
 
   public PersonController(PersonService personService) {
     this.personService = personService;
-    this.beanService = new DataManipulationUtils();
   }
+
+  private DataManipulationUtils beanService = new DataManipulationUtils();
+  private EndpointsLogger log = new EndpointsLogger();
 
   /**
    * Some javadoc.
@@ -88,7 +85,6 @@ public class PersonController {
    * @param firstName of the person.
    * @param lastName  of the person.
    */
-  @Transactional
   @DeleteMapping("/{firstName}/{lastName}")
   public ResponseEntity<String> deleteByFirstAndLastName(@PathVariable("firstName") String firstName,
       @PathVariable("lastName") String lastName) {

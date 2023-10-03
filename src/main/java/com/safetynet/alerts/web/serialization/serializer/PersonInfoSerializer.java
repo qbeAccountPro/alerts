@@ -1,4 +1,4 @@
-package com.safetynet.alerts.web.serialization.dao;
+package com.safetynet.alerts.web.serialization.serializer;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,9 +16,9 @@ import com.safetynet.alerts.web.serialization.model.PersonInfoAlert;
  * specific
  * fields.
  */
-public class PersonInfoDao extends StdSerializer<PersonInfoAlert> {
+public class PersonInfoSerializer extends StdSerializer<PersonInfoAlert> {
 
-  public PersonInfoDao(Class<PersonInfoAlert> t) {
+  public PersonInfoSerializer(Class<PersonInfoAlert> t) {
     super(t);
   }
 

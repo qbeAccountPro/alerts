@@ -1,13 +1,9 @@
 package com.safetynet.alerts.web.serialization;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,40 +13,42 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.ResponseEntity;
 
-import com.safetynet.alerts.web.dao.FirestationDao;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.safetynet.alerts.web.model.Household;
 import com.safetynet.alerts.web.model.Person;
-import com.safetynet.alerts.web.serialization.dao.ChildAlertDao;
-import com.safetynet.alerts.web.serialization.dao.CommunityEmailDao;
-import com.safetynet.alerts.web.serialization.dao.FireAlertDao;
-import com.safetynet.alerts.web.serialization.dao.OtherResidentsDao;
-import com.safetynet.alerts.web.serialization.dao.PersonInfoDao;
-import com.safetynet.alerts.web.serialization.dao.PhoneAlertDao;
 import com.safetynet.alerts.web.serialization.model.ChildAlert;
 import com.safetynet.alerts.web.serialization.model.FireAlert;
 import com.safetynet.alerts.web.serialization.model.FirestationAlert;
 import com.safetynet.alerts.web.serialization.model.FloodAlert;
 import com.safetynet.alerts.web.serialization.model.FloodAlertByHousehold;
 import com.safetynet.alerts.web.serialization.model.PersonInfoAlert;
+import com.safetynet.alerts.web.serialization.serializer.ChildAlertSerializer;
+import com.safetynet.alerts.web.serialization.serializer.CommunityEmailSerializer;
+import com.safetynet.alerts.web.serialization.serializer.FireAlertSerializer;
+import com.safetynet.alerts.web.serialization.serializer.OtherResidentsSerializer;
+import com.safetynet.alerts.web.serialization.serializer.PersonInfoSerializer;
+import com.safetynet.alerts.web.serialization.serializer.PhoneAlertSerializer;
 
 @ExtendWith(MockitoExtension.class)
 public class SerializationTest {
 
   @Mock
-  private ChildAlertDao childAlertDao;
+  private ChildAlertSerializer childAlertDao;
   @Mock
-  private CommunityEmailDao communityEmailDao;
+  private CommunityEmailSerializer communityEmailDao;
   @Mock
-  private FireAlertDao FireAlertDao;
+  private FireAlertSerializer FireAlertDao;
+
   @Mock
-  private FirestationDao firestationDao;
+  private OtherResidentsSerializer otherResidentsDao;
   @Mock
-  private OtherResidentsDao otherResidentsDao;
+  private PersonInfoSerializer personeInfoDao;
   @Mock
-  private PersonInfoDao personeInfoDao;
-  @Mock
-  private PhoneAlertDao phoneAlertDao;
+  private PhoneAlertSerializer phoneAlertDao;
 
   @InjectMocks
   private Serialization serialization;
@@ -76,19 +74,18 @@ public class SerializationTest {
     List<ChildAlert> children = Arrays.asList(childAlert_2);
     List<ChildAlert> adults = Arrays.asList(childAlert_1);
 
-    serialization.childAlertSerialization(children, adults, method, argument);
+    ResponseEntity<ObjectNode> result = serialization.childAlertSerialization(children, adults, method, argument);
+    ObjectNode jsonResponse = result.getBody();
+    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
 
-    String fileName = serialization.generateFileName(method, argument);
-    File file = new File(fileName);
-    assertTrue(new File(fileName).exists());
     try {
-      String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-      assertTrue(fileContent.contains("children"));
-      assertTrue(fileContent.contains(person_1.getFirstName()));
-      assertTrue(fileContent.contains(person_2.getLastName()));
-      assertTrue(fileContent.contains("adults"));
-      file.delete();
-      assertFalse(file.exists());
+      String jsonString = objectWriter.writeValueAsString(jsonResponse);
+
+      assertTrue(jsonString.contains("children"));
+      assertTrue(jsonString.contains(person_1.getFirstName()));
+      assertTrue(jsonString.contains(person_2.getLastName()));
+      assertTrue(jsonString.contains("adults"));
     } catch (IOException e) {
       fail("Failed to read file: " + e.getMessage());
     }
@@ -96,18 +93,18 @@ public class SerializationTest {
 
   @Test
   void testCommunityEmailSerialization() {
-    serialization.communityEmailSerialization(persons, method, argument);
+    ResponseEntity<ObjectNode> result = serialization.communityEmailSerialization(persons, method, argument);
+    ObjectNode jsonResponse = result.getBody();
+    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
 
-    String fileName = serialization.generateFileName(method, argument);
-    File file = new File(fileName);
-    assertTrue(new File(fileName).exists());
     try {
-      String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-      assertTrue(fileContent.contains("emails"));
-      assertTrue(fileContent.contains(person_1.getEmail()));
-      assertTrue(fileContent.contains(person_2.getEmail()));
-      file.delete();
-      assertFalse(file.exists());
+      String jsonString = objectWriter.writeValueAsString(jsonResponse);
+
+      assertTrue(jsonString.contains("emails"));
+      assertTrue(jsonString.contains(person_1.getEmail()));
+      assertTrue(jsonString.contains(person_2.getEmail()));
+
     } catch (IOException e) {
       fail("Failed to read file: " + e.getMessage());
     }
@@ -115,16 +112,16 @@ public class SerializationTest {
 
   @Test
   void testEmptyAnswer() {
-    serialization.emptyAnswer(method, argument);
+    ResponseEntity<ObjectNode> result = serialization.emptyAnswer(method, argument);
 
-    String fileName = serialization.generateFileName(method, argument);
-    File file = new File(fileName);
-    assertTrue(new File(fileName).exists());
+    ObjectNode jsonResponse = result.getBody();
+    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
+
     try {
-      String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-      assertTrue(fileContent.isEmpty());
-      file.delete();
-      assertFalse(file.exists());
+      String jsonString = objectWriter.writeValueAsString(jsonResponse);
+
+      assertTrue(jsonString.contains("null"));
     } catch (IOException e) {
       fail("Failed to read file: " + e.getMessage());
     }
@@ -136,19 +133,17 @@ public class SerializationTest {
     List<FireAlert> fires = Arrays.asList(fire_1);
     String firestationNumber = "1";
 
-    serialization.fireSerialization(fires, firestationNumber, method, argument);
+    ResponseEntity<ObjectNode> result = serialization.fireSerialization(fires, firestationNumber, method, argument);
+    ObjectNode jsonResponse = result.getBody();
+    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
 
-    String fileName = serialization.generateFileName(method, argument);
-    File file = new File(fileName);
-    assertTrue(new File(fileName).exists());
     try {
-      String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-      assertTrue(fileContent.contains("persons"));
-      assertTrue(fileContent.contains("station"));
-      assertTrue(fileContent.contains("stationServing"));
-      assertTrue(fileContent.contains("Moti"));
-      file.delete();
-      assertFalse(file.exists());
+      String jsonString = objectWriter.writeValueAsString(jsonResponse);
+      assertTrue(jsonString.contains("persons"));
+      assertTrue(jsonString.contains("station"));
+      assertTrue(jsonString.contains("stationServing"));
+      assertTrue(jsonString.contains("Moti"));
     } catch (IOException e) {
       fail("Failed to read file: " + e.getMessage());
     }
@@ -160,24 +155,24 @@ public class SerializationTest {
     List<FirestationAlert> firestationAlerts = Arrays.asList(firestationAlert);
     int minorsNumber = 0, adultsNumber = 2;
 
-    serialization.firestationAlertSerialization(firestationAlerts, method, argument, minorsNumber, adultsNumber);
+    ResponseEntity<ObjectNode> result = serialization.firestationAlertSerialization(firestationAlerts, method, argument,
+        minorsNumber, adultsNumber);
 
-    String fileName = serialization.generateFileName(method, argument);
-    File file = new File(fileName);
-    assertTrue(new File(fileName).exists());
+    ObjectNode jsonResponse = result.getBody();
+    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
+
     try {
-      String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-      assertTrue(fileContent.contains("persons"));
-      assertTrue(fileContent.contains("adults"));
-      assertTrue(fileContent.contains("minors"));
-      assertTrue(fileContent.contains("counters"));
-      assertTrue(fileContent.contains(firestationAlert.getFirstName()));
-      assertTrue(fileContent.contains(firestationAlert.getLastName()));
-      assertTrue(fileContent.contains(firestationAlert.getAddress()));
-      assertTrue(fileContent.contains(firestationAlert.getPhone()));
+      String jsonString = objectWriter.writeValueAsString(jsonResponse);
 
-      file.delete();
-      assertFalse(file.exists());
+      assertTrue(jsonString.contains("persons"));
+      assertTrue(jsonString.contains("adults"));
+      assertTrue(jsonString.contains("minors"));
+      assertTrue(jsonString.contains("counters"));
+      assertTrue(jsonString.contains(firestationAlert.getFirstName()));
+      assertTrue(jsonString.contains(firestationAlert.getLastName()));
+      assertTrue(jsonString.contains(firestationAlert.getAddress()));
+      assertTrue(jsonString.contains(firestationAlert.getPhone()));
     } catch (IOException e) {
       fail("Failed to read file: " + e.getMessage());
     }
@@ -191,19 +186,19 @@ public class SerializationTest {
     FloodAlertByHousehold floodAlertByHousehold = new FloodAlertByHousehold(household, floods_1);
     List<FloodAlertByHousehold> floodAlertByHouseholds = Arrays.asList(floodAlertByHousehold);
 
-    serialization.floodSerialization(floodAlertByHouseholds, method, argument);
+    ResponseEntity<ObjectNode> result = serialization.floodSerialization(floodAlertByHouseholds, method, argument);
 
-    String fileName = serialization.generateFileName(method, argument);
-    File file = new File(fileName);
-    assertTrue(new File(fileName).exists());
+    ObjectNode jsonResponse = result.getBody();
+    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
+
     try {
-      String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-      assertTrue(fileContent.contains("persons"));
-      assertTrue(fileContent.contains(flood_1.getLastName()));
-      assertTrue(fileContent.contains(flood_1.getPhone()));
-      assertTrue(fileContent.contains(household.getAddress()));
-      file.delete();
-      assertFalse(file.exists());
+      String jsonString = objectWriter.writeValueAsString(jsonResponse);
+
+      assertTrue(jsonString.contains("persons"));
+      assertTrue(jsonString.contains(flood_1.getLastName()));
+      assertTrue(jsonString.contains(flood_1.getPhone()));
+      assertTrue(jsonString.contains(household.getAddress()));
     } catch (IOException e) {
       fail("Failed to read file: " + e.getMessage());
     }
@@ -216,20 +211,21 @@ public class SerializationTest {
     String firstName = "someFtName";
     String lastName = "someLtName";
 
-    serialization.personInfoSerialization(personsInfos, method, firstName, lastName);
+    ResponseEntity<ObjectNode> result = serialization.personInfoSerialization(personsInfos, method, firstName,
+        lastName);
 
-    String fileName = serialization.generateFileName(method, firstName + "_" + lastName);
-    File file = new File(fileName);
-    assertTrue(new File(fileName).exists());
+    ObjectNode jsonResponse = result.getBody();
+    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
+
     try {
-      String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-      assertTrue(fileContent.contains("persons"));
+      String jsonString = objectWriter.writeValueAsString(jsonResponse);
+
+      assertTrue(jsonString.contains("persons"));
       for (PersonInfoAlert personInfoX : personsInfos) {
-        assertTrue(fileContent.contains(personInfoX.getLastName()));
-        assertTrue(fileContent.contains(personInfoX.getMail()));
+        assertTrue(jsonString.contains(personInfoX.getLastName()));
+        assertTrue(jsonString.contains(personInfoX.getMail()));
       }
-      file.delete();
-      assertFalse(file.exists());
     } catch (IOException e) {
       fail("Failed to read file: " + e.getMessage());
     }
@@ -237,17 +233,16 @@ public class SerializationTest {
 
   @Test
   void testPhoneAlertSerialization() {
-    serialization.phoneAlertSerialization(persons, method, argument);
-    String fileName = serialization.generateFileName(method, argument);
-    File file = new File(fileName);
+    ResponseEntity<ObjectNode> result = serialization.phoneAlertSerialization(persons, method, argument);
+    ObjectNode jsonResponse = result.getBody();
+    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
 
-    assertTrue(new File(fileName).exists());
     try {
-      String fileContent = new String(Files.readAllBytes(Paths.get(fileName)));
-      assertTrue(fileContent.contains("phones"));
-      assertTrue(fileContent.contains(person_1.getPhone()));
-      file.delete();
-      assertFalse(file.exists());
+      String jsonString = objectWriter.writeValueAsString(jsonResponse);
+
+      assertTrue(jsonString.contains("phones"));
+      assertTrue(jsonString.contains(person_1.getPhone()));
     } catch (IOException e) {
       fail("Failed to read file: " + e.getMessage());
     }

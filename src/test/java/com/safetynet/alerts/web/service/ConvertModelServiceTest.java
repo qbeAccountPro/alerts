@@ -114,8 +114,8 @@ public class ConvertModelServiceTest {
   @Test
   void testGetFirestations() {
     List<Firestation> firestationsExpected = new ArrayList<>();
-    Firestation firestation_1 = new Firestation(0, idHouseholds_firestation_1, STATION_1);
-    Firestation firestation_2 = new Firestation(0, idHouseholds_firestation_2, STATION_2);
+    Firestation firestation_1 = new Firestation(1, idHouseholds_firestation_1, STATION_1);
+    Firestation firestation_2 = new Firestation(2, idHouseholds_firestation_2, STATION_2);
     firestationsExpected.add(firestation_1);
     firestationsExpected.add(firestation_2);
 
@@ -127,9 +127,9 @@ public class ConvertModelServiceTest {
   @Test
   void testGetHouseholds() {
     List<Household> householdsExpected = new ArrayList<>();
-    household_1.setId(0);
-    household_2.setId(0);
-    household_3.setId(0);
+    household_1.setId(1);
+    household_2.setId(2);
+    household_3.setId(3);
     householdsExpected.add(household_1);
     householdsExpected.add(household_2);
     householdsExpected.add(household_3);
@@ -142,8 +142,8 @@ public class ConvertModelServiceTest {
   @Test
   void testGetMedicalRecords() {
     List<MedicalRecord> medicalRecordsExpected = new ArrayList<>();
-    MedicalRecord medicalRecord_1 = new MedicalRecord(0, 1, "31/12/1997", null, null);
-    MedicalRecord medicalRecord_3 = new MedicalRecord(0, 3, "01/01/4988", null, null);
+    MedicalRecord medicalRecord_1 = new MedicalRecord(1, 1, "31/12/1997", null, null);
+    MedicalRecord medicalRecord_3 = new MedicalRecord(2, 3, "01/01/4988", null, null);
     medicalRecordsExpected.add(medicalRecord_1);
     medicalRecordsExpected.add(medicalRecord_3);
 
@@ -156,8 +156,8 @@ public class ConvertModelServiceTest {
   @Test
   void testGetPersons() {
     List<Person> personsExpected = new ArrayList<>();
-    person_1.setId(0);
-    person_3.setId(0);
+    person_1.setId(1);
+    person_3.setId(2);
     personsExpected.add(person_1);
     personsExpected.add(person_3);
 

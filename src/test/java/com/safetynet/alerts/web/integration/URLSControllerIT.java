@@ -10,7 +10,6 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -18,19 +17,16 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.safetynet.alerts.web.controller.URLSController;
-import com.safetynet.alerts.web.dao.FirestationDao;
-import com.safetynet.alerts.web.dao.HouseholdDao;
-import com.safetynet.alerts.web.dao.MedicalRecordDao;
-import com.safetynet.alerts.web.dao.PersonDao;
-import com.safetynet.alerts.web.model.Firestation;
+import com.safetynet.alerts.web.deserialization.model.FirestationDeserialization;
+import com.safetynet.alerts.web.deserialization.model.PersonDeserialization;
 import com.safetynet.alerts.web.model.Household;
 import com.safetynet.alerts.web.model.MedicalRecord;
 import com.safetynet.alerts.web.model.Person;
-import com.safetynet.alerts.web.serialization.Serialization;
 import com.safetynet.alerts.web.service.FirestationService;
 import com.safetynet.alerts.web.service.HouseHoldService;
 import com.safetynet.alerts.web.service.MedicalRecordService;
@@ -43,16 +39,19 @@ public class URLSControllerIT {
   private MockMvc mvc;
 
   @Autowired
-  PersonDao personDao;
+  PersonService personService;
 
   @Autowired
-  HouseholdDao householdDao;
+  HouseHoldService houseHoldService;
 
   @Autowired
-  MedicalRecordDao medicalRecordDao;
+  MedicalRecordService medicalRecordService;
 
   @Autowired
-  FirestationDao firestationDao;
+  FirestationService firestationService;
+
+  @Autowired
+  URLSService urlsService;
 
   // Data to creates examples :
   String address = "Rue du loup 8899", firstName = "Quentin", lastName = "Beraud", city = "Lyon",
@@ -60,14 +59,8 @@ public class URLSControllerIT {
 
   @BeforeAll
   public void setup() {
-    HouseHoldService houseHoldService = new HouseHoldService(householdDao);
-    FirestationService firestationService = new FirestationService(firestationDao, houseHoldService);
-    PersonService personService = new PersonService(personDao, houseHoldService, medicalRecordDao);
-    MedicalRecordService medicalRecordService = new MedicalRecordService(medicalRecordDao, personService);
-    Serialization serialization = new Serialization();
     mvc = MockMvcBuilders
-        .standaloneSetup(new URLSController(
-            new URLSService(firestationService, personService, medicalRecordService, serialization, houseHoldService)))
+        .standaloneSetup(new URLSController(urlsService))
         .setControllerAdvice()
         .build();
 
@@ -76,23 +69,23 @@ public class URLSControllerIT {
     Household household = new Household();
     household.setAddress(address);
     // Save it
-    householdDao.save(household);
+    houseHoldService.saveHousehold(address);
     // Get the corresponding id
-    household = householdDao.findByAddress(address);
+    household = houseHoldService.getHouseholdByAddress(address);
 
     // Create Person
-    Person person = new Person();
-    person.setFirstName(firstName);
-    person.setLastName(lastName);
-    person.setIdHousehold(household.getId());
-    person.setCity(city);
-    person.setEmail(email);
-    person.setPhone(phone);
-    person.setZip(zip);
+    PersonDeserialization personDeserialization = new PersonDeserialization();
+    personDeserialization.setFirstName(firstName);
+    personDeserialization.setLastName(lastName);
+    personDeserialization.setAddress(address);
+    personDeserialization.setCity(city);
+    personDeserialization.setEmail(email);
+    personDeserialization.setPhone(phone);
+    personDeserialization.setZip(zip);
     // Save it
-    personDao.save(person);
+    personService.addPerson(personDeserialization, "addPersonITtest");
     // Get corresponding id
-    person = personDao.findByFirstNameAndLastName(firstName, lastName);
+    Person person = personService.getPersonByFirstAndLastName(firstName, lastName);
 
     // Create MedicalRecord
     MedicalRecord medicalRecord = new MedicalRecord();
@@ -101,129 +94,122 @@ public class URLSControllerIT {
     medicalRecord.setAllergies(null);
     medicalRecord.setBirthdate("02/02/1980");
     // Save it
-    medicalRecordDao.save(medicalRecord);
+    medicalRecordService.saveMedicalRecord(medicalRecord);
 
     // Create Firestation
-    Firestation firestation = new Firestation();
-    List<Integer> idHouseholds = Arrays.asList(household.getId());
-    firestation.setIdHouseholds(idHouseholds);
-    firestation.setStation(station);
+    FirestationDeserialization firestationDeserialization = new FirestationDeserialization();
+    firestationDeserialization.setStation(station);
+    firestationDeserialization.setAddress(household.getAddress());
+
     // Save it
-    firestationDao.save(firestation);
+    firestationService.addFirestation(firestationDeserialization, "addFirestationITtest");
   }
 
   @Test
   public void getPersonCoveredByFirestationTest() throws Exception {
     // Send request to get person covered by firestation :
-    mvc.perform(MockMvcRequestBuilders.get("/firestation?stationNumber=" + station)).andExpect(status().isOk());
+    MvcResult result = mvc.perform(MockMvcRequestBuilders.get("/firestation?stationNumber=" + station))
+        .andExpect(status().isOk()).andReturn();
 
-    // Get content file :
-    String filePath = getMostRecentFilePathForEachMethode("personCoveredByFireStation_" + station + ".json");
-    String fileContent = getFileContent(filePath);
+
+    // Extract the JSON content from the response:
+    String responseContent = result.getResponse().getContentAsString();
 
     // Check if the data contains the corresponding values :
-    assertTrue(fileContent.contains(firstName));
-    assertTrue(fileContent.contains(lastName));
-    assertTrue(fileContent.contains(address));
-    assertTrue(fileContent.contains(phone));
-    assertTrue(fileContent.contains("\"adults\" : 1"));
-    assertTrue(fileContent.contains("\"minors\" : 0"));
+    assertTrue(responseContent.contains(firstName));
+    assertTrue(responseContent.contains(lastName));
+    assertTrue(responseContent.contains(address));
+    assertTrue(responseContent.contains(phone));
+    assertTrue(responseContent.contains("\"adults\":1"));
+    assertTrue(responseContent.contains("\"minors\":0"));
   }
 
   @Test
   public void getChildrenLivingAtThisAddressTest() throws Exception {
     // Send request to get children living at one address
-    mvc.perform(MockMvcRequestBuilders.get("/childAlert?address=" + address)).andExpect(status().isOk());
+    MvcResult result = mvc.perform(MockMvcRequestBuilders.get("/childAlert?address=" + address)).andExpect(status().isOk()).andReturn();
 
-    // Get content file :
-    String filePath = getMostRecentFilePathForEachMethode("childrenLivingAtThisAddress_" + address + ".json");
-    String fileContent = getFileContent(filePath);
+    // Extract the JSON content from the response:
+    String responseContent = result.getResponse().getContentAsString();
 
     // Check if the data contains the corresponding values :
-    assertTrue(fileContent.contains("\"children\" : [ ]"));
-    assertTrue(fileContent.contains("\"adults\" : [ {"));
-    assertTrue(fileContent.contains("\"firstName\" : \"" + firstName + "\""));
-    assertTrue(fileContent.contains("\"lastName\" : \"" + lastName + "\""));
+    assertTrue(responseContent.contains("\"children\":[]"));
+    assertTrue(responseContent.contains("\"adults\":[{"));
+    assertTrue(responseContent.contains("\"firstName\":\"" + firstName + "\""));
+    assertTrue(responseContent.contains("\"lastName\":\"" + lastName + "\""));
   }
 
   @Test
   public void getPersonsPhoneNumbersCoveredByStationTest() throws Exception {
     // Send request to get phone number by firestation
-    mvc.perform(MockMvcRequestBuilders.get("/phoneAlert?firestation=" + station)).andExpect(status().isOk());
+    MvcResult result = mvc.perform(MockMvcRequestBuilders.get("/phoneAlert?firestation=" + station)).andExpect(status().isOk()).andReturn();
 
-    // Get content file :
-    String filePath = getMostRecentFilePathForEachMethode("personsPhoneNumbersCoveredByStation_" + station + ".json");
-    String fileContent = getFileContent(filePath);
+    // Extract the JSON content from the response:
+    String responseContent = result.getResponse().getContentAsString();
 
     // Check if the data contains the corresponding values :
-    assertTrue(fileContent.contains("\"phone\" : \"" + phone + "\""));
+    assertTrue(responseContent.contains("\"phone\":\"" + phone + "\""));
   }
 
   @Test
   public void getStationAndPersonsByAddressTest() throws Exception {
     // Send request to get station and person by address
-    mvc.perform(MockMvcRequestBuilders.get("/fire?address=" + address)).andExpect(status().isOk());
+    MvcResult result = mvc.perform(MockMvcRequestBuilders.get("/fire?address=" + address)).andExpect(status().isOk()).andReturn();
 
-    // Get content file :
-    String filePath = getMostRecentFilePathForEachMethode("stationAndPersonsByAddress_" + address + ".json");
-    String fileContent = getFileContent(filePath);
+    // Extract the JSON content from the response:
+    String responseContent = result.getResponse().getContentAsString();
 
     // Check if the data contains the corresponding values :
-    assertTrue(fileContent.contains("\"station\" : \"" + station + "\""));
-    assertTrue(fileContent.contains("\"lastName\" : \"" + lastName + "\""));
-    assertTrue(fileContent.contains("\"phone\" : \"" + phone + "\""));
-    assertTrue(fileContent.contains("\"medications\" : [ ]"));
-    assertTrue(fileContent.contains("\"allergies\" : [ ]"));
+    assertTrue(responseContent.contains("\"station\":\"" + station + "\""));
+    assertTrue(responseContent.contains("\"lastName\":\"" + lastName + "\""));
+    assertTrue(responseContent.contains("\"phone\":\"" + phone + "\""));
+    assertTrue(responseContent.contains("\"medications\":[]"));
+    assertTrue(responseContent.contains("\"allergies\":[]"));
 
   }
 
   @Test
   public void getPersonsByHouseholdsFromStationTest() throws Exception {
     // Send POST request to add the firestation
-    mvc.perform(MockMvcRequestBuilders.get("/flood/stations?stations=" + station)).andExpect(status().isOk());
+    MvcResult result = mvc.perform(MockMvcRequestBuilders.get("/flood/stations?stations=" + station)).andExpect(status().isOk()).andReturn();
 
-    // Get content file :
-    String filePath = getMostRecentFilePathForEachMethode("personsByHouseholdsFromStation_" + station + ".json");
-    String fileContent = getFileContent(filePath);
+    // Extract the JSON content from the response:
+    String responseContent = result.getResponse().getContentAsString();
 
     // Check if the data contains the corresponding values :
-    assertTrue(fileContent.contains("\"address\" : \"" + address + "\""));
-    assertTrue(fileContent.contains("\"lastName\" : \"" + lastName + "\""));
-    assertTrue(fileContent.contains("\"phone\" : \"" + phone + "\""));
-    assertTrue(fileContent.contains("\"medications\" : [ ]"));
-    assertTrue(fileContent.contains("\"allergies\" : [ ]"));
+    assertTrue(responseContent.contains("\"address\":\"" + address + "\""));
+    assertTrue(responseContent.contains("\"lastName\":\"" + lastName + "\""));
+    assertTrue(responseContent.contains("\"phone\":\"" + phone + "\""));
+    assertTrue(responseContent.contains("\"medications\":[]"));
+    assertTrue(responseContent.contains("\"allergies\":[]"));
   }
 
   @Test
   public void getPersonInfoByFirstAndLastNameTest() throws Exception {
     // Send POST request to add the firestation
-    mvc.perform(MockMvcRequestBuilders.get("/personInfo?firstName=" + firstName + "&lastName=" + lastName))
-        .andExpect(status().isOk());
+    MvcResult result = mvc.perform(MockMvcRequestBuilders.get("/personInfo?firstName=" + firstName + "&lastName=" + lastName))
+        .andExpect(status().isOk()).andReturn();
 
-    // Get content file :
-    String filePath = getMostRecentFilePathForEachMethode(
-        "personInfoByFirstAndLastName_" + firstName + "_" + lastName + ".json");
-    String fileContent = getFileContent(filePath);
+    // Extract the JSON content from the response:
+    String responseContent = result.getResponse().getContentAsString();
 
     // Check if the data contains the corresponding values :
-    assertTrue(fileContent.contains("\"address\" : \"" + address + "\""));
-    assertTrue(fileContent.contains("\"lastName\" : \"" + lastName + "\""));
-    assertTrue(fileContent.contains("\"email\" : \"" + email + "\""));
-    assertTrue(fileContent.contains("\"medications\" : [ ]"));
-    assertTrue(fileContent.contains("\"allergies\" : [ ]"));
+    assertTrue(responseContent.contains("\"lastName\":\"" + lastName + "\""));
+    assertTrue(responseContent.contains("\"email\":\"" + email + "\""));
+    assertTrue(responseContent.contains("\"medications\":[]"));
+    assertTrue(responseContent.contains("\"allergies\":[]"));
   }
 
   @Test
   public void getAllResidentsEmailsTest() throws Exception {
     // Send POST request to add the firestation
-    mvc.perform(MockMvcRequestBuilders.get("/communityEmail?city=" + city)).andExpect(status().isOk());
+    MvcResult result = mvc.perform(MockMvcRequestBuilders.get("/communityEmail?city=" + city)).andExpect(status().isOk()).andReturn();
 
-    // Get content file :
-    String filePath = getMostRecentFilePathForEachMethode("allResidentsEmailsFromCity_" + city + ".json");
-    String fileContent = getFileContent(filePath);
+    // Extract the JSON content from the response:
+    String responseContent = result.getResponse().getContentAsString();
 
     // Check if the data contains the corresponding values :
-    assertTrue(fileContent.contains("\"email\" : \"" + email + "\""));
+    assertTrue(responseContent.contains("\"email\":\"" + email + "\""));
   }
 
   public String getMostRecentFilePathForEachMethode(String methodNameWithValue) {
@@ -248,23 +234,6 @@ public class URLSControllerIT {
       // Return the most recent file corresponding
       return mostRecentFile.getAbsolutePath();
     } else {
-      return null;
-    }
-  }
-
-  private String getFileContent(String filePath) {
-    try (FileReader fileReader = new FileReader(filePath);
-        BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-      StringBuilder fileContent = new StringBuilder();
-      String line;
-
-      while ((line = bufferedReader.readLine()) != null) {
-        fileContent.append(line);
-      }
-
-      String content = fileContent.toString();
-      return content;
-    } catch (IOException e) {
       return null;
     }
   }

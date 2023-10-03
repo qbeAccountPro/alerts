@@ -1,31 +1,22 @@
 package com.safetynet.alerts.web.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.safetynet.alerts.web.dao.HouseholdDao;
 import com.safetynet.alerts.web.model.Firestation;
 import com.safetynet.alerts.web.model.Household;
 import com.safetynet.alerts.web.model.Person;
 
 @ExtendWith(MockitoExtension.class)
 public class HouseHoldServiceTest {
-
-  @Mock
-  private HouseholdDao householdDao;
 
   @InjectMocks
   private HouseHoldService houseHoldService;
@@ -45,42 +36,37 @@ public class HouseHoldServiceTest {
 
     households.add(household_1);
     households.add(household_2);
+
+    houseHoldService.setHouseholds(households);
   }
 
   @Test
   void testGetAllHouseholds() {
     houseHoldService.getAllHouseholds();
-    verify(householdDao, times(1)).findAll();
   }
 
   @Test
   void testGetHouseholdByAddress() {
     houseHoldService.getHouseholdByAddress(ADDRESS_1);
-    verify(householdDao, times(1)).findByAddress(ADDRESS_1);
   }
 
   @Test
-    void testGetHouseholdsByAddresses() {
-        when(householdDao.findByAddress(ADDRESS_1)).thenReturn(household_1);
-        when(householdDao.findByAddress(ADDRESS_2)).thenReturn(household_2);
+  void testGetHouseholdsByAddresses() {
 
-        List<Household> result = houseHoldService.getHouseholdsByAddresses(addresses);
+    List<Household> result = houseHoldService.getHouseholdsByAddresses(addresses);
 
-        assertEquals(households, result);
-    }
+    assertEquals(households, result);
+  }
 
   @Test
-    void testGetId() {
-        when(householdDao.findByAddress(ADDRESS_1)).thenReturn(household_1);
-        houseHoldService.getId(ADDRESS_1);
-        verify(householdDao, times(1)).findByAddress(ADDRESS_1);
-    }
+  void testGetId() {
+    houseHoldService.getId(ADDRESS_1);
+  }
 
   @Test
   void testSaveHousehold() {
     houseHoldService.saveHousehold(ADDRESS_1);
     household_1.setId(0);
-    verify(householdDao, times(1)).save(household_1);
   }
 
   @Test
@@ -89,10 +75,6 @@ public class HouseHoldServiceTest {
     idHouseholds.add(1);
     idHouseholds.add(2);
     Firestation firestation = new Firestation(0, idHouseholds, ADDRESS_1);
-
-    when(householdDao.findById(household_1.getId())).thenReturn(Optional.of(household_1));
-    when(householdDao.findById(household_2.getId())).thenReturn(Optional.of(household_2));
-
     List<Household> result = houseHoldService.getHouseholdsByFirestation(firestation);
 
     assertEquals(households, result);
@@ -108,20 +90,16 @@ public class HouseHoldServiceTest {
     persons.add(person_1);
     persons.add(person_2);
 
-    when(householdDao.findById(household_1.getId())).thenReturn(Optional.of(household_1));
-    when(householdDao.findById(household_2.getId())).thenReturn(Optional.of(household_2));
-
     List<Household> result = houseHoldService.getHouseholdsByPersons(persons);
 
     assertEquals(households, result);
   }
 
   @Test
-    void testGetHouseholdById() {
-        when(householdDao.findById(household_1.getId())).thenReturn(Optional.of(household_1));
+  void testGetHouseholdById() {
 
-        Household result = houseHoldService.getHouseholdById(household_1.getId());
+    Household result = houseHoldService.getHouseholdById(household_1.getId());
 
-        assertEquals(household_1, result);
-    }
+    assertEquals(household_1, result);
+  }
 }

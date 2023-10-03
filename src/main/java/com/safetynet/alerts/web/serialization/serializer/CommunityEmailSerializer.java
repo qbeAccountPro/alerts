@@ -1,4 +1,4 @@
-package com.safetynet.alerts.web.serialization.dao;
+package com.safetynet.alerts.web.serialization.serializer;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,9 +15,9 @@ import com.safetynet.alerts.web.model.Person;
  * This serializer converts a Person object to JSON format with only the email
  * field.
  */
-public class CommunityEmailDao extends StdSerializer<Person> {
+public class CommunityEmailSerializer extends StdSerializer<Person> {
 
-  public CommunityEmailDao(Class<Person> t) {
+  public CommunityEmailSerializer(Class<Person> t) {
     super(t);
   }
 
