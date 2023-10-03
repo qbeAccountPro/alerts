@@ -1,9 +1,12 @@
 package com.safetynet.alerts.web.service;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +17,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.safetynet.alerts.web.model.Firestation;
 import com.safetynet.alerts.web.model.Household;
 import com.safetynet.alerts.web.model.MedicalRecord;
@@ -25,6 +33,9 @@ import com.safetynet.alerts.web.serialization.model.FirestationAlert;
 import com.safetynet.alerts.web.serialization.model.FloodAlert;
 import com.safetynet.alerts.web.serialization.model.FloodAlertByHousehold;
 import com.safetynet.alerts.web.serialization.model.PersonInfoAlert;
+import com.safetynet.alerts.web.serialization.serializer.CommunityEmailSerializer;
+import com.safetynet.alerts.web.serialization.serializer.FloodAlertSerializer;
+import com.safetynet.alerts.web.serialization.serializer.PersonInfoSerializer;
 import com.safetynet.alerts.web.serialization.service.ChildAlertService;
 import com.safetynet.alerts.web.serialization.service.PersonCoveredService;
 
@@ -132,6 +143,25 @@ public class URLSServiceTest {
   }
 
   @Test
+  void serializeListCommunityEmailTest() throws IOException {
+    ObjectMapper objectMapper = new ObjectMapper();
+    SerializerProvider serializerProvider = objectMapper.getSerializerProvider();
+    Class<Person> personClass = Person.class;
+    CommunityEmailSerializer communityEmailserializer = new CommunityEmailSerializer(personClass);
+
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    JsonFactory jsonFactory = new JsonFactory();
+    JsonGenerator jsonGenerator = jsonFactory.createGenerator(outputStream, JsonEncoding.UTF8);
+    communityEmailserializer.serializeList(persons, jsonGenerator, serializerProvider);
+
+    jsonGenerator.flush();
+    byte[] jsonData = outputStream.toByteArray();
+    String generatedJson = new String(jsonData, "UTF-8");
+    String expected = "[{\"email\":\"qbe@yahoo.com\"},{\"email\":\"kama@yahoo.com\"}]";
+    assertTrue(generatedJson.contains(expected));
+  }
+
+  @Test
   void testChildrenLivingAtThisAddress() {
     List<ChildAlert> adults = new ArrayList<>();
     ChildAlert childAlert_1 = new ChildAlert("Quentin", "Beraud", 26);
@@ -198,6 +228,30 @@ public class URLSServiceTest {
   }
 
   @Test
+  void serializeListPersonInfo() throws IOException {
+    List<PersonInfoAlert> personInfoAlerts = new ArrayList<>();
+    PersonInfoAlert personInfoAlert = new PersonInfoAlert(LASTNAME_1, ADDRESS_1, person_1.getEmail(), 26, null,
+        null);
+    personInfoAlerts.add(personInfoAlert);
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    SerializerProvider serializerProvider = objectMapper.getSerializerProvider();
+    Class<PersonInfoAlert> personInfoAlertClass = PersonInfoAlert.class;
+    PersonInfoSerializer personInfoSerializer = new PersonInfoSerializer(personInfoAlertClass);
+
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    JsonFactory jsonFactory = new JsonFactory();
+    JsonGenerator jsonGenerator = jsonFactory.createGenerator(outputStream, JsonEncoding.UTF8);
+    personInfoSerializer.serializeList(personInfoAlerts, jsonGenerator, serializerProvider);
+
+    jsonGenerator.flush();
+    byte[] jsonData = outputStream.toByteArray();
+    String generatedJson = new String(jsonData, "UTF-8");
+    String expected = "[{\"lastName\":\"Beraud\",\"address\":\"ici\",\"age\":26,\"email\":\"qbe@yahoo.com\",\"medications\":[],\"allergies\":[]}]";
+    assertTrue(generatedJson.contains(expected));
+  }
+
+  @Test
   void testPersonsByHouseholdsFromStation() {
     List<Household> households_1 = new ArrayList<>();
     households_1.add(household_1);
@@ -221,6 +275,38 @@ public class URLSServiceTest {
 
     verify(serialization, times(1)).floodSerialization(floodsAlertByHousehold, "personsByHouseholdsFromStation",
         STATION_1);
+  }
+
+  @Test
+  void serializeListFloodAlertTest() throws IOException {
+    List<Household> households_1 = new ArrayList<>();
+    households_1.add(household_1);
+    List<Person> persons_1 = new ArrayList<>();
+    persons_1.add(person_1);
+    List<MedicalRecord> medicalRecords_1 = new ArrayList<>();
+    medicalRecords_1.add(medicalRecord_1);
+    List<FloodAlert> FloodsAlert = new ArrayList<>();
+    FloodAlert floodAlert = new FloodAlert(LASTNAME_1, person_1.getPhone(), 26, null, null);
+    FloodsAlert.add(floodAlert);
+    List<FloodAlertByHousehold> floodsAlertByHousehold = new ArrayList<>();
+    FloodAlertByHousehold floodAlertByHousehold = new FloodAlertByHousehold(household_1, FloodsAlert);
+    floodsAlertByHousehold.add(floodAlertByHousehold);
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    SerializerProvider serializerProvider = objectMapper.getSerializerProvider();
+    Class<FloodAlertByHousehold> floodAlertClass = FloodAlertByHousehold.class;
+    FloodAlertSerializer floodAlertSerializer = new FloodAlertSerializer(floodAlertClass);
+
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    JsonFactory jsonFactory = new JsonFactory();
+    JsonGenerator jsonGenerator = jsonFactory.createGenerator(outputStream, JsonEncoding.UTF8);
+    floodAlertSerializer.serializeList(floodsAlertByHousehold, jsonGenerator, serializerProvider);
+
+    jsonGenerator.flush();
+    byte[] jsonData = outputStream.toByteArray();
+    String generatedJson = new String(jsonData, "UTF-8");
+    String expected = "[[{\"address\":\"ici\",\"lastName\":\"Beraud\",\"age\":26,\"phone\":\"000\",\"medications\":[],\"allergies\":[]}]]";
+    assertTrue(generatedJson.contains(expected));
   }
 
   @Test

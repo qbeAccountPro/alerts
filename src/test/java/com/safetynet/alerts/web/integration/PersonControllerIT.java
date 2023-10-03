@@ -20,7 +20,6 @@ import com.safetynet.alerts.web.deserialization.model.PersonDeserialization;
 import com.safetynet.alerts.web.model.Household;
 import com.safetynet.alerts.web.model.Person;
 import com.safetynet.alerts.web.service.HouseHoldService;
-import com.safetynet.alerts.web.service.MedicalRecordService;
 import com.safetynet.alerts.web.service.PersonService;
 
 @SpringBootTest
@@ -32,9 +31,6 @@ public class PersonControllerIT {
 
   @Autowired
   private HouseHoldService houseHoldService;
-
-  @Autowired
-  private MedicalRecordService medicalRecordService;
 
   String firstName = "Quentin", lastName = "Beraud", address = "Rue d'ici";
   String city = "Lyon", email = "qbe.pro@yahoo.com", phone = "06 66 66 66 66", zip = "69000";
