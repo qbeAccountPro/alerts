@@ -1,0 +1,32 @@
+2023-10-07 15:09:30 [http-nio-8080-exec-1] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-07 15:09:31 [http-nio-8080-exec-1] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
+2023-10-07 15:09:39 [http-nio-8080-exec-3] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getChildrenLivingAtThisAddress.
+2023-10-07 15:09:39 [http-nio-8080-exec-3] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer childrenLivingAtThisAddress : successfully generated.
+2023-10-07 15:09:42 [http-nio-8080-exec-4] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsPhoneNumbersCoveredByStation.
+2023-10-07 15:09:42 [http-nio-8080-exec-4] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsPhoneNumbersCoveredByStation : successfully generated.
+2023-10-07 15:09:45 [http-nio-8080-exec-5] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getStationAndPersonsByAddress.
+2023-10-07 15:09:45 [http-nio-8080-exec-5] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer stationAndPersonsByAddress : successfully generated.
+2023-10-07 15:09:49 [http-nio-8080-exec-6] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonsByHouseholdsFromStration.
+2023-10-07 15:09:49 [http-nio-8080-exec-6] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personsByHouseholdsFromStation : successfully generated.
+2023-10-07 15:09:54 [http-nio-8080-exec-7] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonInfoByFirstAndLastName.
+2023-10-07 15:09:54 [http-nio-8080-exec-7] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personInfoByFirstAndLastName : successfully generated.
+2023-10-07 15:09:59 [http-nio-8080-exec-8] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getAllResidentsEmails.
+2023-10-07 15:09:59 [http-nio-8080-exec-8] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer allResidentsEmailsFromCity : successfully generated.
+2023-10-07 16:10:05 [http-nio-8080-exec-3] com.safetynet.alerts.web.logging.EndpointsLogger.request()
+INFO: Request getPersonCoveredByFirestation.
+2023-10-07 16:10:05 [http-nio-8080-exec-3] com.safetynet.alerts.web.logging.EndpointsLogger.successfullyGenerated()
+INFO: Answer personCoveredByFireStation : successfully generated.
